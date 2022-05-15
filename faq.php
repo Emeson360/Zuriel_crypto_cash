@@ -320,10 +320,10 @@
                             <h4>Our Company</h4>
                             <div class="menu">
                                 <ul>
-                                    <li><a href="index-2.php">Home</a></li>
+                                    <li><a href="index.php">Home</a></li>
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="services.php">Services</a></li>
-                                    <li><a href="pricing.php">Plans</a></li>
+                                    <li><a href="./plan.php">Plans</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                 </ul>
                             </div>
@@ -350,9 +350,6 @@
                             <div class="contacts">
                                 <div>
                                     <span>contact@website.com</span>
-                                </div>
-                                <div>
-                                    <span>+1 323 443 6880</span>
                                 </div>
                                 <div>
                                     <span>+44 7537 127782</span>
@@ -421,7 +418,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © 2018 Bayya All Rights Reserved | Created with Love by <a href="https://themeforest.net/user/celtano" target="_blank">celtano</a></p>
+                            <p class="text-center">Copyright © 2020 Zuriel crypto cash All Rights Reserved</p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>

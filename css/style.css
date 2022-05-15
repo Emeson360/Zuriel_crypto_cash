@@ -1535,12 +1535,10 @@ ul.nav.nav-tabs li a:hover, ul.nav.nav-tabs li.active a:hover {
 .doNotHesitate {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   text-align: center;
   width: 70%;
   margin: auto;
   margin-top: 50px;
-  /* margin-bottom: 50px; */
   padding-bottom: 50px;
 }
 
@@ -1884,12 +1882,13 @@ ul.nav.nav-tabs li a:hover, ul.nav.nav-tabs li.active a:hover {
   width: 96%;
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .elementor-price-table {
   text-align: center;
-  width: 23%;
+  width: 23.6%;
   background-color: #1D1D1D;
   color: white;
 }
@@ -4440,6 +4439,11 @@ h4.panel-title a.collapsed:before {
   .facts .facts-content .fact:first-child, .facts .facts-content .fact.fact-clear {
     margin-bottom: 50px;
   }
+
+  .elementor-price-table {
+    width: 48.8%;
+    margin-bottom: 20px;
+  }
 }
 /* Small Devices Potrait */
 
@@ -4991,7 +4995,23 @@ h4.panel-title a.collapsed:before {
   }
 }
 
-@media (max-width : 570px) {
+@media (max-width: 570px) {
+  .doNotHesitate {
+    width: 100%;
+    display: block;
+  }
+
+  .doNotHesitate p {
+    font-size: 16px;
+    width: 100%;
+    color: white;
+  }
+
+  .elementor-price-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   .bitcoin-calculator-section {
     height: inherit;
     padding-bottom: 0;

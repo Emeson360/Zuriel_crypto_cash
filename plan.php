@@ -65,12 +65,12 @@
                     </div>
                     <!-- Logo Ends -->
                     <!-- Statistics Starts -->
-                    <div class="col-md-7 col-lg-7">
+                    <div class="col-md-6 col-lg-6">
                         
                     </div>
                     <!-- Statistics Ends -->
                     <!-- User Sign In/Sign Up Starts -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-md-4 col-lg-4">
                         <ul class="unstyled user">
                             <li class="sign-in"><a href="login.php" class="btn btn-primary"><i class="fa fa-user"></i> sign in</a></li>
                             <li class="sign-up"><a href="register.php" class="btn btn-primary"><i class="fa fa-user-plus"></i> register</a></li>
@@ -201,7 +201,7 @@
                                 
                                 <li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -249,7 +249,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -297,7 +297,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -322,7 +322,7 @@
 		                <div class="elementor-price-table">
 							<div class="elementor-price-table__header">
 								<h3 class="elementor-price-table__heading">PREMIUM</h3>
-					            <span class="elementor-price-table__subheading">Min: $50,000  ¦   Max: $100,000</span>
+					            <span class="elementor-price-table__subheading">Min: $50,000  and Above</span>
 							</div>
 			
 			                <div class="elementor-price-table__price">
@@ -345,7 +345,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -439,9 +439,6 @@
                                     <span>contact@website.com</span>
                                 </div>
                                 <div>
-                                    <span>+1 323 443 6880</span>
-                                </div>
-                                <div>
                                     <span>+44 7537 127782</span>
                                 </div>
                                 <div>
@@ -508,7 +505,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © 2018 Zuriel crypto cash All Rights Reserved</p>
+                            <p class="text-center">Copyright © 2020 Zuriel crypto cash All Rights Reserved</p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>

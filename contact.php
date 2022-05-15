@@ -218,7 +218,7 @@
                                     <i class="fa fa-phone big-icon"></i>
                                     <div class="contact-info-box-content">
                                         <h4>Phone Numbers</h4>
-                                        <p>+1 323 443 6880<br>+44 7537 127782</p>
+                                        <p>+44 7537 127782</p>
                                     </div>
                                 </div>
 								<!-- Contact Info Box Ends -->
@@ -318,9 +318,6 @@
                                     <span>contact@website.com</span>
                                 </div>
                                 <div>
-                                    <span>+1 323 443 6880</span>
-                                </div>
-                                <div>
                                     <span>+44 7537 127782</span>
                                 </div>
                                 <div>
@@ -387,7 +384,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © 2018 Zuriel crypto cash All Rights Reserved</p>
+                            <p class="text-center">Copyright © 2020 Zuriel crypto cash All Rights Reserved</p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>

@@ -426,7 +426,7 @@
                                 
                                 <li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -474,7 +474,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -522,7 +522,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -547,7 +547,7 @@
 		                <div class="elementor-price-table">
 							<div class="elementor-price-table__header">
 								<h3 class="elementor-price-table__heading">PREMIUM</h3>
-					            <span class="elementor-price-table__subheading">Min: $50,000  ¦   Max: $100,000</span>
+					            <span class="elementor-price-table__subheading">Min: $50,000  and Above</span>
 							</div>
 			
 			                <div class="elementor-price-table__price">
@@ -570,7 +570,7 @@
 
 								<li class="elementor-repeater-item-9d9f92a">
 							        <div class="elementor-price-table__feature-inner">
-										<span >BTC Only!</span>
+										<span >BTC, ETH, USDT, BUSD</span>
 									</div>
 						        </li>
 
@@ -986,9 +986,6 @@
                                     <span>contact@website.com</span>
                                 </div>
                                 <div>
-                                    <span>+1 323 443 6880</span>
-                                </div>
-                                <div>
                                     <span>+44 7537 127782</span>
                                 </div>
                                 <div>
@@ -1055,7 +1052,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- Copyright Text Starts -->
-                            <p class="text-center">Copyright © 2018 Zuriel crypto cash All Rights Reserved</p>
+                            <p class="text-center">Copyright © 2020 Zuriel crypto cash All Rights Reserved</p>
                             <!-- Copyright Text Ends -->
                         </div>
                     </div>
@@ -1065,7 +1062,7 @@
               <!-- Coin price widget start here -->
               <div  style="height:40px; background-color: #FFFFFF; opacity: 0.6; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:62px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D1D1D;padding:1px;padding: 0px; margin: 0px; width: 100%;">
                 <div style="height:40px; background-color: #FFFFFF; padding:0px; margin:auto; width: 88%;">
-                    <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
+                    <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" style="border:0;margin:0;padding:0;"></iframe>
                 </div>
             </div>
             <!-- Coin price widget ends here -->

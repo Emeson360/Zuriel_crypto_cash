@@ -143,7 +143,7 @@
 					</div>
 				</div>
 				<!-- Copyright Text Starts -->
-				<p class="text-center copyright-text">Copyright © 2018 Zuriel crypto cash All Rights Reserved</p>
+				<p class="text-center copyright-text">Copyright © 2020 Zuriel crypto cash All Rights Reserved</p>
 				<!-- Copyright Text Ends -->
 			</div>
 		</div>
