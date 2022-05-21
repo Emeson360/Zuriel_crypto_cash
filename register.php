@@ -1,3 +1,11 @@
+<?php 
+
+include("connect.php");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +23,13 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/select2.min.css">
     <link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/skins/orange.css">
+		<link rel="stylesheet" href="css/skins/orange.css">
+		<link rel="stylesheet" href="css/errors.css">
 
     <!-- Template JS Files -->
     <script src="js/modernizr.js"></script>
 
 </head>
-
 <body class="auth-page">
     <!-- SVG Preloader Starts -->
     <div id="preloader">
@@ -52,7 +60,7 @@
     <!-- SVG Preloader Ends -->
 	
     <!-- Wrapper Starts -->
-    <div class="wrapper" style="height: 830px;">
+    <div class="wrapper" style="min-height: 1080px;">
         <div class="container-fluid user-auth">
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->
@@ -117,47 +125,50 @@
 						<!-- Section Title Starts -->
 						<div class="row text-center">
 							<h2 class="title-head hidden-xs">get <span>started</span></h2>
-							 <p class="info-form">Open account for free and start trading Bitcoins now!</p>
+							 <p class="info-form">Open account for free and start investing and trading Bitcoins now!</p>
 						</div>
 						<!-- Section Title Ends -->
 						<!-- Form Starts -->
-						<form>
+						<form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+							<!-- Input Field Starts -->
+							<?php include("errors.php"); ?>
+							<div class="form-group">
+								<input class="form-control" name="firstname" id="firstName" placeholder="FIRST NAME" type="text">
+							</div>
+							
+							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="firstName" id="firstName" placeholder="FIRST NAME" type="text" required>
+								<input class="form-control" name="lastname" id="lastName" placeholder="LAST NAME" type="text">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="lastName" id="lastName" placeholder="LAST NAME" type="text" required>
+								<input class="form-control" name="username" id="userName" placeholder="USERNAME" type="text">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="userName" id="userName" placeholder="USERNAME" type="text" required>
+								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="email">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required>
+								<input class="form-control" name="phonenumber" id="phoneNumber" placeholder="PHONE NUMBER" type="text">
+							</div>
+							<!-- Input Field Ends -->
+ 
+							<!-- Input Field Starts -->
+							<div class="form-group">
+								<input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="phoneNumber" id="phoneNumber" placeholder="PHONE NUMBER" type="text" required>
-							</div>
-							<!-- Input Field Ends -->
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password" required>
-							</div>
-							<!-- Input Field Ends -->
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="confirmPassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password" required>
+								<input class="form-control" name="cpassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password">
 							</div>
 
-							<select class="form-control">
+							<select class="form-control" name="country">
 								<option class="selectCountry" value="">--- select your country ---</option>
 								<option value="Afghanistan">Afghanistan</option>
 								<option value="Åland Islands">Åland Islands</option>
@@ -408,7 +419,7 @@
 							<!-- Input Field Ends -->
 							<!-- Submit Form Button Starts -->
 							<div class="form-group">
-								<button class="btn btn-primary" type="submit" style="margin-top: 30px;">create account</button>
+								<button class="btn btn-primary" type="submit" name="reg_user" style="margin-top: 30px;">create account</button>
 								<p class="text-center">already have an account ? <a href="login.php">Login</a>
 							</div>
 							<!-- Submit Form Button Ends -->

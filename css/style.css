@@ -99,6 +99,7 @@ section {
 	overflow:hidden;
 }
 
+
 .gap-20 {
   clear: both;
   height: 20px;
@@ -646,89 +647,6 @@ body.light .shop-checkout .table tbody > tr {
 .logo-mobile {
   display: none;
 }
-
-/*** Bitcoin Statistics ***/
-
-/* ul.bitcoin-stats {
-  padding-top: 28px;
-}
-
-ul.bitcoin-stats li {
-  display: inline-block;
-  padding-right: 25px;
-}
-
-ul.bitcoin-stats li:last-child {
-  padding-right: 0;
-}
-
-ul.bitcoin-stats h6 {
-  font-weight: 800;
-  color: #eee;
-  margin: 0;
-  font-size: 13px;
-  text-align: left;
-  margin-bottom: -2px;
-  line-height: 13px;
-}
-
-ul.bitcoin-stats span {
-  font-size: 12px;
-  text-align: left;
-  color: #aaa;
-} */
-
-/* .btcwdgt.btcwdgt-text-ticker.btcwdgt-s-price {
-  margin-top: -3px !important;
-  min-width: initial !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  background-color: transparent !important;
-}
-
-.btcwdgt.btcwdgt-s-price .btcwdgt-body {
-  padding: 0!important;
-  margin-top: 0 !important;
-  height: 14px !important;
-  text-align: center !important;
-}
-
-@-moz-document url-prefix() {
-  .btcwdgt.btcwdgt-s-price .btcwdgt-body {
-    height: 15px !important;
-  }
-}
-
-.btcwdgt.btcwdgt-s-price .btcwdgt-body span,
-.btcwdgt.btcwdgt-text-ticker .btcwdgt-footer,
-.btcwdgt.btcwdgt-text-ticker .btcwdgt-edge {
-  display: none !important;
-}
-
-.btcwdgt.btcwdgt-s-price .btcwdgt-body ul {
-  float: left !important;
-}
-
-.btcwdgt.btcwdgt-s-price .btcwdgt-body ul li {
-  line-height: normal !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-}
-
-.btcwdgt.btcwdgt-s-price .btcwdgt-body ul li:before {
-  content: "$";
-  position: relative;
-  font-size: 12px;
-  top: -1px;
-}
-
-ul.bitcoin-stats li .btcwdgt.btcwdgt .arrow,
-ul.bitcoin-stats li .btcwdgt.btcwdgt .arrow.up,
-ul.bitcoin-stats li .btcwdgt.btcwdgt .arrow.down {
-  top: 10px !important;
-  position: absolute !important;
-  margin: -6px 0 0 -11px !important;
-} */
 
 /*** User Buttons ***/
 
@@ -3291,105 +3209,6 @@ section.shop-cart {
   font-size: 15px;
 }
 
-/* Checkout Page */
-section.shop-checkout {
-  padding: 90px 0 60px;
-}
-
-.shop-checkout h3 {
-  color: #fff;
-  text-transform: uppercase;
-  margin-bottom: 25px;
-}
-
-.shop-checkout .form-group {
-  margin-bottom: 30px;
-}
-
-.shop-checkout textarea {
-  height: 150px;
-  padding: 15px 20px;
-}
-
-.shop-checkout select {
-  color: #666;
-  outline: none;
-}
-
-.shop-checkout select:focus {
-  outline: none;
-  box-shadow: none;
-  border: 0;
-}
-
-.shop-checkout .checkout table.products thead tr {
-  background: #222;
-}
-
-.shop-checkout .checkout table.products th.with-bg {
-  background: #222;
-}
-
-.shop-checkout .checkout table.products td.text-price {
-  color: #fff;
-}
-
-.shop-checkout .checkout table.products td.text-price.big-price {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.products > thead > tr > th,
-.products > thead > tr > td,
-.products > tbody > tr > th,
-.products > tbody > tr > td,
-.products > tfoot > tr > th,
-.products > tfoot > tr > td {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
-  line-height: 1.66667;
-  vertical-align: middle;
-  border-top: 1px solid;
-}
-
-.shop-checkout .checkout .payment .cheque,
-.shop-checkout .checkout .payment .paypal {
-  background: #222;
-  padding: 30px;
-  margin-bottom: 30px;
-}
-
-.shop-checkout .checkout .payment .cheque {
-  margin-bottom: 1px;
-}
-
-.shop-checkout .checkout .payment .radio {
-  display: inline-block;
-  margin-right: 15px;
-}
-
-.shop-checkout .checkout .payment .payment-cards {
-  margin-top: 10px;
-  padding-bottom: 15px;
-}
-
-.shop-checkout .checkout .payment .payment-cards img {
-  margin: 0 5px 5px 0;
-}
-
-.tooltip.top .tooltip-inner {
-  padding: 20px;
-  width: 290px;
-  min-width: 290px;
-  line-height: 19px;
-  text-align: left;
-}
-
-.checkbox input[type=checkbox], .shop-checkout .checkout .payment input[type=radio] {
-  margin-top: 8px;
-}
 
 /*** Latest Posts ***/
 
@@ -3607,7 +3426,7 @@ section.shop-checkout {
 /*** Sign in & Sign Up ***/
 
 .auth-page {
-	background: #111;
+	background: #fff;
 }
 .user-auth {
   padding: 0;
@@ -3658,7 +3477,7 @@ section.shop-checkout {
 }
 
 .user-auth > div:nth-child(2) .form-container form {
-  max-width: 450px;
+  max-width: 470px;
   margin: 0 auto;
 }
 
@@ -4141,6 +3960,8 @@ h4.panel-title a.collapsed:before {
 .payment-logos img.last {
   margin-right: 0;
 }
+
+
 
 /* [ RESPONSIVE DESIGN STYLES ] */
 /*================================================== */
@@ -4837,68 +4658,6 @@ h4.panel-title a.collapsed:before {
     padding: 15px;
   }
 
-  .shop-cart .table-responsive {
-    border: 0;
-  }
-
-  .shop-cart .table-responsive {
-    border: 0;
-  }
-
-  .shop-cart .form-control {
-    max-width: initial;
-    width: 39%;
-  }
-
-  .shop-cart button {
-    width: calc(61% - 15px);
-    margin: 0;
-  }
-
-  .shop-cart .btn.btn-update-cart {
-    width: 100%;
-    margin-top: 15px;
-  }
-
-  .shop-cart .btn.btn-proceed {
-    width: 100%;
-  }
-
-  .shop-cart .table-responsive .table.order colgroup {
-    width: auto;
-  }
-
-  .shop-cart .table-responsive .table.order colgroup col {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  .shop-cart .table-responsive .table.order tr td, .shop-cart .table-responsive .table.order tr th {
-    padding-left: 5px;
-    padding-right: 5px;
-    white-space: normal;
-  }
-
-  .shop-cart .table-responsive .table.order tr td h6, .shop-cart .table-responsive .table.order tr th h6 {
-    font-size: 12px;
-  }
-
-  .shop-cart .table-responsive .table.order tr td .price, .shop-cart .table-responsive .table.order tr th .price {
-    font-size: 11px;
-  }
-
-  .shop-cart .table-responsive .table.order tr td .quantity, .shop-cart .table-responsive .table.order tr th .quantity {
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .shop-cart .table-responsive .table.order tr th {
-    font-size: 12px;
-  }
-
-  .shop-checkout .form-group ,.shop-checkout .checkout .payment .paypal,  .shop-checkout .table, .contact-form .form-group {
-	  margin-bottom:15px;
-  }
   
   body.light .dropdown-menu li.active a {
 	  background:none;

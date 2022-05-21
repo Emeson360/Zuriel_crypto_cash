@@ -1,3 +1,10 @@
+<?php 
+
+include('connect.php')
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,10 +128,11 @@
 						</div>
 						<!-- Section Title Ends -->
 						<!-- Form Starts -->
-						<form>
+						<form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
 							<!-- Input Field Starts -->
+							<?php include("errors.php"); ?>
 							<div class="form-group">
-								<input class="form-control" name="userName" id="userName" placeholder="USERNAME" type="text" required>
+								<input class="form-control" name="username" id="userName" placeholder="USERNAME" type="text" required>
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
@@ -134,7 +142,7 @@
 							<!-- Input Field Ends -->
 							<!-- Submit Form Button Starts -->
 							<div class="form-group">
-								<button class="btn btn-primary" type="submit">login</button>
+								<button class="btn btn-primary" type="submit" name="login_user">login</button>
 								<p class="text-center">don't have an account ? <a href="register.php">register now</a>
 							</div>
 							<!-- Submit Form Button Ends -->
