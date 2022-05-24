@@ -1,0 +1,147 @@
+
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*******************
+/*Top bar
+*******************/
+.topbar {
+  background: #E78A1A; }
+  .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+    display: none; }
+  .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.8); }
+  .topbar .navbar-nav .nav-item > a.nav-link {
+    color: rgba(255, 255, 255, 0.8); }
+    .topbar .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-nav .nav-item > a.nav-link:focus {
+      color: #ffffff !important; }
+  .topbar .top-navbar .navbar-nav > .nav-item > span {
+    color: #ffffff; }
+  .topbar .navbar-header {
+    background: #272c33; }
+
+.logo-center .topbar .navbar-header {
+  background: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+  display: none; }
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8); }
+
+/*******************
+/*General Elements
+*******************/
+.bg-theme {
+  background-color: #E78A1A
+     !important; }
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #E78A1A
+    ;
+  border-color: #E78A1A
+    ; }
+
+.right-sidebar .rpanel-title {
+  background: #E78A1A
+    ; }
+
+.stylish-table tbody tr:hover, .stylish-table tbody tr.active {
+  border-left: 4px solid #E78A1A
+    ; }
+
+.text-themecolor {
+  color: #E78A1A
+     !important; }
+
+.profile-tab li a.nav-link.active,
+.customtab li a.nav-link.active {
+  border-bottom: 2px solid #E78A1A
+    ;
+  color: #E78A1A
+    ; }
+
+.profile-tab li a.nav-link:hover,
+.customtab li a.nav-link:hover {
+  color: #E78A1A
+    ; }
+
+/*******************
+/*Buttons
+*******************/
+.btn-themecolor,
+.btn-themecolor.disabled {
+  background: #E78A1A
+    ;
+  color: #ffffff;
+  border: 1px solid #E78A1A
+    ; }
+  .btn-themecolor:hover,
+  .btn-themecolor.disabled:hover {
+    background: #E78A1A
+    ;
+    opacity: 0.7;
+    border: 1px solid #E78A1A
+    ; }
+  .btn-themecolor.active, .btn-themecolor:focus,
+  .btn-themecolor.disabled.active,
+  .btn-themecolor.disabled:focus {
+    background: #028ee1; }
+
+/*******************
+/*sidebar navigation
+*******************/
+.card-no-border .left-sidebar,
+.card-no-border .sidebar-nav {
+  background: #111; }
+
+.mini-sidebar .sidebar-nav {
+  background: transparent; }
+
+@media (min-width: 768px) {
+  .mini-sidebar .sidebar-nav #sidebarnav > li > ul {
+    background: #1c2128; } }
+
+.sidebar-nav {
+  background: #242a33; }
+
+.user-profile .profile-text a {
+  color: #687384 !important; }
+
+.card-no-border .sidebar-footer {
+  background: #1d1d1d; }
+
+.label-themecolor {
+  background: #E78A1A
+    ; }
+
+.sidebar-nav > ul > li.active > a {
+  color: #ffffff;
+  border-color: #1d1d1d
+    ; }
+  .sidebar-nav > ul > li.active > a i {
+    color: #ffffff; }
+
+.sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
+  color: #ffffff; }
+  .sidebar-nav ul li a.active i, .sidebar-nav ul li a:hover i {
+    color: #ffffff; }
+
+.sidebar-nav ul li.nav-small-cap {
+  color: #687384; }
+
+@media (min-width: 768px) {
+  .mini-sidebar .sidebar-nav #sidebarnav > li:hover > a {
+    background: #1c2128; } }
+
