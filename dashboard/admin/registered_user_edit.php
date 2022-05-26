@@ -75,7 +75,8 @@ include('../gen_includes/side_bar_admin.php');
                           <!-- Input Field Ends -->
                           <!-- Input Field Starts -->
                           <div class="form-group">
-                            <input class="form-control" value="<?php echo $row['email'] ?>" name="email" id="email" placeholder="EMAIL" type="email">
+                            <p><span class="email_error text-danger"></span></p>
+                            <input class="form-control email_id" value="<?php echo $row['email'] ?>" name="email" id="email" placeholder="EMAIL" type="email">
                           </div>
                           <!-- Input Field Ends -->
                           <!-- Input Field Starts -->
@@ -383,8 +384,31 @@ include('../gen_includes/side_bar_admin.php');
 
 
 
-<?php
+    <?php include('../gen_includes/footer_script.php'); ?>
+    
+    <script>
+			$(document).ready(function () {
+				$('.email_id').keyup(function(e) {
+					var email = $('.email_id').val();
+					// console.log(email);
+					
+					$.ajax({
+						type: "POST",
+						url: "../../connect.php",
+						data: {
+							'check_Emailbtn':1,
+							'email':email,
+						},
+						dataType: "",
+						success: function(response) {
+							// console.log(response);
+							$('.email_error').text(response)
+						}
+					})
+				});
 
-include('../gen_includes/footer.php');
+			});
+		</script>
 
-?>
+
+<?php include('../gen_includes/footer.php'); ?>

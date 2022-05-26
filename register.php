@@ -60,7 +60,7 @@ include("connect.php");
     <!-- SVG Preloader Ends -->
 	
     <!-- Wrapper Starts -->
-    <div class="wrapper" style="min-height: 1080px; background-color: #111;">
+    <div class="wrapper" style="min-height: 1000px; background-color: #111;">
         <div class="container-fluid user-auth">
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->
@@ -149,7 +149,8 @@ include("connect.php");
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="email">
+							<p><span class="email_error text-danger"></span></p>
+								<input class="form-control email_id" name="email" id="email" placeholder="EMAIL" type="email">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
@@ -159,13 +160,15 @@ include("connect.php");
 							<!-- Input Field Ends -->
  
 							<!-- Input Field Starts -->
-							<div class="form-group">
+							<div class="row">
+							<div class="form-group col-md-6">
 								<input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
-							<div class="form-group">
+							<div class="form-group col-md-6">
 								<input class="form-control" name="cpassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password">
+							</div>
 							</div>
 
 							<select class="form-control" name="country">
@@ -451,6 +454,30 @@ include("connect.php");
 	<script src="js/select2.min.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/custom.js"></script>
+
+	<script>
+			$(document).ready(function () {
+				$('.email_id').keyup(function(e) {
+					var email = $('.email_id').val();
+					// console.log(email);
+					
+					$.ajax({
+						type: "POST",
+						url: "./connect.php",
+						data: {
+							'check_Emailbtn':1,
+							'email':email,
+						},
+						dataType: "",
+						success: function(response) {
+							// console.log(response);
+							$('.email_error').text(response)
+						}
+					})
+				});
+
+			});
+		</script>
 
     <!-- Wrapper Ends -->
 </body>

@@ -32,19 +32,19 @@ include('../gen_includes/side_bar_admin.php');
 
     
 
-
+		<!-- Add user -->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">add user</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            
-            <!-- Form Starts -->
-						<form action="../../connect.php" method="POST">
+          
+					<!-- Form Starts -->
+					<form action="../../connect.php" method="POST">            
+						<div class="modal-body">
 							<!-- Input Field Starts -->
 							<div class="form-group">
 								<input class="form-control" name="firstname" id="firstName" placeholder="FIRST NAME" type="text">
@@ -63,7 +63,8 @@ include('../gen_includes/side_bar_admin.php');
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="email">
+								<p><span class="email_error text-danger"></span></p>
+								<input class="form-control email_id" name="email" id="email" placeholder="EMAIL" type="email">
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
@@ -72,14 +73,16 @@ include('../gen_includes/side_bar_admin.php');
 							</div>
 							<!-- Input Field Ends -->
  
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password">
-							</div>
-							<!-- Input Field Ends -->
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="cpassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password">
+							<div class="row">
+								<!-- Input Field Starts -->
+								<div class="form-group col-md-6">
+									<input class="form-control" name="password" id="password" placeholder="PASSWORD" type="password">
+								</div>
+								<!-- Input Field Ends -->
+								<!-- Input Field Starts -->
+								<div class="form-group col-md-6">
+									<input class="form-control" name="cpassword" id="confirmPassword" placeholder="CONFIRM PASSWORD" type="password">
+								</div>
 							</div>
 
 
@@ -338,30 +341,67 @@ include('../gen_includes/side_bar_admin.php');
 								<option value="Zambia">Zambia</option>
 								<option value="Zimbabwe">Zimbabwe</option>
 							</select>
-
 							<!-- Input Field Ends -->
-              <div class="modal-footer">
+              
+						</div>
+						<div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" name="add_user" class="btn btn-primary">Save</button>
-              </div>
-							
-						</form>
-						<!-- Form Ends -->
+              </div>	
+					</form>
+					<!-- Form Ends -->
 
-          </div>
-          
         </div>
       </div>
     </div>
 
 
+		<!-- Delete user -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+
+					<!-- Form Starts -->
+					<form action="../../connect.php" method="POST">
+					
+						<div class="modal-body">
+	 						<input type="hidden" name="deleteId" class="deleteUserid">
+							<p>Are you sure you want to delete this data ?</p>
+						</div>
+						<!-- Input Field Ends -->
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="submit" name="deleteUserBtn" class="btn btn-primary">yes, Delete</button>
+						</div>
+							
+							
+
+					</form>
+					<!-- Form Ends -->
+
+					
+				</div>
+			</div>
+		</div>
+
+
+			
+
+
     <div class="row">
       <div class="col-12 col-md-12">
         <?php
-          if (isset($_SESSION['status'])) {
-            echo "<h4>" . $_SESSION['status']. "</h4>";
+					if (isset($_SESSION['status'])) {
+						echo "<h4>" . $_SESSION['status']. "</h4>";
             unset($_SESSION['status']);
-          }
+					}		
         ?>
         <div class="card">
           <div class="card-header">
@@ -381,12 +421,10 @@ include('../gen_includes/side_bar_admin.php');
                 <thead>
                   <tr>
                     <th style="font-weight: 700;">Id</th>
-                    <th style="font-weight: 700;">First Name</th>
-                    <th style="font-weight: 700;">Last Name</th>
                     <th style="font-weight: 700;">Username</th>
                     <th style="font-weight: 700;">Email</th>
-                    <!-- <th style="font-weight: 700;">Phone Number</th> -->
-                    <!-- <th style="font-weight: 700;">Country</th> -->
+                    <th style="font-weight: 700;">Phone Number</th>
+                    <th style="font-weight: 700;">Role</th>
                     <th style="font-weight: 700;">Date</th>
                     <th style="font-weight: 700;">Action</th>
                   </tr>
@@ -403,16 +441,14 @@ include('../gen_includes/side_bar_admin.php');
                         
                         <tr>
                           <td><?php echo $row['id']; ?></td>
-                          <td><?php echo $row['firstname']; ?></td>
-                          <td><?php echo $row['lastname']; ?></td>
                           <td><?php echo $row['username']; ?></td>
                           <td><?php echo $row['email']; ?></td>
-                          <!-- <td><?php echo $row['phone']; ?></td> -->
-                          <!-- <td><?php echo $row['country']; ?></td> -->
+                          <td><?php echo $row['phone']; ?></td>
+                          <td><?php echo $row['usertype']; ?></td>
                           <td><?php echo $row['date']; ?></td>
                           <td>
                             <a href="./registered_user_edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="" class="btn btn-sm btn-danger">Delete</a>
+                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger deleteBtn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                           </td>
                         </tr>
                         
@@ -442,11 +478,44 @@ include('../gen_includes/side_bar_admin.php');
 
 
 
+		<?php include('../gen_includes/footer_script.php'); ?>
 
+		<script>
+			$(document).ready(function () {
+				$('.email_id').keyup(function(e) {
+					var email = $('.email_id').val();
+					// console.log(email);
+					
+					$.ajax({
+						type: "POST",
+						url: "../../connect.php",
+						data: {
+							'check_Emailbtn':1,
+							'email':email,
+						},
+						dataType: "",
+						success: function(response) {
+							// console.log(response);
+							$('.email_error').text(response)
+						}
+					})
+				});
 
+			});
+		</script>
 
-<?php 
+		<!-- Delete user -->
+		<script>
+			$(document).ready(function () {
+				$('.deleteBtn').click(function (e) {
+					e.preventDefault();
 
-include('../gen_includes/footer.php');
+					var userid = $(this).val();
+					console.log(userid)
+					$('.deleteUserid').val(userid);
+					$('#deleteModal').modal('show');
+				})
+			})
+		</script>
 
-?>
+<?php include('../gen_includes/footer.php'); ?>

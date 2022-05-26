@@ -34,9 +34,6 @@ include('../gen_includes/side_bar_user.php');
 
 
 
-
-<?php 
-
-include('../gen_includes/footer.php');
-
+    <?php include('../gen_includes/footer_script.php'); ?>
+<?php include('../gen_includes/footer.php'); ?>
 ?>

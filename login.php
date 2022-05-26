@@ -126,13 +126,15 @@ include('connect.php')
 							<h2 class="title-head hidden-xs">member <span>login</span></h2>
 							 <p class="info-form">Send, receive, invest and securely store your coins in your wallet</p>
 						</div>
+						
 						<!-- Section Title Ends -->
 						<!-- Form Starts -->
 						<form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
 							<!-- Input Field Starts -->
 							<?php include("errors.php"); ?>
+
 							<div class="form-group">
-								<input class="form-control" name="username" id="userName" placeholder="USERNAME" type="text" required>
+								<input class="form-control" name="email" id="email" placeholder="EMAIL" type="email" required>
 							</div>
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->

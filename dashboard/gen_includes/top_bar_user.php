@@ -77,9 +77,9 @@ if (!isLoggedIn()) {
                <strong><?php echo $_SESSION['user']['username']; ?></strong>
             </span>
 
-            <small>
+            <!-- <small>
 						<i  style="color: #0f0;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i> 
-					</small>
+					</small> -->
 
         <?php endif ?>
             
@@ -90,9 +90,15 @@ if (!isLoggedIn()) {
                   <div class="dw-user-box">
                     <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
                     <div class="u-text">
+                      <?php if (isset($_SESSION['user'])) : ?>
+                        <span>
+                        <h4><strong><?php echo $_SESSION['user']['username']; ?></strong></h4>
+                        </span>
+                        <p class="text-muted"><?php echo $_SESSION['user']['username']; ?></p>
+                      <?php endif ?>
                       <h4>Steave Jobs</h4>
-                      <p class="text-muted">michelle@gmail.com</p>
-                      <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                      <!-- <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
+                    </div>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
