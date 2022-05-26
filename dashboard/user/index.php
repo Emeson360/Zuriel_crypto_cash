@@ -1,7 +1,7 @@
 
 
 <?php 
-
+include('../../connect.php');
 include('../gen_includes/header.php');
 include('../gen_includes/top_bar_user.php');
 include('../gen_includes/side_bar_user.php');
@@ -29,7 +29,7 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../admin/index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="../user/index.php">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </div>

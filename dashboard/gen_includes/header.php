@@ -21,6 +21,8 @@
 <link href="../css/pages/float-chart.css" rel="stylesheet">
 <!--Toaster Popup message CSS -->
 <link href="../assets/vendors/toast-master/css/jquery.toast.css" rel="stylesheet">
+<!-- Bootstrap Core CSS (Data tables) -->
+<link href="../assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="../css/master-stylesheet.css" rel="stylesheet">
 <!-- You can change the theme colors from here -->

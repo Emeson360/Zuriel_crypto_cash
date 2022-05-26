@@ -786,6 +786,7 @@ Notify
 	margin-bottom: 0px;
 	background: transparent;
 	font-size: 12px;
+	width: 100%;
 }
 .page-titles .breadcrumb li {
 	margin-top: 5px;
@@ -820,18 +821,19 @@ Notify
 .dash {
 	display: flex;
 	justify-content: space-between;
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	width: 100%;
 	align-items: center;
 }
 
 .dashTxt {
-	width: 60%;
+	width: 70%;
 }
 
 .dashHome {
-	width: 40%;
-	padding-left: 280px;
+	width: 30%;
+	display: inline-block;
+	padding-left: 150px;
 }
 
 
@@ -4615,12 +4617,12 @@ ul.timeline>li>.timeline-panel:after {
 @media screen and (max-width: 1024px) {
 	
 	.dashTxt {
-		width: 60%;
+		width: 70%;
 	}
 
 	.dashHome {
-		width: 40%;
-		padding-left: 100px;
+		width: 30%;
+		padding-left: 70px;
 	}
 	
 }
@@ -4629,12 +4631,12 @@ ul.timeline>li>.timeline-panel:after {
 @media screen and (max-width: 768px) {
 	
 	.dashTxt {
-		width: 60%;
+		width: 70%;
 	}
 
 	.dashHome {
-		width: 40%;
-		padding-left: 100px;
+		width: 30%;
+		padding-left: 10px;
 	}
 	
 }
@@ -4646,11 +4648,11 @@ ul.timeline>li>.timeline-panel:after {
 	}
 	
 	.dashTxt {
-		width: 40%;
+		width: 100%;
 	}
 
 	.dashHome {
-		width: 60%;
+		width: 100%;
 		padding-left: 10px;
 	}
 	

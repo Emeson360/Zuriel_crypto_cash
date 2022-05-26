@@ -1,3 +1,22 @@
+<?php 
+
+
+// Redirect to login page if not logged in
+// if (!isset($_SESSION['username'])) {
+//   header('location: ../../login.php');
+// }
+
+if (!isAdmin()) {
+	$_SESSION['msg'] = "You must log in first";
+	header('location: ../../login.php');
+}
+
+
+
+?>
+
+
+
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
@@ -54,7 +73,20 @@
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">Mark Sanders &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">
+          
+          <?php if (isset($_SESSION['user'])) : ?>
+            <span>
+               <strong><?php echo $_SESSION['user']['username']; ?></strong>
+            </span>
+
+            <small>
+						<i  style="color: #0f0;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i> 
+					</small>
+
+        <?php endif ?>
+          
+          &nbsp;<i class="fa fa-angle-down"></i></span> </a>
             <div class="dropdown-menu dropdown-menu-right animated fadeIn">
               <ul class="dropdown-user">
                 <li>
@@ -73,7 +105,14 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                <li>
+                <?php if (isset($_SESSION['user'])) : ?>
+
+                  <a href="../admin/index.php?logout='1'">
+
+                <?php endif ?>  
+                
+                <i class="fa fa-power-off"></i> Logout</a></li>
               </ul>
             </div>
           </li>

@@ -1,7 +1,7 @@
 
 
 <?php 
-
+include('../../connect.php');
 include('../gen_includes/header.php');
 include('../gen_includes/top_bar_admin.php');
 include('../gen_includes/side_bar_admin.php');

@@ -12,7 +12,7 @@
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment plan</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment history</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Add Wallet</apan></a></li>
-          <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Request withdrawal</apan></a></li>
+          <li><a href="../admin/registered_users.php"><i class="fa fa-people-group" style="margin-right: 10px;"></i><apan class="hide-menu"> Registered users</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> withdrawal history</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> My profile</apan></a></li>
           <li><a href="../user/index.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Refer a friend</apan></a></li>
