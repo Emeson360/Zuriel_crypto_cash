@@ -20,8 +20,8 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../user/index.php">Home</a></li>
-            <li class="breadcrumb-item active">Deposite</li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Deposite</li>
           </ol>
         </div>
       </div>

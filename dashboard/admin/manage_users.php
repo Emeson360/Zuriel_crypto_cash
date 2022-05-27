@@ -16,14 +16,14 @@ include('../gen_includes/side_bar_admin.php');
     <!-- Bread crumb  -->
     <!-- ============================================================== -->
     <div class="row page-titles">
-      <div class="dash">
+      <div class="col-md-12 col-lg-12 align-self-center dash">
         <div class="dashTxt">
           <h3 class="text-themecolor">Dashboard</h3>
         </div>
-        <div class="dashHome float-right">
+        <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../admin/index.php">Home</a></li>
-            <li class="breadcrumb-item active">Registered users</li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Registered users</li>
           </ol>
         </div>
       </div>
@@ -47,15 +47,10 @@ include('../gen_includes/side_bar_admin.php');
 						<div class="modal-body">
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="firstname" id="firstName" placeholder="FIRST NAME" type="text">
-							</div>
-							
-							<!-- Input Field Ends -->
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="lastname" id="lastName" placeholder="LAST NAME" type="text">
+								<input class="form-control" name="firstname" id="name" placeholder="FULL NAME" type="text">
 							</div>
 							<!-- Input Field Ends -->
+						
 							<!-- Input Field Starts -->
 							<div class="form-group">
 								<input class="form-control" name="username" id="userName" placeholder="USERNAME" type="text">
@@ -357,7 +352,6 @@ include('../gen_includes/side_bar_admin.php');
 
 
 		<!-- Delete user -->
-
 		<!-- Modal -->
 		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -398,10 +392,11 @@ include('../gen_includes/side_bar_admin.php');
     <div class="row">
       <div class="col-12 col-md-12">
         <?php
-					if (isset($_SESSION['status'])) {
-						echo "<h4>" . $_SESSION['status']. "</h4>";
-            unset($_SESSION['status']);
-					}		
+					// if (isset($_SESSION['status'])) {
+					// 	echo "<h4>" . $_SESSION['status']. "</h4>";
+          //   unset($_SESSION['status']);
+					// }		
+					include('../../message.php')
         ?>
         <div class="card">
           <div class="card-header">
@@ -421,7 +416,7 @@ include('../gen_includes/side_bar_admin.php');
                 <thead>
                   <tr>
                     <th style="font-weight: 700;">Id</th>
-                    <th style="font-weight: 700;">Username</th>
+                    <th style="font-weight: 700;">Name</th>
                     <th style="font-weight: 700;">Email</th>
                     <th style="font-weight: 700;">Phone Number</th>
                     <th style="font-weight: 700;">Role</th>
@@ -441,7 +436,7 @@ include('../gen_includes/side_bar_admin.php');
                         
                         <tr>
                           <td><?php echo $row['id']; ?></td>
-                          <td><?php echo $row['username']; ?></td>
+                          <td><?php echo $row['name']; ?></td>
                           <td><?php echo $row['email']; ?></td>
                           <td><?php echo $row['phone']; ?></td>
                           <td><?php echo $row['usertype']; ?></td>

@@ -60,7 +60,7 @@ include("connect.php");
     <!-- SVG Preloader Ends -->
 	
     <!-- Wrapper Starts -->
-    <div class="wrapper" style="min-height: 1000px; background-color: #111;">
+    <div class="wrapper" style="min-height: 950px; background-color: #111;">
         <div class="container-fluid user-auth">
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->
@@ -133,15 +133,10 @@ include("connect.php");
 							<!-- Input Field Starts -->
 							<?php include("errors.php"); ?>
 							<div class="form-group">
-								<input class="form-control" name="firstname" id="firstName" placeholder="FIRST NAME" type="text">
-							</div>
-							
-							<!-- Input Field Ends -->
-							<!-- Input Field Starts -->
-							<div class="form-group">
-								<input class="form-control" name="lastname" id="lastName" placeholder="LAST NAME" type="text">
+								<input class="form-control" name="name" id="name" placeholder="FULL NAME" type="text">
 							</div>
 							<!-- Input Field Ends -->
+
 							<!-- Input Field Starts -->
 							<div class="form-group">
 								<input class="form-control" name="username" id="userName" placeholder="USERNAME" type="text">

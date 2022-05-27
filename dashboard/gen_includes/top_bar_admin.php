@@ -80,9 +80,9 @@ if (!isAdmin()) {
                <strong><?php echo $_SESSION['user']['username']; ?></strong>
             </span>
 
-            <!-- <small>
-						<i  style="color: #0f0;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i> 
-					</small> -->
+            <!-- <small> -->
+						<!-- <i  style="color: #0f0;">(<?php //echo ucfirst($_SESSION['user']['usertype']); ?>)</i>  -->
+					<!-- </small> -->
 
         <?php endif ?>
           
@@ -99,7 +99,7 @@ if (!isAdmin()) {
                         </span>
                         <p class="text-muted"><?php echo $_SESSION['user']['email']; ?></p>
                       <?php endif ?>
-                      <!-- <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
+                      <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                     </div>
                   </div>
                 </li>

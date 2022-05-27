@@ -388,12 +388,7 @@ When click on sidebar toggler and also for tablet
  left: 0px;
 }
 }
-/*
-Template Name: Hyrax UX Admin
-Author: SRGIT
-Email: 
-File: css
-*/
+
 
 
 /*Theme Colors*/
@@ -827,13 +822,13 @@ Notify
 }
 
 .dashTxt {
-	width: 70%;
+	width: 60%;
 }
 
 .dashHome {
-	width: 30%;
-	display: inline-block;
-	padding-left: 150px;
+	width: 35%;
+	/* display: inline-block; */
+	padding-left: 80px;
 }
 
 

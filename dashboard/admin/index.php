@@ -29,8 +29,8 @@ include('../gen_includes/side_bar_admin.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../admin/index.php">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Dashboard</li>
           </ol>
         </div>
       </div>

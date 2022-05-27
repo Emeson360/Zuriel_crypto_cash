@@ -20,8 +20,8 @@ include('../gen_includes/side_bar_admin.php');
         </div>
         <div class="dashHome float-right">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../admin/index.php">Home</a></li>
-            <li class="breadcrumb-item active">Edit user</li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Edit user</li>
           </ol>
         </div>
       </div>
@@ -59,15 +59,10 @@ include('../gen_includes/side_bar_admin.php');
                           <!-- Input Field Starts -->
                           <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                           <div class="form-group">
-                            <input class="form-control" value="<?php echo $row['firstname'] ?>" name="firstname" id="firstName" placeholder="FIRST NAME" type="text">
-                          </div>
-                          
-                          <!-- Input Field Ends -->
-                          <!-- Input Field Starts -->
-                          <div class="form-group">
-                            <input class="form-control" value="<?php echo $row['lastname'] ?>" name="lastname" id="lastName" placeholder="LAST NAME" type="text">
+                            <input class="form-control" value="<?php echo $row['name'] ?>" name="name" id="name" placeholder="FULL NAME" type="text">
                           </div>
                           <!-- Input Field Ends -->
+
                           <!-- Input Field Starts -->
                           <div class="form-group">
                             <input class="form-control" value="<?php echo $row['username'] ?>" name="username" id="userName" placeholder="USERNAME" type="text">

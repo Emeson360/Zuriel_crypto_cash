@@ -26,8 +26,7 @@ if (!$con) {
 // Registration validation
 if (isset($_POST['reg_user'])) {
 	// COLLECT VALUES OF THE INPUT FIELDS
-	$firstname = mysqli_real_escape_string($con, $_POST['firstname']);
-	$lastname  = mysqli_real_escape_string($con, $_POST['lastname']);
+	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$username = mysqli_real_escape_string($con, $_POST['username']); 
 	$email = mysqli_real_escape_string($con, $_POST['email']); 
 	$phone = mysqli_real_escape_string($con, $_POST['phonenumber']);
@@ -35,14 +34,11 @@ if (isset($_POST['reg_user'])) {
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 	$country = mysqli_real_escape_string($con, $_POST['country']);
 
-    if(empty($firstname)) {
-        array_push($errors, "Firstname is required");
-    }
-    if(empty($lastname)) {
-        array_push($errors, "Lastname is required");
+    if(empty($name)) {
+        array_push($errors, "Name is required");
     }
     else {
-        if (!preg_match("/^[a-zA-Z-' ]*$/", $lastname) || !preg_match("/^[a-zA-Z-' ]*$/", $firstname)) {
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $name) ) {
             array_push($errors, "Only letters and white spaces are allowed in the name field");
         }
     }
@@ -103,7 +99,7 @@ if (isset($_POST['reg_user'])) {
         else {
 
             // save to database
-            $query = "INSERT INTO users (firstname, lastname, username, email, phone,  password, cpassword, country, usertype) values ('$firstname', '$lastname', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
+            $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
 
             mysqli_query($con, $query);
             $_SESSION['status']  = "New user successfully created!!";
@@ -173,7 +169,7 @@ if (isset($_POST['login_user'])) {
         }
         else {
             // Username or password not matched
-            array_push($errors, "incorrect username or password");
+            array_push($errors, "incorrect email or password");
         }
 
     }  
@@ -199,8 +195,7 @@ if (isset($_POST['check_Emailbtn'])) {
 
 if (isset($_POST['add_user'])) {
 	// COLLECT VALUES OF THE INPUT FIELDS
-	$firstname = mysqli_real_escape_string($con, $_POST['firstname']);
-	$lastname  = mysqli_real_escape_string($con, $_POST['lastname']);
+	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$username = mysqli_real_escape_string($con, $_POST['username']); 
 	$email = mysqli_real_escape_string($con, $_POST['email']); 
 	$phone = mysqli_real_escape_string($con, $_POST['phonenumber']);
@@ -211,13 +206,13 @@ if (isset($_POST['add_user'])) {
     
 
 
-    if(empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($phone) || empty($password) || empty($cpassword) || empty($usertype) || empty($country)) {
+    if(empty($name) || empty($username) || empty($email) || empty($phone) || empty($password) || empty($cpassword) || empty($usertype) || empty($country)) {
         $_SESSION['status'] = "Fill in all empty field(s)";
-        header("location: dashboard/admin/registered_users.php");
+        header("location: dashboard/admin/manage_users.php");
     }
     elseif ($password != $cpassword) {
         $_SESSION['status'] = "password not matched";
-        header("location: dashboard/admin/registered_users.php");
+        header("location: dashboard/admin/manage_users.php");
     }
     else {
         if (isset($_POST['usertype'])) {
@@ -230,23 +225,23 @@ if (isset($_POST['add_user'])) {
                 // Taken - thus unavailable
                 $_SESSION['status'] = "Email already exist! please try another email";
 
-                header('location: ./dashboard/admin/registered_users.php');
+                header('location: ./dashboard/admin/manage_users.php');
             }
 
             else {
                 // save to database
-                $query = "INSERT INTO users (firstname, lastname, username, email, phone,  password, cpassword, country, usertype) values ('$firstname', '$lastname', '$username', '$email', '$phone', '$password', '$cpassword', '$country', '$usertype')";
+                $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', '$usertype')";
 
                 $result = mysqli_query($con, $query);
         
                 if ($result) {                           
                     $_SESSION['status'] = "New user successfully added.";
             
-                    header('location: ./dashboard/admin/registered_users.php');
+                    header('location: ./dashboard/admin/manage_users.php');
                 }
                 else {
                     $_SESSION['status'] = "User registration failed.";
-                    header('location: ./dashboard/admin/registered_users.php');
+                    header('location: ./dashboard/admin/manage_users.php');
                     
                 }
             }
@@ -259,21 +254,21 @@ if (isset($_POST['add_user'])) {
                 // Taken - thus unavailable
                 $_SESSION['status'] = "Email already exist! please try another email";
 
-                header('location: ./dashboard/admin/registered_users.php');
+                header('location: ./dashboard/admin/manage_users.php');
             }
             else {
-                $query = "INSERT INTO users (firstname, lastname, username, email, phone,  password, cpassword, country, usertype) values ('$firstname', '$lastname', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
+                $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
         
                 $result = mysqli_query($con, $query);
         
                 if ($result) {
                     $_SESSION['status'] = "New user successfully added.";
             
-                    header('location: ./dashboard/admin/registered_users.php');
+                    header('location: ./dashboard/admin/manage_users.php');
                 }
                 else {
                     $_SESSION['status'] = "User registration failed.";
-                    header('location: ./dashboard/admin/registered_users.php');
+                    header('location: ./dashboard/admin/manage_users.php');
                     
                 }
             }			
@@ -287,8 +282,7 @@ if (isset($_POST['add_user'])) {
 // Edit user
 if (isset($_POST['update_user'])) {
     $id = mysqli_real_escape_string($con, $_POST['id']);
-    $firstname = mysqli_real_escape_string($con, $_POST['firstname']);
-	$lastname  = mysqli_real_escape_string($con, $_POST['lastname']);
+    $name = mysqli_real_escape_string($con, $_POST['name']);
 	$username = mysqli_real_escape_string($con, $_POST['username']); 
 	$email = mysqli_real_escape_string($con, $_POST['email']); 
 	$phone = mysqli_real_escape_string($con, $_POST['phonenumber']);
@@ -305,11 +299,11 @@ if (isset($_POST['update_user'])) {
         // Taken - thus unavailable
         $_SESSION['status'] = "Email already exist! please try another email";
 
-        header('location: ./dashboard/admin/registered_users.php');
+        header('location: ./dashboard/admin/manage_users.php');
     }
     else {
 
-        $query = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', usertype = '$usertype', country = '$country' WHERE id = $id";
+        $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', usertype = '$usertype', country = '$country' WHERE id = $id";
 
         $result = mysqli_query($con, $query);
 
@@ -317,11 +311,11 @@ if (isset($_POST['update_user'])) {
 
             $_SESSION['status'] = "User updated successfully";
 
-            header('location: ./dashboard/admin/registered_users.php');
+            header('location: ./dashboard/admin/manage_users.php');
         }
         else {
             $_SESSION['status'] = "User update failed";
-            header('location: ./dashboard/admin/registered_users.php');
+            header('location: ./dashboard/admin/manage_users.php');
             
         }
 
@@ -341,11 +335,11 @@ if (isset($_POST['deleteUserBtn'])) {
 
         $_SESSION['status'] = "User deleted successfully";
 
-        header('location: ./dashboard/admin/registered_users.php');
+        header('location: ./dashboard/admin/manage_users.php');
     }
     else {
         $_SESSION['status'] = "User delete failed";
-        header('location: ./dashboard/admin/registered_users.php');
+        header('location: ./dashboard/admin/manage_users.php');
         
     }
 }
