@@ -10,7 +10,7 @@ include('../gen_includes/side_bar_admin.php');
 
 
 <!-- Page wrapper  -->
-<div class="page-wrapper" style="background-color: #1d1d1d;">
+<div class="page-wrapper" style="background-color: #1B1D21;">
   <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Bread crumb  -->

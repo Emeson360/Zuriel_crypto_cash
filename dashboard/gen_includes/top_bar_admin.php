@@ -66,10 +66,7 @@ if (!isAdmin()) {
         <!-- User profile and search -->
         <!-- ============================================================== -->
         <ul class="navbar-nav my-lg-0">
-          
-         
-          
-         
+
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
@@ -95,11 +92,11 @@ if (!isAdmin()) {
                     <div class="u-text">
                       <?php if (isset($_SESSION['user'])) : ?>
                         <span>
-                        <h4><strong><?php echo $_SESSION['user']['username']; ?></strong></h4>
+                        <h4><strong><?php echo $_SESSION['user']['name']; ?></strong></h4>
                         </span>
                         <p class="text-muted"><?php echo $_SESSION['user']['email']; ?></p>
                       <?php endif ?>
-                      <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                      <!-- <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
                     </div>
                   </div>
                 </li>

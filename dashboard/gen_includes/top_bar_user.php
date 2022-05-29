@@ -63,46 +63,121 @@ if (!isLoggedIn()) {
         <!-- User profile and search -->
         <!-- ============================================================== -->
         <ul class="navbar-nav my-lg-0">
-          
-         
-          
          
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">
+          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1">
 
-        <?php if (isset($_SESSION['user'])) : ?>
-            <span>
-               <strong><?php echo $_SESSION['user']['username']; ?></strong>
-            </span>
+          <?php if (isset($_SESSION['user'])) : ?>
+              <?php 
+                $session_id = $_SESSION['user']['id'];
+                $query = "SELECT * FROM users WHERE id = $session_id";
+                $result = mysqli_query($con, $query);
+                $count = mysqli_num_rows($result);
 
-            <!-- <small>
-						<i  style="color: #0f0;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i> 
-					</small> -->
+                if ($count > 0) {
 
-        <?php endif ?>
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $profile_pics_name = $row['profile_pics'];
+                  }
+                  ?>
+
+                  <?php
+                  if ($profile_pics_name != "") {
+                    ?>
+                    <!-- <img src="../assets/images/users/Avatar2.jpg" alt="user" class="" width="" /> <span class="hidden-md-down"> -->
+                    <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="200" />
+
+                    <?php
+                  }
+                  else {
+                    ?>
+                    <img src="../assets/images/users/Avatar2.jpg" alt="user" class="" /> <span class="hidden-md-down">
+                      <!-- <img src="../assets/images/users/Avatar.jpg" class="img-circle" width="150" /> -->
+                    <?php
+                  }
+                    
+                    ?>
+                  
+                  <?php if (isset($_SESSION['user'])) : ?>
+                    <span>
+                      <strong><?php echo $_SESSION['user']['username']; ?></strong>
+                    </span>
+
+                  <?php endif ?>
+                  
+                  <?php
+                }
+                else {
+                  echo "No image found";
+                 
+                }
+
+              ?>
+            <?php endif ?>
             
           &nbsp;<i class="fa fa-angle-down"></i></span> </a>
             <div class="dropdown-menu dropdown-menu-right animated fadeIn">
               <ul class="dropdown-user">
                 <li>
                   <div class="dw-user-box">
-                    <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+
+                    <?php if (isset($_SESSION['user'])) : ?>
+                      <?php 
+                        $session_id = $_SESSION['user']['id'];
+                        $query = "SELECT * FROM users WHERE id = $session_id";
+                        $result = mysqli_query($con, $query);
+                        $count = mysqli_num_rows($result);
+
+                        if ($count > 0) {
+
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $profile_pics_name = $row['profile_pics'];
+                          }
+                          ?>
+                          <?php
+                          if ($profile_pics_name != "") {
+                            ?>
+                            <div class="u-img">
+                              <img src="../assets/images/users/<?php echo $profile_pics_name ?>" alt="user">
+                            </div>
+                            <?php
+                          }
+                          else {
+                            ?>
+                              <div class="u-img">
+                              <img src="../assets/images/users/Avatar2.jpg" alt="user">
+                            </div>
+                            <?php
+                          }
+                          
+                          ?>
+                        
+                          <?php
+                        }
+                        else {
+                          echo "No image found";
+                        
+                        }
+
+                      ?>
+                    <?php endif ?>
+                    
                     <div class="u-text">
                       <?php if (isset($_SESSION['user'])) : ?>
                         <span>
-                        <h4><strong><?php echo $_SESSION['user']['username']; ?></strong></h4>
+                        <h4><strong><?php echo $_SESSION['user']['name']; ?></strong></h4>
                         </span>
-                        <p class="text-muted"><?php echo $_SESSION['user']['username']; ?></p>
+                        <p class="text-muted"><?php echo $_SESSION['user']['email']; ?></p>
                       <?php endif ?>
-                      <h4>Steave Jobs</h4>
-                      <!-- <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
+                      
+                      <a href="../user/update_account.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                     </div>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                <li><a href="../user/update_account.php"><i class="ti-user"></i> My Profile</a></li>
                 <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                 <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                 <li role="separator" class="divider"></li>

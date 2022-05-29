@@ -60,7 +60,7 @@ include("connect.php");
     <!-- SVG Preloader Ends -->
 	
     <!-- Wrapper Starts -->
-    <div class="wrapper" style="min-height: 950px; background-color: #111;">
+    <div class="wrapper" style="min-height: 900px; background-color: #111;">
         <div class="container-fluid user-auth">
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->

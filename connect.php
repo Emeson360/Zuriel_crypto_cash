@@ -34,6 +34,10 @@ if (isset($_POST['reg_user'])) {
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 	$country = mysqli_real_escape_string($con, $_POST['country']);
 
+    // Generate uniqe id
+    $userid = uniqid('user');
+
+
     if(empty($name)) {
         array_push($errors, "Name is required");
     }
@@ -99,7 +103,7 @@ if (isset($_POST['reg_user'])) {
         else {
 
             // save to database
-            $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
+            $query = "INSERT INTO users (userid, name, username, email, phone,  password, cpassword, country, usertype) values ('$userid','$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
 
             mysqli_query($con, $query);
             $_SESSION['status']  = "New user successfully created!!";
@@ -138,7 +142,7 @@ if (isset($_POST['login_user'])) {
         $result = mysqli_query($con, $query);
 
         // check if user data is in the Database
-        if (mysqli_num_rows($result) == 1) {
+        if (mysqli_num_rows($result)  > 0) {
             // check if user is admin or user
            
             $logged_in_user = mysqli_fetch_assoc($result);
@@ -148,18 +152,12 @@ if (isset($_POST['login_user'])) {
 
                     $_SESSION['user'] = $logged_in_user;
     
-                    // store username in the session variable
-                    // $_SESSION['username'] = $username;
-    
                     // Redirect to index
                     header('location: dashboard/admin/index.php');
     
                 }
                 else{
                     $_SESSION['user'] = $logged_in_user;
-    
-                    // store username in the session variable
-                    // $_SESSION['username'] = $username;
     
                     header('location: dashboard/user/index.php');
                 }
@@ -175,8 +173,8 @@ if (isset($_POST['login_user'])) {
     }  
 }
 
-// Registration by admin
 
+// check if if email is available or not
 if (isset($_POST['check_Emailbtn'])) {
 
     $email = $_POST['email'];
@@ -192,6 +190,8 @@ if (isset($_POST['check_Emailbtn'])) {
         echo "Email is avaliable";
     }
 }
+
+// Registration by admin
 
 if (isset($_POST['add_user'])) {
 	// COLLECT VALUES OF THE INPUT FIELDS
@@ -279,52 +279,41 @@ if (isset($_POST['add_user'])) {
 
 }
 
-// Edit user
+// Edit user by Admin
 if (isset($_POST['update_user'])) {
-    $id = mysqli_real_escape_string($con, $_POST['id']);
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-	$username = mysqli_real_escape_string($con, $_POST['username']); 
-	$email = mysqli_real_escape_string($con, $_POST['email']); 
-	$phone = mysqli_real_escape_string($con, $_POST['phonenumber']);
-	$password = mysqli_real_escape_string($con, $_POST['password']);
-	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-	$usertype = mysqli_real_escape_string($con, $_POST['usertype']);
-	$country = mysqli_real_escape_string($con, $_POST['country']);
+    $id = trim($_POST['id'], " ");
+    $name = trim($_POST['name'], " ");
+	$username = trim($_POST['username'], " "); 
+	$email = trim($_POST['email'], " "); 
+	$phone = trim($_POST['phonenumber'], " ");
+	$password = trim($_POST['password'], " ");
+	$cpassword = trim($_POST['cpassword'], " ");
+    $address = trim($_POST['address'], " ");
+	$country = trim($_POST['country'], " ");
+    $usertype = trim($_POST['usertype'], " ");
 
 
-    $checkemail = "SELECT email FROM users WHERE email = '$email'";
-    $result = mysqli_query($con, $checkemail);
+    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', address = '$address', country = '$country', usertype = '$usertype' WHERE id = $id";
 
-    if (mysqli_num_rows($result) > 0) {
-        // Taken - thus unavailable
-        $_SESSION['status'] = "Email already exist! please try another email";
+    $result = mysqli_query($con, $query);
+
+    if ($result) {
+
+        $_SESSION['status'] = "User updated successfully";
 
         header('location: ./dashboard/admin/manage_users.php');
     }
     else {
-
-        $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', usertype = '$usertype', country = '$country' WHERE id = $id";
-
-        $result = mysqli_query($con, $query);
-
-        if ($result) {
-
-            $_SESSION['status'] = "User updated successfully";
-
-            header('location: ./dashboard/admin/manage_users.php');
-        }
-        else {
-            $_SESSION['status'] = "User update failed";
-            header('location: ./dashboard/admin/manage_users.php');
-            
-        }
-
+        $_SESSION['status'] = "User update failed";
+        header('location: ./dashboard/admin/manage_users.php');
+        
     }
+
 
 }
 
 
-// Delete user
+// Delete user by admin
 if (isset($_POST['deleteUserBtn'])) {
     $userid = $_POST['deleteId'];
 
@@ -346,15 +335,65 @@ if (isset($_POST['deleteUserBtn'])) {
 
 
 
-// return user array from their id
-// function getUserById($id){
-// 	global $con;
-// 	$query = "SELECT * FROM users WHERE id=" . $id;
-// 	$result = mysqli_query($con, $query);
+// Update User Account
+if (isset($_POST['update_profile'])) {
+    $id = trim($_POST['id'], " ");
+    $name = trim($_POST['name'], " ");
+	$username = trim($_POST['username'], " "); 
+	$email = trim($_POST['email'], " "); 
+	$phone = trim($_POST['phonenumber'], " ");
+	$password = trim($_POST['password'], " ");
+	$cpassword = trim($_POST['cpassword'], " ");
+    $address = trim($_POST['address'], " ");
+	$country = trim($_POST['country'], " ");
 
-// 	$user = mysqli_fetch_assoc($result);
-// 	return $user;
-// }
+    // check if image is selected
+    if (isset($_FILES['profile_pics']['name'])) {
+        // To upload, we need image name, source path and destination path
+        $profile_pics_name = $_FILES['profile_pics']['name'];
+
+        // Auto rename image
+        $ext = end(explode('.', $profile_pics_name));
+
+        $profile_pics_name = "pic_" . rand(0000, 9999) . '.' . $ext;
+        $source_path = $_FILES['profile_pics']['tmp_name'];
+        $destination_path = "dashboard/assets/images/users/".$profile_pics_name;
+
+        // upload the image
+        $upload = move_uploaded_file($source_path, $destination_path);
+
+        // check if image is uploaded
+        if ($upload == false) {
+            $profile_pics_name = "";
+           
+        }
+    }
+    else {
+        $profile_pics_name = "";
+    }
+
+
+
+    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', profile_pics = '$profile_pics_name', address = '$address', country = '$country' WHERE id = $id";
+
+    $result = mysqli_query($con, $query);
+
+    if ($result) {
+
+        $_SESSION['status'] = "Account updated successfully";
+
+        header('location: ./dashboard/user/update_account.php');
+    }
+    else {
+        $_SESSION['status'] = "Account update failed";
+        header('location: ./dashboard/user/update_account.php');
+        
+    }
+
+}
+
+
+
 
 
 // check if user is logged in

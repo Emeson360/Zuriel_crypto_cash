@@ -10,7 +10,7 @@ include('../gen_includes/side_bar_admin.php');
 
 
 <!-- Page wrapper  -->
-<div class="page-wrapper" style="background-color: #1d1d1d;">
+<div class="page-wrapper" style="background-color: #1B1D21;">
   <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Bread crumb  -->
@@ -475,6 +475,7 @@ include('../gen_includes/side_bar_admin.php');
 
 		<?php include('../gen_includes/footer_script.php'); ?>
 
+		<!-- check email as it is entered -->
 		<script>
 			$(document).ready(function () {
 				$('.email_id').keyup(function(e) {

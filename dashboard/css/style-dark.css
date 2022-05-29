@@ -122,12 +122,7 @@ Layouts
 .progress {
 	height: 4px;
 }
-/*
-Template Name: Hyrax UX Admin
-Author: SRGIT
-Email: 
-File: scss
-*/
+
 
 
 /*******************
@@ -180,7 +175,7 @@ sidebar navigation
 	display: block;
 }
 .sidebar-nav {
-	background: #111;
+	background: #272C33;
 	padding: 15px 0 0 0px;
 }
 .sidebar-nav ul {
@@ -440,7 +435,7 @@ When click on sidebar toggler and also for tablet
 }
 .card {
 	margin-bottom:20px;
-	background: #111;
+	background: #272C33;
 }
 .card .card-subtitle {
 	font-weight: 300;
