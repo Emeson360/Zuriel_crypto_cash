@@ -10,14 +10,14 @@
           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-circle-user mr-10"></i><span class="hide-menu">My Profile</span></a>
             <ul aria-expanded="false" class="collapse">
               <li><a href="../user/update_account.php">Update Account</a></li>
-              <li><a href="app-contact.html">Wallet Details</a></li>
+              <li><a href="../user/wallet_details.php">Wallet Details</a></li>
             </ul>
           </li>
           <li><a href="../user/deposit.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Deposite</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Deposit history</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment plan</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment history</apan></a></li>
-          <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Add Wallet</apan></a></li>
+          <li><a href="../user/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><apan class="hide-menu"> Add Wallet</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Request withdrawal</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> withdrawal history</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> My profile</apan></a></li>

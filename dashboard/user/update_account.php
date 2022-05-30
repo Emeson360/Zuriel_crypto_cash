@@ -36,7 +36,7 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
 
     <div class="row">
-      <?php include('../../message.php'); ?>
+      <?php include('../gen_includes/message/status_msg.php'); ?>
     </div>
     <div class="row">
       <!-- Column -->
@@ -45,13 +45,11 @@ include('../gen_includes/side_bar_user.php');
           <div class="card-body">
             <?php if (isset($_SESSION['user'])) : ?>
               <?php 
-                $session_id = $_SESSION['user']['id'];
-                $query = "SELECT * FROM users WHERE id = $session_id";
+                $id = $_SESSION['user']['id'];
+                $query = "SELECT * FROM users WHERE id = $id";
                 $result = mysqli_query($con, $query);
 
-                $count = mysqli_num_rows($result);
-
-                if ($count > 0) {
+                if (mysqli_num_rows($result) > 0) {
 
                   while ($row = mysqli_fetch_assoc($result)) {
                     $profile_pics_name = $row['profile_pics'];
@@ -61,13 +59,13 @@ include('../gen_includes/side_bar_user.php');
                     <?php
                     if ($profile_pics_name != "") {
                       ?>
-                      <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="200" />
+                      <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="100%" />
 
                       <?php
                     }
                     else {
                       ?>
-                        <img src="../assets/images/users/Avatar.jpg" class="img-circle" width="150" />
+                        <img src="../assets/images/users/Avatar2.jpg" class="img-circle" width="100%" />
                       <?php
                     }
                     

@@ -42,6 +42,8 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
     <!-- Info box -->
     <!-- ============================================================== -->
+
+    <?php include('../gen_includes/message/login_msg.php') ?>
     <div class="row">
       <!-- Column -->
       <div class="col-lg-3 col-md-6">

@@ -27,6 +27,8 @@
 <link href="../css/master-stylesheet.css" rel="stylesheet">
 <!-- You can change the theme colors from here -->
 <link href="../css/colors/blue-dark.css" id="theme" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/style-dark.css">
 <!-- fontawesome icons -->
 <link rel="stylesheet" href="../assets/vendors/fontawesome-free-6.1.1-web/css/all.css">
 

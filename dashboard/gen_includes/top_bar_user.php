@@ -86,15 +86,13 @@ if (!isLoggedIn()) {
                   <?php
                   if ($profile_pics_name != "") {
                     ?>
-                    <!-- <img src="../assets/images/users/Avatar2.jpg" alt="user" class="" width="" /> <span class="hidden-md-down"> -->
-                    <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="200" />
+                    <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="100%" />
 
                     <?php
                   }
                   else {
                     ?>
-                    <img src="../assets/images/users/Avatar2.jpg" alt="user" class="" /> <span class="hidden-md-down">
-                      <!-- <img src="../assets/images/users/Avatar.jpg" class="img-circle" width="150" /> -->
+                    <img src="../assets/images/users/Avatar2.jpg" alt="user" width="100%" class="" /> <span class="hidden-md-down">
                     <?php
                   }
                     
@@ -140,14 +138,14 @@ if (!isLoggedIn()) {
                           if ($profile_pics_name != "") {
                             ?>
                             <div class="u-img">
-                              <img src="../assets/images/users/<?php echo $profile_pics_name ?>" alt="user">
+                              <img src="../assets/images/users/<?php echo $profile_pics_name ?>" width="100%" alt="user">
                             </div>
                             <?php
                           }
                           else {
                             ?>
                               <div class="u-img">
-                              <img src="../assets/images/users/Avatar2.jpg" alt="user">
+                              <img src="../assets/images/users/Avatar2.jpg" width="100%" alt="user">
                             </div>
                             <?php
                           }
