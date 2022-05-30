@@ -372,7 +372,7 @@ include('../gen_includes/side_bar_admin.php');
 
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-							<button type="submit" name="deleteUserBtn" class="btn btn-primary">yes, Delete</button>
+							<button type="submit" name="deleteUserBtn" class="btn btn-danger">yes, Delete</button>
 						</div>
 							
 							
@@ -396,7 +396,7 @@ include('../gen_includes/side_bar_admin.php');
 					// 	echo "<h4>" . $_SESSION['status']. "</h4>";
           //   unset($_SESSION['status']);
 					// }		
-					include('../../message.php')
+					include('../gen_includes/message/status_msg.php')
         ?>
         <div class="card">
           <div class="card-header">

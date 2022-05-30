@@ -33,6 +33,208 @@ include('../gen_includes/side_bar_user.php');
 
     <?php include('../gen_includes/message/status_msg.php') ?>
 
+
+    <!-- Edit BTC wallet -->
+    <!-- Modal -->
+    <div class="modal fade" id="edit_btc_wallet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Btc Wallet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Form Starts -->
+          <form action="../../connect.php" method="POST">
+          
+            <div class="modal-body">
+              <p>Edit your Btc wallet address</p>
+              <?php if (isset($_SESSION['user'])) : ?>
+                <?php 
+                  $id = $_SESSION['user']['id'];
+                  $query = "SELECT * FROM btc_wallet WHERE id = $id";
+                  $result = mysqli_query($con, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      ?>
+                      <div class="form-group">
+                      <input class="form-control form-control-line" style="width: 100%;" type="text" name="btc_wallet_address" value="<?php echo $row['btc_wallet_address'] ?>" >
+                      </div>
+                      <?php
+                    }
+                  }
+                  
+                ?>
+              <?php endif ?>
+             
+            </div>
+            <!-- Input Field Ends -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="edit_btc_wallet" class="btn btn-primary">Save</button>
+            </div>
+              
+          </form>
+          <!-- Form Ends -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit ETH wallet -->
+    <!-- Modal -->
+    <div class="modal fade" id="edit_eth_wallet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Eth Wallet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Form Starts -->
+          <form action="../../connect.php" method="POST">
+          
+            <div class="modal-body">
+              <p>Edit your Eth wallet address</p>
+              <?php if (isset($_SESSION['user'])) : ?>
+                <?php 
+                  $id = $_SESSION['user']['id'];
+                  $query = "SELECT * FROM eth_wallet WHERE id = $id";
+                  $result = mysqli_query($con, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      ?>
+                      <div class="form-group">
+                      <input class="form-control form-control-line" style="width: 100%;" type="text" name="eth_wallet_address" value="<?php echo $row['eth_wallet_address'] ?>" >
+                      </div>
+                      <?php
+                    }
+                  }
+                  
+                ?>
+              <?php endif ?>
+             
+            </div>
+            <!-- Input Field Ends -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="edit_eth_wallet" class="btn btn-primary">Save</button>
+            </div>
+              
+          </form>
+          <!-- Form Ends -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit USDT wallet -->
+    <!-- Modal -->
+    <div class="modal fade" id="edit_usdt_wallet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Usdt Wallet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Form Starts -->
+          <form action="../../connect.php" method="POST">
+          
+            <div class="modal-body">
+              <p>Edit your Usdt wallet address</p>
+              <?php if (isset($_SESSION['user'])) : ?>
+                <?php 
+                  $id = $_SESSION['user']['id'];
+                  $query = "SELECT * FROM usdt_wallet WHERE id = $id";
+                  $result = mysqli_query($con, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      ?>
+                      <div class="form-group">
+                      <input class="form-control form-control-line" style="width: 100%;" type="text" name="usdt_wallet_address" value="<?php echo $row['usdt_wallet_address'] ?>" >
+                      </div>
+                      <?php
+                    }
+                  }
+                  
+                ?>
+              <?php endif ?>
+             
+            </div>
+            <!-- Input Field Ends -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="edit_usdt_wallet" class="btn btn-primary">Save</button>
+            </div>
+              
+          </form>
+          <!-- Form Ends -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit BUSD wallet -->
+    <!-- Modal -->
+    <div class="modal fade" id="edit_busd_wallet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Busd Wallet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Form Starts -->
+          <form action="../../connect.php" method="POST">
+          
+            <div class="modal-body">
+              <p>Edit your Busd wallet address</p>
+              <?php if (isset($_SESSION['user'])) : ?>
+                <?php 
+                  $id = $_SESSION['user']['id'];
+                  $query = "SELECT * FROM busd_wallet WHERE id = $id";
+                  $result = mysqli_query($con, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      ?>
+                      <div class="form-group">
+                      <input class="form-control form-control-line" style="width: 100%;" type="text" name="busd_wallet_address" value="<?php echo $row['busd_wallet_address'] ?>" >
+                      </div>
+                      <?php
+                    }
+                  }
+                  
+                ?>
+              <?php endif ?>
+             
+            </div>
+            <!-- Input Field Ends -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="edit_busd_wallet" class="btn btn-primary">Save</button>
+            </div>
+              
+          </form>
+          <!-- Form Ends -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- All Wallet details -->
     <div class="row">
       <!-- Column -->
       <div class="col-lg-8 col-xlg-9 col-md-12 col-sm-12">
@@ -41,6 +243,7 @@ include('../gen_includes/side_bar_user.php');
             <h6 style="font-size: 20px;">My Walllet Details</h6>
           </div>
 
+          <!-- BTC wallet details -->
           <div class="pa-20">
             <h6 class="mb-20" style="font-size: 16px;">My Btc wallet</h6>
             <div class="row">
@@ -59,8 +262,11 @@ include('../gen_includes/side_bar_user.php');
                       </div>
 
                       <div class="col-lg-4 col-md-4 col-sm-4">
-                        <a href="" class="btn btn-primary">Edit</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_btc_wallet">
+                          Edit
+                        </button>
                       </div>
+
 
                       <?php
                     }
@@ -76,8 +282,7 @@ include('../gen_includes/side_bar_user.php');
               
             </div>
           </div>
-
-
+          <!-- ETH wallet Details -->
           <div class="pa-20">
             <h6 class="mb-20" style="font-size: 16px;">My Eth wallet</h6>
             <div class="row">
@@ -96,7 +301,9 @@ include('../gen_includes/side_bar_user.php');
                       </div>
 
                       <div class="col-lg-4 col-md-4 col-sm-4">
-                        <a href="" class="btn btn-primary">Edit</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_eth_wallet">
+                          Edit
+                        </button>
                       </div>
 
                       <?php
@@ -113,6 +320,7 @@ include('../gen_includes/side_bar_user.php');
               
             </div>
           </div>
+          <!-- USDT wallet details -->
           <div class="pa-20">
             <h6 class="mb-20" style="font-size: 16px;">My Usdt wallet</h6>
             <div class="row">
@@ -131,7 +339,9 @@ include('../gen_includes/side_bar_user.php');
                       </div>
 
                       <div class="col-lg-4 col-md-4 col-sm-4">
-                        <a href="" class="btn btn-primary">Edit</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_usdt_wallet">
+                          Edit
+                        </button>
                       </div>
 
                       <?php
@@ -148,6 +358,7 @@ include('../gen_includes/side_bar_user.php');
               
             </div>
           </div>
+          <!-- BUSD wallet address -->
           <div class="pa-20">
             <h6 class="mb-20" style="font-size: 16px;">My Busd wallet</h6>
             <div class="row">
@@ -162,11 +373,13 @@ include('../gen_includes/side_bar_user.php');
                       
                       ?>
                       <div class="form-group col-lg-8 col-md-8 col-sm-8">
-                      <input class="form-control " style="width: 100%;" type="text" name="busd_wallet_address" value="<?php echo $row['usdt_wallet_address'] ?>" readonly>
+                      <input class="form-control " style="width: 100%;" type="text" name="busd_wallet_address" value="<?php echo $row['busd_wallet_address'] ?>" readonly>
                       </div>
 
                       <div class="col-lg-4 col-md-4 col-sm-4">
-                        <a href="" class="btn btn-primary">Edit</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_busd_wallet">
+                          Edit
+                        </button>
                       </div>
 
                       <?php
@@ -183,9 +396,6 @@ include('../gen_includes/side_bar_user.php');
               
             </div>
           </div>
-
-
-         
 
         </div>
       </div>
