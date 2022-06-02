@@ -71,8 +71,8 @@ if (!isLoggedIn()) {
 
           <?php if (isset($_SESSION['user'])) : ?>
               <?php 
-                $session_id = $_SESSION['user']['id'];
-                $query = "SELECT * FROM users WHERE id = $session_id";
+                $userid = $_SESSION['user']['userid'];
+                $query = "SELECT * FROM users WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
                 $count = mysqli_num_rows($result);
 
@@ -123,8 +123,8 @@ if (!isLoggedIn()) {
 
                     <?php if (isset($_SESSION['user'])) : ?>
                       <?php 
-                        $session_id = $_SESSION['user']['id'];
-                        $query = "SELECT * FROM users WHERE id = $session_id";
+                        $userid = $_SESSION['user']['userid'];
+                        $query = "SELECT * FROM users WHERE userid = $userid";
                         $result = mysqli_query($con, $query);
                         $count = mysqli_num_rows($result);
 

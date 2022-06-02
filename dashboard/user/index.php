@@ -44,15 +44,35 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
 
     <?php include('../gen_includes/message/login_msg.php') ?>
+    <?php include('../gen_includes/message/status_msg.php') ?>
+
     <div class="row">
       <!-- Column -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-10 no-block">
-              <div class="align-slef-center" style="margin: auto;">
-                <h2 class="mb-2">$ 0.00</h2>
-                <p class="mb-4">$ 0.00 <sup style="color: red;">*pending</sup></p>
+            <div class="d-flex pa-30 no-block" style="justify-content: space-between;">
+              <div class="align-slef-center" >
+                <?php 
+                  $pending_deposit = 0.00; 
+                  $approved_deposit = 0.00;
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
+                  $result = mysqli_query($con, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      
+                    }
+                    $pending_deposit += $row['amt_deposited'];
+                  }
+                ?>
+                <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $approved_deposit ?></h2>
+                <p class="mb-4" style="font-size: 20px;">$ <?php echo $pending_deposit ?> <sup style="color: red;">*pending</sup></p>
+              </div>
+              <div class="dashImg">
+                <img src="../../images/icons/orange/download-bitcoin.png" width="100%" alt="">
               </div>
             </div>
             <div>
@@ -65,21 +85,19 @@ include('../gen_includes/side_bar_user.php');
         </div>
       </div>
       <!-- Column end-->
-
-
-
       <!-- Column -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-10 no-block">
-              <div class="align-slef-center" style="margin: auto;">
+            <div class="d-flex pa-30 no-block" style="justify-content: space-between;">
+              <div class="align-slef-center" >
                 <h2 class="mb-2">$ 0.00</h2>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                
               </div>
-
+              <div class="dashImg">
+                <img src="../../images/icons/orange/add-bitcoins.png" width="100%" alt="">
+              </div>
             </div>
             <div>
               <h6 class="text-muted mb-0 text-uppercase" style="text-align: center;">INVESTMENT</h6>
@@ -92,17 +110,18 @@ include('../gen_includes/side_bar_user.php');
       </div>
       <!-- Column end-->
       <!-- Column -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-10 no-block">
+            <div class="d-flex pa-30 no-block">
               <div class="align-slef-center" style="margin: auto;">
                 <h2 class="mb-2">$ 0.00</h2>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                
               </div>
-
+              <div class="dashImg">
+                <img src="../../images/icons/orange/cost-efficiency.png" width="100%" alt="">
+              </div>
             </div>
             <div>
               <h6 class="text-muted mb-0 text-uppercase" style="text-align: center;">EARNING</h6>
@@ -115,17 +134,18 @@ include('../gen_includes/side_bar_user.php');
       </div>
       <!-- Column end-->
       <!-- Column -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-10 no-block">
+            <div class="d-flex pa-30 no-block">
               <div class="align-slef-center" style="margin: auto;">
                 <h2 class="mb-2">$ 0.00</h2>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                
               </div>
-
+              <div class="dashImg">
+                <img src="../../images/icons/orange/payment-options.png" width="100%" alt="">
+              </div>
             </div>
             <div>
               <h6 class="text-muted mb-0 text-uppercase" style="text-align: center;">WITHDRAWAL</h6>
@@ -137,6 +157,21 @@ include('../gen_includes/side_bar_user.php');
         </div>
       </div>
       <!-- Column end-->
+
+      <!-- Column -->
+      <div class="col-lg-8 col-md-6">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
+            <!-- Crypto Converter ⚡ Widget -->
+            <div class="" style="width: 100%;">
+            <!-- <p>Crypto Calculator</p> -->
+            <crypto-converter-widget shadow symbol live background-color="#9D5F11" border-radius="0.60rem" fiat="united-states-dollar" crypto="bitcoin" amount="1" decimal-places="2"></crypto-converter-widget><script async src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@1.5.2/dist/latest.min.js"></script>
+            </div>
+          
+            <!-- /Crypto Converter ⚡ Widget -->
+          </div>
+        </div>
+      </div>
 
     </div>
     <!-- ============================================================== -->

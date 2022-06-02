@@ -45,8 +45,8 @@ include('../gen_includes/side_bar_user.php');
           <div class="card-body">
             <?php if (isset($_SESSION['user'])) : ?>
               <?php 
-                $id = $_SESSION['user']['id'];
-                $query = "SELECT * FROM users WHERE id = $id";
+                $userid = $_SESSION['user']['userid'];
+                $query = "SELECT * FROM users WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -131,8 +131,8 @@ include('../gen_includes/side_bar_user.php');
               <form class="form-horizontal form-material" action="../../connect.php" method="POST" enctype="multipart/form-data">
 
               <?php 
-                $session_id = $_SESSION['user']['id'];
-                $query = "SELECT * FROM users WHERE id = $session_id";
+                $userid = $_SESSION['user']['userid'];
+                $query = "SELECT * FROM users WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -140,7 +140,7 @@ include('../gen_includes/side_bar_user.php');
                     
                     ?>
                     
-                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $row['userid']; ?>">
                      
                     <div class="form-group">
                       <label class="col-md-12">Full Name</label>
@@ -200,7 +200,7 @@ include('../gen_includes/side_bar_user.php');
 
                     <div class="form-group">
                       <div class="col-sm-12">
-                        <a href="./update_account_edit.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit Profile</a>
+                        <a href="./update_account_edit.php?userid=<?php echo $row['userid']; ?>" class="btn btn-primary">Edit Profile</a>
                       </div>
                     </div>
                     

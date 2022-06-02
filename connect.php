@@ -12,7 +12,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpassword = "";
-$dbname = "zuriel_db";
+$dbname = "zuriel";
 
 $con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
 
@@ -107,7 +107,7 @@ if (isset($_POST['reg_user'])) {
             $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
 
             mysqli_query($con, $query);
-            $_SESSION['reg']  = "Registration successfull !!!";
+            // $_SESSION['reg']  = "Registration successfull !!!";
 
             header('location: login.php');
 
@@ -116,8 +116,6 @@ if (isset($_POST['reg_user'])) {
     
 }
 
-
-	
 
 
 //  User login
@@ -196,7 +194,6 @@ if (isset($_POST['check_Emailbtn'])) {
 }
 
 // Registration by admin
-
 if (isset($_POST['add_user'])) {
 	// COLLECT VALUES OF THE INPUT FIELDS
 	$name = mysqli_real_escape_string($con, $_POST['name']);
@@ -285,7 +282,7 @@ if (isset($_POST['add_user'])) {
 
 // Edit user by Admin
 if (isset($_POST['update_user'])) {
-    $id = trim($_POST['id'], " ");
+    $userid = trim($_POST['userid'], " ");
     $name = trim($_POST['name'], " ");
 	$username = trim($_POST['username'], " "); 
 	$email = trim($_POST['email'], " "); 
@@ -297,7 +294,7 @@ if (isset($_POST['update_user'])) {
     $usertype = trim($_POST['usertype'], " ");
 
 
-    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', address = '$address', country = '$country', usertype = '$usertype' WHERE id = $id";
+    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', address = '$address', country = '$country', usertype = '$usertype' WHERE userid = $userid";
 
     $result = mysqli_query($con, $query);
 
@@ -319,9 +316,9 @@ if (isset($_POST['update_user'])) {
 
 // Delete user by admin
 if (isset($_POST['deleteUserBtn'])) {
-    $id = $_POST['deleteId'];
+    $userid = $_POST['deleteId'];
 
-    $query = "DELETE FROM users WHERE id = '$id'";
+    $query = "DELETE FROM users WHERE userid = '$userid'";
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -341,11 +338,12 @@ if (isset($_POST['deleteUserBtn'])) {
 
 // Update User Account by user
 if (isset($_POST['update_profile'])) {
-    $id = trim($_POST['id'], " ");
+
+    $userid = trim($_POST['userid'], " ");
     $name = trim($_POST['name'], " ");
 	$username = trim($_POST['username'], " "); 
 	$email = trim($_POST['email'], " "); 
-	$phone = trim($_POST['phonenumber'], " ");
+	$phone = trim($_POST['phone'], " ");
 	$password = trim($_POST['password'], " ");
 	$cpassword = trim($_POST['cpassword'], " ");
     $address = trim($_POST['address'], " ");
@@ -378,7 +376,7 @@ if (isset($_POST['update_profile'])) {
 
 
 
-    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', profile_pics = '$profile_pics_name', address = '$address', country = '$country' WHERE id = $id";
+    $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', profile_pics = '$profile_pics_name', address = '$address', country = '$country' WHERE userid = $userid";
 
     $result = mysqli_query($con, $query);
 
@@ -398,13 +396,130 @@ if (isset($_POST['update_profile'])) {
 
 
 
+
+// Add admin btc wallet
+if (isset($_POST['add_admin_btc_wallet'])) {
+    $admin_btc_wallet_address = trim($_POST['admin_btc_wallet_address']);
+    
+    if (!empty($admin_btc_wallet_address)) {
+        $query = "INSERT INTO admin_btc_wallet (admin_btc_wallet_address) values ('$admin_btc_wallet_address')";
+
+        $result = mysqli_query($con, $query);
+            
+        if ($result) {                           
+            $_SESSION['status'] = "BTC wallet successfully added.";
+
+            header('location: ./dashboard/admin/add_wallet.php');
+        }
+        else {
+            $_SESSION['status'] = "Addition of BTC wallet failed. You can't add btc wallet twice, rather go and update it";
+            header('location: ./dashboard/admin/add_wallet.php');
+            
+        }
+    }
+    else {
+        $_SESSION['status'] = "Please Enter your wallet address";
+    }
+
+    
+}
+
+// Add admin eth wallet
+if (isset($_POST['add_admin_eth_wallet'])) {
+    $admin_eth_wallet_address = trim($_POST['admin_eth_wallet_address']);
+    
+    if (!empty($admin_eth_wallet_address)) {
+        $query = "INSERT INTO admin_eth_wallet (admin_eth_wallet_address) values ('$admin_eth_wallet_address')";
+
+        $result = mysqli_query($con, $query);
+            
+        if ($result) {                           
+            $_SESSION['status'] = "ETH wallet successfully added.";
+
+            header('location: ./dashboard/admin/add_wallet.php');
+        }
+        else {
+            $_SESSION['status'] = "Addition of ETH wallet failed.";
+            header('location: ./dashboard/admin/add_wallet.php');
+            
+        }
+    }
+    else {
+        $_SESSION['status'] = "Please Enter your wallet address";
+    }
+
+    
+}
+
+// Add admin usdt wallet
+if (isset($_POST['add_admin_usdt_wallet'])) {
+    $admin_usdt_wallet_address = trim($_POST['admin_usdt_wallet_address']);
+    
+    if (!empty($admin_usdt_wallet_address)) {
+        $query = "INSERT INTO admin_usdt_wallet (admin_usdt_wallet_address) values ('$admin_usdt_wallet_address')";
+
+        $result = mysqli_query($con, $query);
+            
+        if ($result) {                           
+            $_SESSION['status'] = "USDT wallet successfully added.";
+
+            header('location: ./dashboard/admin/add_wallet.php');
+        }
+        else {
+            $_SESSION['status'] = "Addition of USDT wallet failed.";
+            header('location: ./dashboard/admin/add_wallet.php');
+            
+        }
+    }
+    else {
+        $_SESSION['status'] = "Please Enter your wallet address";
+    }
+
+    
+}
+
+// Add admin busd wallet
+if (isset($_POST['add_admin_busd_wallet'])) {
+    $admin_busd_wallet_address = trim($_POST['admin_busd_wallet_address']);
+    
+    if (!empty($admin_busd_wallet_address)) {
+        $query = "INSERT INTO admin_busd_wallet (admin_busd_wallet_address) values ('$admin_busd_wallet_address')";
+
+        $result = mysqli_query($con, $query);
+            
+        if ($result) {                           
+            $_SESSION['status'] = "BUSD wallet successfully added.";
+
+            header('location: ./dashboard/admin/add_wallet.php');
+        }
+        else {
+            $_SESSION['status'] = "Addition of BUSD wallet failed.";
+            header('location: ./dashboard/admin/add_wallet.php');
+            
+        }
+    }
+    else {
+        $_SESSION['status'] = "Please Enter your wallet address";
+    }
+
+    
+}
+
+
+
+
+
+
+
+
+
 // Add btc wallet
 if (isset($_POST['add_btc_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $btc_wallet_address = trim($_POST['btc_wallet_address']);
     
     if (!empty($btc_wallet_address)) {
-        $query = "INSERT INTO btc_wallet (id, btc_wallet_address) values ('$id','$btc_wallet_address')";
+        $query = "INSERT INTO btc_wallet (userid, btc_wallet_address) values ('$userid','$btc_wallet_address')";
 
         $result = mysqli_query($con, $query);
             
@@ -414,7 +529,7 @@ if (isset($_POST['add_btc_wallet'])) {
             header('location: ./dashboard/user/add_wallet.php');
         }
         else {
-            $_SESSION['status'] = "Addition of BTC wallet failed.";
+            $_SESSION['status'] = "Addition of BTC wallet failed. Note: you can't add btc wallet twice, rather go and update it From your profile";
             header('location: ./dashboard/user/add_wallet.php');
             
         }
@@ -428,11 +543,11 @@ if (isset($_POST['add_btc_wallet'])) {
 
 // Add Eth wallet
 if (isset($_POST['add_eth_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $eth_wallet_address = trim($_POST['eth_wallet_address']);
 
-    if (!empty($btc_wallet_address)) {
-        $query = "INSERT INTO eth_wallet (id, eth_wallet_address) values ('$id','$eth_wallet_address')";
+    if (!empty($eth_wallet_address)) {
+        $query = "INSERT INTO eth_wallet (userid, eth_wallet_address) values ('$userid','$eth_wallet_address')";
 
         $result = mysqli_query($con, $query);
             
@@ -455,11 +570,11 @@ if (isset($_POST['add_eth_wallet'])) {
 
 // Add Usdt wallet
 if (isset($_POST['add_usdt_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $usdt_wallet_address = trim($_POST['usdt_wallet_address']);
 
-    if (!empty($btc_wallet_address)) {
-        $query = "INSERT INTO usdt_wallet (id, usdt_wallet_address) values ('$id','$usdt_wallet_address')";
+    if (!empty($usdt_wallet_address)) {
+        $query = "INSERT INTO usdt_wallet (userid, usdt_wallet_address) values ('$userid','$usdt_wallet_address')";
 
         $result = mysqli_query($con, $query);
             
@@ -482,11 +597,11 @@ if (isset($_POST['add_usdt_wallet'])) {
 
 // Add Busd wallet
 if (isset($_POST['add_busd_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $busd_wallet_address = trim($_POST['busd_wallet_address']);
    
-    if (!empty($btc_wallet_address)) {
-        $query = "INSERT INTO busd_wallet (id, busd_wallet_address) values ('$id','$busd_wallet_address')";
+    if (!empty($busd_wallet_address)) {
+        $query = "INSERT INTO busd_wallet (userid, busd_wallet_address) values ('$userid','$busd_wallet_address')";
 
         $result = mysqli_query($con, $query);
             
@@ -507,13 +622,14 @@ if (isset($_POST['add_busd_wallet'])) {
 }
 
 
+
 // Edit btc wallet address
 if (isset($_POST['edit_btc_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $btc_wallet_address = mysqli_real_escape_string($con, $_POST['btc_wallet_address']);
 
     if (!empty($btc_wallet_address)) {
-        $query = "UPDATE btc_wallet SET btc_wallet_address = '$btc_wallet_address' WHERE id = $id";
+        $query = "UPDATE btc_wallet SET btc_wallet_address = '$btc_wallet_address' WHERE userid = $userid";
 
         $result = mysqli_query($con, $query);
     
@@ -539,11 +655,11 @@ if (isset($_POST['edit_btc_wallet'])) {
 
 // Edit eth wallet address
 if (isset($_POST['edit_eth_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $eth_wallet_address = mysqli_real_escape_string($con, $_POST['eth_wallet_address']);
 
     if (!empty($eth_wallet_address)) {
-        $query = "UPDATE eth_wallet SET eth_wallet_address = '$eth_wallet_address' WHERE id = $id";
+        $query = "UPDATE eth_wallet SET eth_wallet_address = '$eth_wallet_address' WHERE userid = $userid";
 
         $result = mysqli_query($con, $query);
     
@@ -569,11 +685,11 @@ if (isset($_POST['edit_eth_wallet'])) {
 
 // Edit usdt wallet address
 if (isset($_POST['edit_usdt_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $usdt_wallet_address = mysqli_real_escape_string($con, $_POST['usdt_wallet_address']);
 
     if (!empty($usdt_wallet_address)) {
-        $query = "UPDATE usdt_wallet SET usdt_wallet_address = '$usdt_wallet_address' WHERE id = $id";
+        $query = "UPDATE usdt_wallet SET usdt_wallet_address = '$usdt_wallet_address' WHERE userid = $userid";
 
         $result = mysqli_query($con, $query);
     
@@ -599,11 +715,11 @@ if (isset($_POST['edit_usdt_wallet'])) {
 
 // Edit busd wallet address
 if (isset($_POST['edit_busd_wallet'])) {
-    $id = $_SESSION['user']['id'];
+    $userid = $_SESSION['user']['userid'];
     $busd_wallet_address = mysqli_real_escape_string($con, $_POST['busd_wallet_address']);
 
     if (!empty($busd_wallet_address)) {
-        $query = "UPDATE busd_wallet SET busd_wallet_address = '$busd_wallet_address' WHERE id = $id";
+        $query = "UPDATE busd_wallet SET busd_wallet_address = '$busd_wallet_address' WHERE userid = $userid";
 
         $result = mysqli_query($con, $query);
     
@@ -632,6 +748,62 @@ if (isset($_POST['edit_busd_wallet'])) {
 
 
 
+// get amt deposited
+if (isset($_POST['next'])) {
+    $userid = $_SESSION['user']['userid'];
+    $amt_deposited = mysqli_real_escape_string($con, $_POST['amt_deposited']);
+    if(empty($amt_deposited)) {
+        $_SESSION['status'] = "Enter deposit amount";
+        header('location: dashboard/user/make_deposit.php');
+    }
+    else {
+        $_SESSION['amt_deposited'] = $amt_deposited;
+        $_SESSION['amt_deposited_certify'] = $amt_deposited;
+        $transaction_reference = uniqid();
+        $query = "INSERT INTO temp_deposit (userid, amt_deposited, transaction_reference) VALUE ('$userid', '$amt_deposited', '$transaction_reference')";
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            header('location: dashboard/user/copy_wallet_address.php');
+        }
+    }
+    
+}
+// ACTUAL DEPOSITE
+if (isset($_POST['paid'])) {
+    if (!empty($_POST['certify'])) {
+        $userid = $_SESSION['user']['userid'];
+        $query = "SELECT * FROM  temp_deposit WHERE userid = $userid ORDER BY temp_deposit_id ASC";
+
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            foreach($result as $row) {
+   
+            }
+            $amt_deposited = $row['amt_deposited'];
+            $transaction_reference = $row['transaction_reference'];
+            $userid = $_SESSION['user']['userid'];
+            $query = "INSERT INTO deposit (userid, amt_deposited, transaction_reference) VALUE ('$userid', '$amt_deposited', '$transaction_reference')";
+
+            $result = mysqli_query($con, $query);
+            if ($result) {
+                $_SESSION['status'] = "Deposit of $$amt_deposited successful";
+                header('location: ./dashboard/user/index.php');
+            }
+            else {
+                $_SESSION['status'] = "Deposit failed";
+                header('location: ./dashboard/user/index.php');
+            }
+        }
+    }
+    else {
+        $_SESSION['status'] = "You must certify that you have made the payment";
+        header('location: ./dashboard/user/copy_wallet_address.php');
+    }
+
+    // $amt_paid = $amt_deposited;
+    // echo $amt_paid;
+    // $_SESSION['test'] = $amt_paid;
+}
 
 
 

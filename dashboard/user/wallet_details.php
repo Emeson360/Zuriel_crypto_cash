@@ -51,8 +51,8 @@ include('../gen_includes/side_bar_user.php');
               <p>Edit your Btc wallet address</p>
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM btc_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM btc_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -101,8 +101,8 @@ include('../gen_includes/side_bar_user.php');
               <p>Edit your Eth wallet address</p>
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM eth_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM eth_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -151,8 +151,8 @@ include('../gen_includes/side_bar_user.php');
               <p>Edit your Usdt wallet address</p>
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM usdt_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM usdt_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -201,8 +201,8 @@ include('../gen_includes/side_bar_user.php');
               <p>Edit your Busd wallet address</p>
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM busd_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM busd_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -249,8 +249,8 @@ include('../gen_includes/side_bar_user.php');
             <div class="row">
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM btc_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM btc_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -288,8 +288,8 @@ include('../gen_includes/side_bar_user.php');
             <div class="row">
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM eth_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM eth_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -326,8 +326,8 @@ include('../gen_includes/side_bar_user.php');
             <div class="row">
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM usdt_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM usdt_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {
@@ -364,8 +364,8 @@ include('../gen_includes/side_bar_user.php');
             <div class="row">
               <?php if (isset($_SESSION['user'])) : ?>
                 <?php 
-                  $id = $_SESSION['user']['id'];
-                  $query = "SELECT * FROM busd_wallet WHERE id = $id";
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM busd_wallet WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
 
                   if (mysqli_num_rows($result) > 0) {

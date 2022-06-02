@@ -1,7 +1,4 @@
 /*
-Template Name: Hyrax UX Admin
-Author: SRGIT
-
 File: js
 */
 $(function () {

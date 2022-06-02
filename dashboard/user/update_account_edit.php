@@ -36,7 +36,7 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
 
     <div class="row">
-      <?php include('../../message.php'); ?>
+      <?php include('../gen_includes/message/status_msg.php'); ?>
     </div>
     <div class="row">
       <!-- Column -->
@@ -46,8 +46,8 @@ include('../gen_includes/side_bar_user.php');
 
             <?php if (isset($_SESSION['user'])) : ?>
               <?php 
-                $session_id = $_SESSION['user']['id'];
-                $query = "SELECT * FROM users WHERE id = $session_id";
+                $userid_ = $_SESSION['user']['userid'];
+                $query = "SELECT * FROM users WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -133,9 +133,9 @@ include('../gen_includes/side_bar_user.php');
               <form class="form-horizontal form-material" action="../../connect.php" method="POST" enctype="multipart/form-data">
 
                 <?php
-                  if (isset($_GET['id'])) {
-                    $id = $_GET['id'];
-                    $query = "SELECT * FROM users WHERE id = '$id' LIMIT 1";
+                  if (isset($_GET['userid'])) {
+                    $userid = $_GET['userid'];
+                    $query = "SELECT * FROM users WHERE userid = '$userid' LIMIT 1";
 
                     $result = mysqli_query($con, $query);
 
@@ -143,7 +143,7 @@ include('../gen_includes/side_bar_user.php');
                       foreach($result as $row) {
                         ?>
 
-                        <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                        <input type="hidden" name="userid" value="<?php echo $row['userid'] ?>">
 
                         <div class="form-group">
                             <label class="col-md-12">Full Name</label>

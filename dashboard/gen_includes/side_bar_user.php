@@ -13,10 +13,10 @@
               <li><a href="../user/wallet_details.php">Wallet Details</a></li>
             </ul>
           </li>
-          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-circle-user mr-10"></i><span class="hide-menu">Deposite</span></a>
+          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-money-bill-1-wave mr-10"></i><span class="hide-menu">Deposit</span></a>
             <ul aria-expanded="false" class="collapse">
-              <li><a href="../user/make_deposite.php">Make Deposite</a></li>
-              <li><a href="../user/deposite_history.php">Deposite History</a></li>
+              <li><a href="../user/make_deposit.php">Make Deposit</a></li>
+              <li><a href="../user/deposite_history.php">Deposit History</a></li>
             </ul>
           </li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment plan</apan></a></li>

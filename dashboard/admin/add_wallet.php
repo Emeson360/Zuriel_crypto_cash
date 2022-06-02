@@ -1,10 +1,19 @@
+
+
 <?php 
 include('../../connect.php');
 include('../gen_includes/header.php');
-include('../gen_includes/top_bar_user.php');
-include('../gen_includes/side_bar_user.php');
+include('../gen_includes/top_bar_admin.php');
+include('../gen_includes/side_bar_admin.php');
+
+
+
 
 ?>
+
+
+
+
 
 
 <!-- Page wrapper  -->
@@ -20,7 +29,7 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
             <li class="breadcrumb-item active" style="display: flex; align-items:center;">Add Wallet</li>
           </ol>
         </div>
@@ -30,8 +39,12 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Info box -->
+    <!-- ============================================================== -->
 
     <?php include('../gen_includes/message/status_msg.php') ?>
+
 
     <div class="row">
       <!-- Column -->
@@ -74,10 +87,10 @@ include('../gen_includes/side_bar_user.php');
                 <p class="mb-60">Fields with <span class="text-danger">*</span> are required</p>
                 <h4>BTC Wallet address <span class="text-danger">*</span></h4>
                 <div class="form-group mb-60" style="width: 100%;">
-                  <input type="text" name="btc_wallet_address" class="form-control" placeholder="BTC wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
+                  <input type="text" name="admin_btc_wallet_address" class="form-control" placeholder="BTC wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_btc_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BTC wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_btc_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BTC wallet</button>
                 </div>
               </form>
             </div>
@@ -88,10 +101,10 @@ include('../gen_includes/side_bar_user.php');
                 <p class="mb-60">Fields with <span class="text-danger">*</span> are required</p>
                 <h4>ETH Wallet address <span class="text-danger">*</span></h4>
                 <div class="form-group mb-60" style="width: 100%;">
-                  <input type="text" name="eth_wallet_address" class="form-control" placeholder="ETH wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
+                  <input type="text" name="admin_eth_wallet_address" class="form-control" placeholder="ETH wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_eth_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add ETH wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_eth_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add ETH wallet</button>
                 </div>
               </form>
             </div>
@@ -102,10 +115,10 @@ include('../gen_includes/side_bar_user.php');
                 <p class="mb-60">Fields with <span class="text-danger">*</span> are required</p>
                 <h4>USDT Wallet address <span class="text-danger">*</span></h4>
                 <div class="form-group mb-60" style="width: 100%;">
-                  <input type="text" name="usdt_wallet_address" class="form-control" placeholder="USDT wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
+                  <input type="text" name="admin_usdt_wallet_address" class="form-control" placeholder="USDT wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_usdt_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add USDT wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_usdt_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add USDT wallet</button>
                 </div>
               </form>
             </div>
@@ -116,10 +129,10 @@ include('../gen_includes/side_bar_user.php');
                 <p class="mb-60">Fields with <span class="text-danger">*</span> are required</p>
                 <h4>BUSD Wallet address <span class="text-danger">*</span></h4>
                 <div class="form-group mb-60" style="width: 100%;">
-                  <input type="text" name="busd_wallet_address" class="form-control" placeholder="BUSD wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
+                  <input type="text" name="admin_busd_wallet_address" class="form-control" placeholder="BUSD wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_busd_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BUSD wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_busd_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BUSD wallet</button>
                 </div>
               </form>
             </div>
@@ -132,10 +145,5 @@ include('../gen_includes/side_bar_user.php');
     </div>
 
 
-  
-
-
-
     <?php include('../gen_includes/footer_script.php'); ?>
-
 <?php include('../gen_includes/footer.php'); ?>

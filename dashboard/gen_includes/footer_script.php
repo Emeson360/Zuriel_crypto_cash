@@ -36,6 +36,7 @@
 <!-- ============================================================== -->
 <script src="../assets/vendors/styleswitcher/jQuery.style.switcher.js"></script>
 
+
 <!-- Table -->
 <script>
   $(function() {

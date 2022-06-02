@@ -119,7 +119,7 @@ include('connect.php')
 					<img id="logo" class="img-responsive mobile-logo" src="images/logo-dark.png" alt="logo">
 				</a>
 				<!-- Logo Ends -->
-				<?php include('./dashboard/gen_includes/message/reg_msg.php') ?>
+				
 				<div class="form-container">
 					<div>
 						<!-- Section Title Starts -->
