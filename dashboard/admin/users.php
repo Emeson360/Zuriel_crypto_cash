@@ -50,7 +50,7 @@ include('../gen_includes/side_bar_admin.php');
               <table id="myTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="font-weight: 700;">Id</th>
+                    <th style="font-weight: 700;">S/N</th>
                     <th style="font-weight: 700;">Name</th>
                     <th style="font-weight: 700;">Email</th>
                     <th style="font-weight: 700;">Phone Number</th>
@@ -65,12 +65,13 @@ include('../gen_includes/side_bar_admin.php');
                     $result = mysqli_query($con, $query);
 
                     if (mysqli_num_rows($result) > 0) {
+                      $sn = 1;
                       foreach($result as $row) {
                         
                         ?>
                         
                         <tr>
-                          <td><?php echo $row['id']; ?></td>
+                          <td><?php echo $sn++; ?></td>
                           <td><?php echo $row['name']; ?></td>
                           <td><?php echo $row['email']; ?></td>
                           <td><?php echo $row['phone']; ?></td>

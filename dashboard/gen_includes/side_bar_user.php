@@ -19,12 +19,19 @@
               <li><a href="../user/deposite_history.php">Deposit History</a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment plan</apan></a></li>
+          <li><a href="../user/investment_plan.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment plans</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment history</apan></a></li>
           <li><a href="../user/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><apan class="hide-menu"> Add Wallet</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Request withdrawal</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> withdrawal history</apan></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Refer a friend</apan></a></li>
+          <li>
+          <?php if (isset($_SESSION['user'])) : ?>
+
+          <a href="../user/index.php?logout='1'">
+
+          <?php endif ?>   
+          <i class="fa fa-door-open" style="margin-right: 10px;"></i><span class="hide-menu"> Log out</span></a></li>
 
           
           

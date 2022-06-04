@@ -22,7 +22,7 @@ include('../gen_includes/side_bar_admin.php');
         <div class="dashHome">
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
-            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Users deposite</li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Pending deposit</li>
           </ol>
         </div>
       </div>
@@ -32,6 +32,8 @@ include('../gen_includes/side_bar_admin.php');
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
 
+
+    <?php include('../gen_includes/message/status_msg.php') ?>
 
     <div class="row">
       <div class="col-12 col-md-12">
@@ -43,14 +45,8 @@ include('../gen_includes/side_bar_admin.php');
         ?>
         <div class="card">
           <div class="card-header">
-          <div style="float: left;">
-              <h4 class="card-title">Registered users</h4>
-            </div>
-            <div style="float: right;">
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add user
-              </button>
+            <div style="float: left;">
+              <h4 class="card-title">Pending deposit</h4>
             </div>
           </div>
           <div class="card-body">
@@ -58,35 +54,38 @@ include('../gen_includes/side_bar_admin.php');
               <table id="myTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="font-weight: 700;">Id</th>
-                    <th style="font-weight: 700;">Username</th>
-                    <th style="font-weight: 700;">Email</th>
-                    <th style="font-weight: 700;">Phone Number</th>
-                    <th style="font-weight: 700;">Role</th>
+                    <th style="font-weight: 700;">S/N</th>
+                    <th style="font-weight: 700;">Name</th>
+                    <th style="font-weight: 700;">Amount deposited</th>
+                    <th style="font-weight: 700;">Transaction Ref</th>
+                    <th style="font-weight: 700;">Status</th>
                     <th style="font-weight: 700;">Date</th>
                     <th style="font-weight: 700;">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
-                    $query = "SELECT * FROM users";
+                    $query = "SELECT deposit.userid, deposit.amt_deposited, deposit.transaction_reference, deposit.status, deposit.date, users.name FROM deposit INNER JOIN users ON deposit.userid = users.userid";
                     $result = mysqli_query($con, $query);
-
+                    
                     if (mysqli_num_rows($result) > 0) {
+                      $sn = 1;
                       foreach($result as $row) {
                         
                         ?>
                         
                         <tr>
-                          <td><?php echo $row['id']; ?></td>
-                          <td><?php echo $row['username']; ?></td>
-                          <td><?php echo $row['email']; ?></td>
-                          <td><?php echo $row['phone']; ?></td>
-                          <td><?php echo $row['usertype']; ?></td>
+                          <td><?php echo $sn++; ?></td>
+                          <td><?php echo $row['name']; ?></td>
+                          <td><?php echo $row['amt_deposited']; ?></td>
+                          <td><?php echo $row['transaction_reference']; ?></td>
+                          <td><?php echo $row['status']; ?></td>
                           <td><?php echo $row['date']; ?></td>
                           <td>
-                            <a href="./registered_user_edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger deleteBtn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                            <form action="../../connect.php" method="POST">
+                              <input type="hidden" name="userid" value="<?php echo $row['userid']; ?>">
+                            <button type="submit" name="approve"  class="btn btn-primary"  >Approve</button>
+                            </form>
                           </td>
                         </tr>
                         
@@ -114,27 +113,5 @@ include('../gen_includes/side_bar_admin.php');
 
 
     <?php include('../gen_includes/footer_script.php'); ?>
-    <script>
-			$(document).ready(function () {
-				$('.email_id').keyup(function(e) {
-					var email = $('.email_id').val();
-					// console.log(email);
-					
-					$.ajax({
-						type: "POST",
-						url: "../../connect.php",
-						data: {
-							'check_Emailbtn':1,
-							'email':email,
-						},
-						dataType: "",
-						success: function(response) {
-							// console.log(response);
-							$('.email_error').text(response)
-						}
-					})
-				});
-
-			});
-		</script>
+  
 <?php include('../gen_includes/footer.php'); ?>

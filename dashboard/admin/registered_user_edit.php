@@ -43,9 +43,9 @@ include('../gen_includes/side_bar_admin.php');
                 <form class="form-horizontal form-material" action="../../connect.php" method="POST">
 
                   <?php
-                    if (isset($_GET['id'])) {
-                      $id = $_GET['id'];
-                      $query = "SELECT * FROM users WHERE id = '$id' LIMIT 1";
+                    if (isset($_GET['userid'])) {
+                      $userid = $_GET['userid'];
+                      $query = "SELECT * FROM users WHERE userid = '$userid' LIMIT 1";
 
                       $result = mysqli_query($con, $query);
 
@@ -53,7 +53,7 @@ include('../gen_includes/side_bar_admin.php');
                         foreach($result as $row) {
                           ?>
 
-                          <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                          <input type="hidden" name="userid" value="<?php echo $row['userid'] ?>">
 
                           <div class="form-group">
                               <label class="col-md-12">Full Name</label>

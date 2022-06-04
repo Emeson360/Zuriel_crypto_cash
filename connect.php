@@ -199,7 +199,7 @@ if (isset($_POST['add_user'])) {
 	$name = mysqli_real_escape_string($con, $_POST['name']);
 	$username = mysqli_real_escape_string($con, $_POST['username']); 
 	$email = mysqli_real_escape_string($con, $_POST['email']); 
-	$phone = mysqli_real_escape_string($con, $_POST['phonenumber']);
+	$phone = mysqli_real_escape_string($con, $_POST['phone']);
 	$password = mysqli_real_escape_string($con, $_POST['password']);
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
     $usertype = mysqli_real_escape_string($con, $_POST['usertype']);
@@ -316,7 +316,7 @@ if (isset($_POST['update_user'])) {
 
 // Delete user by admin
 if (isset($_POST['deleteUserBtn'])) {
-    $userid = $_POST['deleteId'];
+    $userid = $_POST['userid'];
 
     $query = "DELETE FROM users WHERE userid = '$userid'";
     $result = mysqli_query($con, $query);
@@ -333,6 +333,40 @@ if (isset($_POST['deleteUserBtn'])) {
         
     }
 }
+
+// Approve deposite by admin
+if (isset($_POST['approve'])) {
+    
+    $userid = $_POST['userid'];
+
+    $query_deposit = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
+
+    $result = mysqli_query($con, $query_deposit);
+    // $_SESSION['status'] = "is set";
+    // header('location: ./dashboard/admin/users_deposit.php');
+    if (mysqli_num_rows($result) > 0) {
+        foreach($result as $row) {
+
+        }
+        $amt_deposited = $row['amt_deposited'];
+
+        $transaction_reference = $row['transaction_reference'];
+        $query = "INSERT INTO wallet_balance (userid, amt_deposited) VALUE ('$userid', '$amt_deposited')";
+
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            $_SESSION['status'] = "Approval of $$amt_deposited successful";
+            header('location: ./dashboard/admin/users_deposit.php');
+
+        }
+        else {
+            $_SESSION['status'] = "Approval failed";
+            header('location: ./dashboard/admin/users_deposit.php');
+        }
+    }
+    
+}
+
 
 
 

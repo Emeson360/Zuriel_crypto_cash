@@ -34,7 +34,7 @@ include('../gen_includes/side_bar_admin.php');
 
 		<!-- Add user -->
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -47,7 +47,7 @@ include('../gen_includes/side_bar_admin.php');
 						<div class="modal-body">
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="firstname" id="name" placeholder="FULL NAME" type="text">
+								<input class="form-control" name="name" id="name" placeholder="FULL NAME" type="text">
 							</div>
 							<!-- Input Field Ends -->
 						
@@ -64,7 +64,7 @@ include('../gen_includes/side_bar_admin.php');
 							<!-- Input Field Ends -->
 							<!-- Input Field Starts -->
 							<div class="form-group">
-								<input class="form-control" name="phonenumber" id="phoneNumber" placeholder="PHONE NUMBER" type="text">
+								<input class="form-control" name="phone" id="phone" placeholder="PHONE NUMBER" type="text">
 							</div>
 							<!-- Input Field Ends -->
  
@@ -365,7 +365,7 @@ include('../gen_includes/side_bar_admin.php');
 					<form action="../../connect.php" method="POST">
 					
 						<div class="modal-body">
-	 						<input type="hidden" name="deleteId" class="deleteUserid">
+	 						<input type="text" name="userid" class="deleteUserid">
 							<p>Are you sure you want to delete this data ?</p>
 						</div>
 						<!-- Input Field Ends -->
@@ -405,7 +405,7 @@ include('../gen_includes/side_bar_admin.php');
             </div>
             <div style="float: right;">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
                 Add user
               </button>
             </div>
@@ -415,7 +415,7 @@ include('../gen_includes/side_bar_admin.php');
               <table id="myTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="font-weight: 700;">Id</th>
+                    <th style="font-weight: 700;">S/N</th>
                     <th style="font-weight: 700;">Name</th>
                     <th style="font-weight: 700;">Email</th>
                     <th style="font-weight: 700;">Phone Number</th>
@@ -430,20 +430,21 @@ include('../gen_includes/side_bar_admin.php');
                     $result = mysqli_query($con, $query);
 
                     if (mysqli_num_rows($result) > 0) {
+											$sn = 1;
                       foreach($result as $row) {
                         
                         ?>
                         
                         <tr>
-                          <td><?php echo $row['id']; ?></td>
+                          <td><?php echo $sn++; ?></td>
                           <td><?php echo $row['name']; ?></td>
                           <td><?php echo $row['email']; ?></td>
                           <td><?php echo $row['phone']; ?></td>
                           <td><?php echo $row['usertype']; ?></td>
                           <td><?php echo $row['date']; ?></td>
                           <td>
-                            <a href="./registered_user_edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                            <button type="button" value="<?php echo $row['id']; ?>" class="btn btn-sm btn-danger deleteBtn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                            <a href="./registered_user_edit.php?userid=<?php echo $row['userid']; ?>" class="btn btn-sm btn-primary">Edit</a>
+                            <button type="button" value="<?php echo $row['userid']; ?>" class="btn btn-sm btn-danger deleteBtn"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                           </td>
                         </tr>
                         
@@ -507,7 +508,7 @@ include('../gen_includes/side_bar_admin.php');
 					e.preventDefault();
 
 					var userid = $(this).val();
-					console.log(userid)
+					console.log(userid);
 					$('.deleteUserid').val(userid);
 					$('#deleteModal').modal('show');
 				})

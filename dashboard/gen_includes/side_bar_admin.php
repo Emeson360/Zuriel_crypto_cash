@@ -7,7 +7,7 @@
       <nav class="sidebar-nav" style="background-color: #111;">
         <ul id="sidebarnav" style="padding-top: 30px;">
           <li><a href="../admin/index.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><span class="hide-menu"> Dashboard</span></a></li>
-          <li><a href="../admin/users_deposite.php"><i class="fa fa-money-bill" style="margin-right: 10px;"></i><span class="hide-menu"> Users Deposite</span></a></li>
+          <li><a href="../admin/users_deposit.php"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><span class="hide-menu"> Users Deposit</span></a></li>
           <li><a href="#"><i class="fa fa-arrow-down-short-wide" style="margin-right: 10px;"></i><span class="hide-menu"> Users withdrawal</span></a></li>
           <li><a href="../admin/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><span class="hide-menu"> Add Wallet</span></a></li>
           <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><span class="hide-menu"> My Profile</span></a></li>

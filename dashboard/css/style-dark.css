@@ -1331,7 +1331,7 @@ Notification page Jquery toaster
 	color: #ffffff;
 }
 .jq-icon-success {
-	background-color: #6772e5;
+	background-color: #04b381;
 	color: #ffffff;
 }
 .jq-icon-error {
@@ -1623,17 +1623,17 @@ Buttons
 	background: #028ee1;
 }
 .btn-success, .btn-success.disabled {
-	background: #6772e5;
-	border: 1px solid #6772e5;
+	background: #04b381;
+	border: 1px solid #04b381;
 	/*box-shadow: $success-shadow;*/
 	-webkit-transition: 0.2s ease-in;
 	-o-transition: 0.2s ease-in;
 	transition: 0.2s ease-in;
 }
 .btn-success:hover, .btn-success.disabled:hover {
-	background: #6772e5;
+	background: #04b381;
 	/*box-shadow: $success-shadow-hover;*/
-	border: 1px solid #6772e5;
+	border: 1px solid #04b381;
 }
 .btn-success.active, .btn-success:active, .btn-success:focus, .btn-success.disabled.active, .btn-success.disabled:active, .btn-success.disabled:focus {
 	background: #04b381;
@@ -1759,17 +1759,17 @@ Buttons
 	border-color: #6352ce;
 }
 .btn-outline-success {
-	color: #6772e5;
+	color: #04b381;
 	background-color: transparent;
-	border-color: #6772e5;
+	border-color: #04b381;
 	/*box-shadow: $success-shadow;*/
 	-webkit-transition: 0.2s ease-in;
 	-o-transition: 0.2s ease-in;
 	transition: 0.2s ease-in;
 }
 .btn-outline-success:hover, .btn-outline-success:focus, .btn-outline-success.focus {
-	background: #6772e5;
-	border-color: #6772e5;
+	background: #04b381;
+	border-color: #04b381;
 	color: #ffffff;/*box-shadow: $success-shadow-hover;*/
 }
 .btn-outline-success.active, .btn-outline-success:active, .btn-outline-success:focus {

@@ -55,8 +55,20 @@ include('../gen_includes/side_bar_user.php');
               <div class="align-slef-center" >
                 <?php 
                   $pending_deposit = 0.00; 
-                  $approved_deposit = 0.00;
+                  $wallet_balance = 0.00;
                   $userid = $_SESSION['user']['userid'];
+
+                  $query_wallet = "SELECT * FROM wallet_balance WHERE userid = $userid ORDER BY wallet_balance_id ASC";
+
+                  $result = mysqli_query($con, $query_wallet);
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach($result as $row) {
+                      
+                      
+                    }
+                    $wallet_balance += $row['amt_deposited'];
+                  }
+
                   $query = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
                   $result = mysqli_query($con, $query);
 
@@ -65,10 +77,10 @@ include('../gen_includes/side_bar_user.php');
                       
                       
                     }
-                    $pending_deposit += $row['amt_deposited'];
+                    $pending_deposit += $row['amt_deposited'] - $wallet_balance;
                   }
                 ?>
-                <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $approved_deposit ?></h2>
+                <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $wallet_balance ?></h2>
                 <p class="mb-4" style="font-size: 20px;">$ <?php echo $pending_deposit ?> <sup style="color: red;">*pending</sup></p>
               </div>
               <div class="dashImg">
