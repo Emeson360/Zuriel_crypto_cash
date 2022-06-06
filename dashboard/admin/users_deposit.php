@@ -37,12 +37,6 @@ include('../gen_includes/side_bar_admin.php');
 
     <div class="row">
       <div class="col-12 col-md-12">
-        <?php
-					if (isset($_SESSION['status'])) {
-						echo "<h4>" . $_SESSION['status']. "</h4>";
-            unset($_SESSION['status']);
-					}		
-        ?>
         <div class="card">
           <div class="card-header">
             <div style="float: left;">
@@ -71,34 +65,90 @@ include('../gen_includes/side_bar_admin.php');
                     if (mysqli_num_rows($result) > 0) {
                       $sn = 1;
                       foreach($result as $row) {
+                        $status = $row['status'];
+                        if($status == 'pending') {
+                          ?>
                         
-                        ?>
+                          <tr>
+                            <td><?php echo $sn++; ?></td>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['amt_deposited']; ?></td>
+                            <td><?php echo $row['transaction_reference']; ?></td>
+                            <td><?php echo $row['status']; ?></td>
+                            <td><?php echo $row['date']; ?></td>
+                            <td>
+                              <form action="../../connect.php" method="POST">
+                                <input type="hidden" name="userid" value="<?php echo $row['userid']; ?>">
+                              <button type="submit" name="approve"  class="btn btn-primary"  >Approve</button>
+                              </form>
+                            </td>
+                          </tr>
                         
-                        <tr>
-                          <td><?php echo $sn++; ?></td>
-                          <td><?php echo $row['name']; ?></td>
-                          <td><?php echo $row['amt_deposited']; ?></td>
-                          <td><?php echo $row['transaction_reference']; ?></td>
-                          <td><?php echo $row['status']; ?></td>
-                          <td><?php echo $row['date']; ?></td>
-                          <td>
-                            <form action="../../connect.php" method="POST">
-                              <input type="hidden" name="userid" value="<?php echo $row['userid']; ?>">
-                            <button type="submit" name="approve"  class="btn btn-primary"  >Approve</button>
-                            </form>
-                          </td>
-                        </tr>
+                          <?php
+
+                        }
+                       
                         
-                        <?php
                       }
                     }
-                    else {
-                      ?>
-                      <tr>
-                        <td>No record found</td>
-                      </tr>
-                      <?php
+                   
+                  ?>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> <br> <br>
+
+
+        <div class="card">
+          <div class="card-header">
+            <div style="float: left;">
+              <h4 class="card-title">Confirmed deposit</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive mt-10">
+              <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="font-weight: 700;">S/N</th>
+                    <th style="font-weight: 700;">Name</th>
+                    <th style="font-weight: 700;">Amount deposited</th>
+                    <th style="font-weight: 700;">Transaction Ref</th>
+                    <th style="font-weight: 700;">Status</th>
+                    <th style="font-weight: 700;">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                    $query = "SELECT deposit.userid, deposit.amt_deposited, deposit.transaction_reference, deposit.status, deposit.date, users.name FROM deposit INNER JOIN users ON deposit.userid = users.userid";
+                    $result = mysqli_query($con, $query);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                      $sn = 1;
+                      foreach($result as $row) {
+                        $status = $row['status'];
+                        if($status == 'confirmed') {
+                          ?>
+                        
+                          <tr>
+                            <td><?php echo $sn++; ?></td>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['amt_deposited']; ?></td>
+                            <td><?php echo $row['transaction_reference']; ?></td>
+                            <td><?php echo $row['status']; ?></td>
+                            <td><?php echo $row['date']; ?></td>
+                          </tr>
+                        
+                          <?php
+
+                        }
+                       
+                        
+                      }
                     }
+                   
                   ?>
                   
                 </tbody>

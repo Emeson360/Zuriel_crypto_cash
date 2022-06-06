@@ -7,27 +7,20 @@
       <nav class="sidebar-nav" style="background-color: #111;">
         <ul id="sidebarnav" style="padding-top: 30px;">
           <li><a href="../admin/index.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><span class="hide-menu"> Dashboard</span></a></li>
-          <li><a href="../admin/users_deposit.php"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><span class="hide-menu"> Users Deposit</span></a></li>
-          <li><a href="#"><i class="fa fa-arrow-down-short-wide" style="margin-right: 10px;"></i><span class="hide-menu"> Users withdrawal</span></a></li>
-          <li><a href="../admin/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><span class="hide-menu"> Add Wallet</span></a></li>
-          <li><a href="#"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><span class="hide-menu"> My Profile</span></a></li>
-          
-          <li><a href="../user/index.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><span class="hide-menu"> Refer a friend</span></a></li>
-
-          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-settings mr-10"></i><span class="hide-menu">Users Management</span></a>
+          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-people-arrows mr-10"></i><span class="hide-menu">Users Management</span></a>
             <ul aria-expanded="false" class="collapse">
               <li><a href="../admin/users.php">Users</a></li>
               <li><a href="../admin/manage_users.php">Manage Users</a></li>
-              <li><a href="../admin/users_investment.php">Users Investment</a></li>
             </ul>
           </li>
+          <li><a href="../admin/users_deposit.php"><i class="fa fa-save" style="margin-right: 10px;"></i><span class="hide-menu"> Users Deposit</span></a></li>
+          <li><a href="../admin/users_investment.php"><i class="fa fa-bank" style="margin-right: 10px;"></i>Users Investment</a></li>
+          <li><a href="#"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><span class="hide-menu"> Users withdrawal</span></a></li>
+          <li><a href="../admin/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><span class="hide-menu"> Add Wallet</span></a></li>
+          <li><a href="#"><i class="fa fa-circle-user" style="margin-right: 10px;"></i><span class="hide-menu"> My Profile</span></a></li>
           
-          <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-settings mr-10"></i><span class="hide-menu">Requested Transactions</span></a>
-            <ul aria-expanded="false" class="collapse">
-              <li><a href="pending_deposite">Pending Deposite</a></li>
-              <li><a href="withdrawal_request">withdrawal Requeste</a></li>
-            </ul>
-          </li>
+          
+         
           <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-settings mr-10"></i><span class="hide-menu">Manage Packages</span></a>
             <ul aria-expanded="false" class="collapse">
               <li><a href="app-calendar.html">Calendar</a></li>

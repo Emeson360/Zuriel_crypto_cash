@@ -91,7 +91,7 @@ include('../gen_includes/side_bar_admin.php');
 
             <div class=""  style="margin-left: 60px; padding-top: 20px;">
               <?php 
-                $query = "SELECT * FROM deposit";
+                $query = "SELECT * FROM deposit WHERE status = 'pending'";
                 $result = mysqli_query($con, $query);
 
                 $count = mysqli_num_rows($result);
@@ -162,7 +162,7 @@ include('../gen_includes/side_bar_admin.php');
           <div class="card-body pa-30">
             <div class="d-flex " style="justify-content: center; align-items:center;">
               <div style="margin-right: 20px;">
-                <i class="fa fa-redo fa-3x" style="color: #E78A1A;"></i>
+                <i class="fa fa-history fa-3x" style="color: #E78A1A;"></i>
               </div>
               <div>
                 <h6 class=" mb-0 text-uppercase" style="text-align: center; color:white;">Total Amount Deposited</h6>
@@ -200,7 +200,7 @@ include('../gen_includes/side_bar_admin.php');
           <div class="card-body pa-30">
             <div class="d-flex " style="justify-content: center; align-items:center;">
               <div style="margin-right: 20px;">
-                <i class="fa fa-undo fa-3x" style="color: #E78A1A;"></i>
+                <i class="fa fa-history fa-3x" style="color: #E78A1A;"></i>
               </div>
               <div>
                 <h6 class=" mb-0 text-uppercase" style="text-align: center; color:white;">Total Withdrawn</h6>

@@ -69,7 +69,6 @@ include('../gen_includes/side_bar_admin.php');
             </li>
           </ul>
 
-
         </div>
 
       </div>
@@ -90,7 +89,7 @@ include('../gen_includes/side_bar_admin.php');
                   <input type="text" name="admin_btc_wallet_address" class="form-control" placeholder="BTC wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_admin_btc_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BTC wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_btc_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update BTC wallet</button>
                 </div>
               </form>
             </div>
@@ -104,7 +103,7 @@ include('../gen_includes/side_bar_admin.php');
                   <input type="text" name="admin_eth_wallet_address" class="form-control" placeholder="ETH wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_admin_eth_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add ETH wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_eth_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update ETH wallet</button>
                 </div>
               </form>
             </div>
@@ -118,7 +117,7 @@ include('../gen_includes/side_bar_admin.php');
                   <input type="text" name="admin_usdt_wallet_address" class="form-control" placeholder="USDT wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_admin_usdt_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add USDT wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_usdt_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update USDT wallet</button>
                 </div>
               </form>
             </div>
@@ -132,7 +131,7 @@ include('../gen_includes/side_bar_admin.php');
                   <input type="text" name="admin_busd_wallet_address" class="form-control" placeholder="BUSD wallet address" style="background-color: #1d1d1d; border-radius: 10px;">
                 </div>
                 <div style="width: 100%;" class="mb-40">
-                  <button class="btn btn-info" type="submit" name="add_admin_busd_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Add BUSD wallet</button>
+                  <button class="btn btn-info" type="submit" name="add_admin_busd_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update BUSD wallet</button>
                 </div>
               </form>
             </div>

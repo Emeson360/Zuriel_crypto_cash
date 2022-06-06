@@ -63,10 +63,9 @@ include('../gen_includes/side_bar_user.php');
                   $result = mysqli_query($con, $query_wallet);
                   if (mysqli_num_rows($result) > 0) {
                     foreach($result as $row) {
-                      
-                      
+                      $wallet_balance += $row['amt_deposited'];
                     }
-                    $wallet_balance += $row['amt_deposited'];
+                    
                   }
 
                   $query = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
@@ -75,9 +74,14 @@ include('../gen_includes/side_bar_user.php');
                   if (mysqli_num_rows($result) > 0) {
                     foreach($result as $row) {
                       
-                      
                     }
-                    $pending_deposit += $row['amt_deposited'] - $wallet_balance;
+                    if ($row['status'] == 'confirmed') {
+                      $pending_balance = 0.00;
+                    }
+                    else {
+                      $pending_deposit += $row['amt_deposited'];
+                    }
+                     
                   }
                 ?>
                 <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $wallet_balance ?></h2>
@@ -101,18 +105,29 @@ include('../gen_includes/side_bar_user.php');
       <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-30 no-block" style="justify-content: space-between;">
+            <div class="d-flex pa-30 no-block mb-4" style="justify-content: space-between;">
               <div class="align-slef-center" >
-                <h2 class="mb-2">$ 0.00</h2>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
+                <?php 
+                  $investment_balance = 0.00; 
+                  $userid = $_SESSION['user']['userid'];
+
+                  $query = "SELECT * FROM investment WHERE userid = $userid ";
+                  $result = mysqli_query($con, $query);
+                  if ($result) {
+                    foreach($result as $row) {
+                      $investment_balance += $row['amt_invested'];
+                    }
+                  }
+
+                ?>
+                <h2 class="mb-4">$ <?php echo $investment_balance; ?></h2>
               </div>
               <div class="dashImg">
                 <img src="../../images/icons/orange/add-bitcoins.png" width="100%" alt="">
               </div>
             </div>
             <div>
-              <h6 class="text-muted mb-0 text-uppercase" style="text-align: center;">INVESTMENT</h6>
+              <h6 class="text-muted mt-2 text-uppercase" style="text-align: center;">INVESTMENT</h6>
             </div>
           </div>
           <div class="progress">
@@ -127,7 +142,36 @@ include('../gen_includes/side_bar_user.php');
           <div class="card-body">
             <div class="d-flex pa-30 no-block">
               <div class="align-slef-center" style="margin: auto;">
-                <h2 class="mb-2">$ 0.00</h2>
+                <?php
+                  $earning = 0.00; 
+                  $userid = $_SESSION['user']['userid'];
+                  $query = "SELECT * FROM investment WHERE userid = $userid";
+                  $result = mysqli_query($con, $query);
+                  if (mysqli_num_rows($result) > 0) {
+                    foreach ($result as $row) {
+                      
+                    }
+                    $plan = $row['plan'];
+                    $amt_invested = $row['amt_invested'];
+                    if ($plan == 'basic_plan') {
+                      $earning = ($amt_invested * 1 * 10)/(52 * 100);
+                    }
+                  
+                    if ($plan == 'standard_plan') {
+                      $earning = ($amt_invested * 1 * 12)/(52 * 100);
+                    }
+                  
+                    if ($plan == 'diamond_plan') {
+                      $earning = ($amt_invested * 1 * 15)/(52 * 100);
+                    }
+                  
+                    if ($plan == 'premuim_plan') {
+                      $earning = ($amt_invested * 1 * 17)/(52 * 100);
+                    }
+                  }
+
+                ?>
+                <h2 class="mb-2">$ <?php echo number_format("$earning", 4); ?></h2>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
                 <p class="mb-0" style="color: #111;">$ 0.00 </p>
               </div>

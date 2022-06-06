@@ -365,8 +365,8 @@ include('../gen_includes/side_bar_admin.php');
 					<form action="../../connect.php" method="POST">
 					
 						<div class="modal-body">
-	 						<input type="text" name="userid" class="deleteUserid">
-							<p>Are you sure you want to delete this data ?</p>
+	 						<input type="hidden" name="userid" class="deleteUserid">
+							<p>Are you sure you want to delete this user ?</p>
 						</div>
 						<!-- Input Field Ends -->
 

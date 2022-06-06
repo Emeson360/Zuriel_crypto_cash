@@ -4,6 +4,9 @@ include('../gen_includes/header.php');
 include('../gen_includes/top_bar_user.php');
 include('../gen_includes/side_bar_user.php');
 
+
+
+
 ?>
 
 
@@ -25,7 +28,7 @@ include('../gen_includes/side_bar_user.php');
         <div class="dashHome">
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
-            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Deposite History</li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Investment History</li>
           </ol>
         </div>
       </div>
@@ -34,6 +37,11 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Info box -->
+    <!-- ============================================================== -->
+
+
     <div class="card">
       <div class="card-header">
         <div style="float: left;">
@@ -46,16 +54,15 @@ include('../gen_includes/side_bar_user.php');
             <thead>
               <tr>
                 <th style="font-weight: 700;">S/N</th>
-                <th style="font-weight: 700;">Amount</th>
-                <th style="font-weight: 700;">Status</th>
-                <th style="font-weight: 700;">Date of deposit</th>
-                <th style="font-weight: 700;">Transaction reference</th>
+                <th style="font-weight: 700;">Amount Invested</th>
+                <th style="font-weight: 700;">Plan</th>
+                <th style="font-weight: 700;">Date of investment</th>
               </tr>
             </thead>
             <tbody>
               <?php 
                 $userid = $_SESSION['user']['userid'];
-                $query = "SELECT * FROM deposit WHERE userid = $userid";
+                $query = "SELECT * FROM investment WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
                 
                 $sn = 1;
@@ -67,10 +74,9 @@ include('../gen_includes/side_bar_user.php');
                     
                     <tr>
                       <td><?php echo $sn++; ?></td>
-                      <td><?php echo $row['amt_deposited']; ?></td>
-                      <td><?php echo $row['status']; ?></td>
+                      <td><?php echo $row['amt_invested']; ?></td>
+                      <td><?php echo $row['plan']; ?></td>
                       <td><?php echo $row['date']; ?></td>
-                      <td><?php echo $row['transaction_reference']; ?></td>
                     </tr>
                     
                     <?php
@@ -91,14 +97,9 @@ include('../gen_includes/side_bar_user.php');
       </div>
     </div>
 
-      
 
 
 
-
-
-
-    
     <?php include('../gen_includes/footer_script.php'); ?>
-
 <?php include('../gen_includes/footer.php'); ?>
+    

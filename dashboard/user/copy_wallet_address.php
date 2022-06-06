@@ -69,18 +69,9 @@ include('../gen_includes/side_bar_user.php');
 
             <?php
               $userid = $_SESSION['user']['userid'];
-              $query = "SELECT * FROM temp_deposit WHERE userid = $userid ORDER BY temp_deposit_id ASC";
-              $result = mysqli_query($con, $query);
-
-              if (mysqli_num_rows($result) > 0) {
-                foreach($result as $row) {
-                  
-                }
+              $amt_deposited = $_SESSION['amt_deposited'];
+              $transaction_reference = $_SESSION['transaction_reference'];
                 
-                $amt_deposited = $row['amt_deposited'];
-                $transaction_reference = $row['transaction_reference'];
-                
-              }
             ?>
 
               <div class="d-flex mt-10" style="justify-content: center;">
@@ -183,7 +174,7 @@ include('../gen_includes/side_bar_user.php');
 
                 <div class="d-flex mt-10" style="justify-content: center;">
                   <div class="col-lg-10">
-                    <?php echo "<p style='text-align: center;'>". "$". $transaction_reference . "<p>" ?>
+                    <?php echo "<p style='text-align: center;'>". $transaction_reference . "<p>" ?>
                   </div>
                 </div>
 

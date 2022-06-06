@@ -397,30 +397,5 @@ include('../gen_includes/side_bar_admin.php');
 
 
     <?php include('../gen_includes/footer_script.php'); ?>
-    
-    <!-- <script>
-			$(document).ready(function () {
-				$('.email_id').keyup(function(e) {
-					var email = $('.email_id').val();
-					// console.log(email);
-					
-					$.ajax({
-						type: "POST",
-						url: "../../connect.php",
-						data: {
-							'check_Emailbtn':1,
-							'email':email,
-						},
-						dataType: "",
-						success: function(response) {
-							// console.log(response);
-							$('.email_error').text(response)
-						}
-					})
-				});
-
-			});
-		</script> -->
-
 
 <?php include('../gen_includes/footer.php'); ?>
