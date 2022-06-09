@@ -184,7 +184,7 @@ include('../gen_includes/side_bar_user.php');
             <form action="../../connect.php" method="POST">
               <div class="d-flex mt-40" style="justify-content: center;">
                 <div class="col-lg-10" style="text-align: center;">
-                  <input type="checkbox" name="certify"> <span style="font-size: 18px;"> I certify that i have paid <?php echo $amt_deposited ?> worth of coin to one of the above addresses.</span>
+                  <input type="checkbox" name="certify"> <span style="font-size: 18px;"> I certify that i have paid <?php echo "$" . $amt_deposited ?> worth of coin to one of the above addresses.</span>
                   
                 </div>
               </div>

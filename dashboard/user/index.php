@@ -47,7 +47,7 @@ include('../gen_includes/side_bar_user.php');
     <?php include('../gen_includes/message/status_msg.php') ?>
 
     <div class="row">
-      <!-- Column -->
+      <!-- Column Wallet balance-->
       <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
@@ -63,9 +63,8 @@ include('../gen_includes/side_bar_user.php');
                   $result = mysqli_query($con, $query_wallet);
                   if (mysqli_num_rows($result) > 0) {
                     foreach($result as $row) {
-                      $wallet_balance += $row['amt_deposited'];
+                      $wallet_balance += $row['total_balance'];
                     }
-                    
                   }
 
                   $query = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
@@ -100,8 +99,9 @@ include('../gen_includes/side_bar_user.php');
           </div>
         </div>
       </div>
-      <!-- Column end-->
-      <!-- Column -->
+      <!-- Column Wallet balance end-->
+
+      <!-- Column Investment -->
       <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
@@ -113,11 +113,30 @@ include('../gen_includes/side_bar_user.php');
 
                   $query = "SELECT * FROM investment WHERE userid = $userid ";
                   $result = mysqli_query($con, $query);
-                  if ($result) {
+                  if (mysqli_num_rows($result)) {
                     foreach($result as $row) {
                       $investment_balance += $row['amt_invested'];
                     }
+
+                    $start_date = $row['date'];
+                    $end_date = $row['end_date'];
+                    if ($start_date > $end_date) {
+                      $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                      $result = mysqli_query($con, $query);
+                      if(mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+                          
+                        }
+                        $wallet_balance = $row['total_balance'];
+                        $new_wallet_balance = $wallet_balance + $investment_balance;
+                        $investment_balance = 0.00;
+
+                        $query = "UPDATE wallet_balance SET total_balance = '$new_wallet_balance' WHERE userid = $userid";
+                        $result = mysqli_query($con, $query);
+                      }
+                    }
                   }
+
 
                 ?>
                 <h2 class="mb-4">$ <?php echo $investment_balance; ?></h2>
@@ -135,13 +154,14 @@ include('../gen_includes/side_bar_user.php');
           </div>
         </div>
       </div>
-      <!-- Column end-->
-      <!-- Column -->
+      <!-- Column Investment end-->
+
+      <!-- Column Earning -->
       <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-30 no-block">
-              <div class="align-slef-center" style="margin: auto;">
+            <div class="d-flex pa-30 no-block mb-4" style="justify-content: space-between;">
+              <div class="align-slef-center">
                 <?php
                   $earning = 0.00; 
                   $userid = $_SESSION['user']['userid'];
@@ -149,38 +169,36 @@ include('../gen_includes/side_bar_user.php');
                   $result = mysqli_query($con, $query);
                   if (mysqli_num_rows($result) > 0) {
                     foreach ($result as $row) {
-                      
+                      $earning += $row['earning'];
                     }
-                    $plan = $row['plan'];
-                    $amt_invested = $row['amt_invested'];
-                    if ($plan == 'basic_plan') {
-                      $earning = ($amt_invested * 1 * 10)/(52 * 100);
-                    }
-                  
-                    if ($plan == 'standard_plan') {
-                      $earning = ($amt_invested * 1 * 12)/(52 * 100);
-                    }
-                  
-                    if ($plan == 'diamond_plan') {
-                      $earning = ($amt_invested * 1 * 15)/(52 * 100);
-                    }
-                  
-                    if ($plan == 'premuim_plan') {
-                      $earning = ($amt_invested * 1 * 17)/(52 * 100);
+                    
+                    if ($start_date >= $end_date) {
+                      $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                      $result = mysqli_query($con, $query);
+                      if(mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+                          
+                        }
+                        $wallet_balance = $row['total_balance'];
+                        $new_wallet_balance = $wallet_balance + $earning;
+                        $earning = 0.00;
+
+                        $query = "UPDATE wallet_balance SET total_balance = '$new_wallet_balance' WHERE userid = $userid";
+                        $result = mysqli_query($con, $query);
+                      }
                     }
                   }
 
                 ?>
-                <h2 class="mb-2">$ <?php echo number_format("$earning", 4); ?></h2>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
+                <h2 class="mb-4">$ <?php echo number_format("$earning", 2); ?></h2>
+                
               </div>
               <div class="dashImg">
                 <img src="../../images/icons/orange/cost-efficiency.png" width="100%" alt="">
               </div>
             </div>
             <div>
-              <h6 class="text-muted mb-0 text-uppercase" style="text-align: center;">EARNING</h6>
+              <h6 class="text-muted mt-2 text-uppercase" style="text-align: center;">EARNING</h6>
             </div>
           </div>
           <div class="progress">
@@ -188,16 +206,44 @@ include('../gen_includes/side_bar_user.php');
           </div>
         </div>
       </div>
-      <!-- Column end-->
-      <!-- Column -->
+      <!-- Column Earning end-->
+
+      <!-- Column Withdrawal -->
       <div class="col-lg-4 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-            <div class="d-flex pa-30 no-block">
-              <div class="align-slef-center" style="margin: auto;">
-                <h2 class="mb-2">$ 0.00</h2>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
-                <p class="mb-0" style="color: #111;">$ 0.00 </p>
+            <div class="d-flex pa-30 no-block" style="justify-content: space-between;">
+            <div class="align-slef-center" >
+              <?php 
+                $pending_withdrawal = 0.00; 
+                $amt_withdrawn = 0.00;
+                $userid = $_SESSION['user']['userid'];
+
+                $query_wallet = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+
+                $result = mysqli_query($con, $query_wallet);
+                if (mysqli_num_rows($result) > 0) {
+                  foreach($result as $row) {
+                    $amt_withdrawn += $row['amt_withdrawn'];
+                  }
+
+                  if ($row['status'] == 'confirmed') {
+                    $pending_withdrawal = 0.00;
+                  }
+                  else {
+                    $pending_withdrawal += $row['amt_deposited'];
+                  }
+                }
+
+             
+
+                
+                  
+                    
+                
+              ?>
+              <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $amt_withdrawn ?></h2>
+              <p class="mb-4" style="font-size: 20px;">$ <?php echo $pending_withdrawal ?> <sup style="color: red;">*pending</sup></p>
               </div>
               <div class="dashImg">
                 <img src="../../images/icons/orange/payment-options.png" width="100%" alt="">
@@ -212,9 +258,9 @@ include('../gen_includes/side_bar_user.php');
           </div>
         </div>
       </div>
-      <!-- Column end-->
+      <!-- Column Withdrawal end-->
 
-      <!-- Column -->
+      <!-- Column Crypto converter -->
       <div class="col-lg-8 col-md-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
@@ -233,27 +279,22 @@ include('../gen_includes/side_bar_user.php');
     <!-- ============================================================== -->
     <!-- End Info box -->
     <!-- ============================================================== -->
+    
     <!-- ============================================================== -->
     <!-- BTC live chart -->
     <!-- ============================================================== -->
     <div class="row">
 
-      <!-- Chart Starts -->
-      <div class="col-md-8 bg-grey-chart">
-                        <div class="chart-widget dark-chart chart-1">
-                            <div>
-                                <div class="btcwdgt-chart" data-bw-theme="dark"></div>
-                            </div>
-                        </div>
-						<div class="chart-widget light-chart chart-2">
-                            <div>
-                                <div class="btcwdgt-chart" bw-theme="light"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Chart Ends -->
+      <!-- Crypto prices Starts -->
+      <div style="height:610px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38; padding: 0px; margin: auto; width: 98%;"><div style="height:590px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=9&pref_coin_id=1505&graph=yes" width="100%" height="586px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+      <!-- Crypto prices Ends -->
       
+    </div>
+
+    <div class="row mt-20">
       
+      <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: auto; width: 98%;"><div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+
     </div>
    
     <?php include('../gen_includes/footer_script.php'); ?>

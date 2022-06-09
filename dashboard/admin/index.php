@@ -157,7 +157,7 @@ include('../gen_includes/side_bar_admin.php');
       <!-- Column end-->
    
       <!-- Column -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-6 col-md-12">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body pa-30">
             <div class="d-flex " style="justify-content: center; align-items:center;">
@@ -195,7 +195,7 @@ include('../gen_includes/side_bar_admin.php');
       <!-- Column end-->
     
       <!-- Column -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-6 col-md-12">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body pa-30">
             <div class="d-flex " style="justify-content: center; align-items:center;">
@@ -203,7 +203,7 @@ include('../gen_includes/side_bar_admin.php');
                 <i class="fa fa-history fa-3x" style="color: #E78A1A;"></i>
               </div>
               <div>
-                <h6 class=" mb-0 text-uppercase" style="text-align: center; color:white;">Total Withdrawn</h6>
+                <h6 class=" mb-0 text-uppercase" style="text-align: center; color:white;">Total Amount Withdrawn</h6>
               </div>
             </div>
 
@@ -252,21 +252,19 @@ include('../gen_includes/side_bar_admin.php');
     <!-- ============================================================== -->
     <div class="row">
 
-      <!-- Chart Starts -->
-      <div class="col-md-8 bg-grey-chart">
-                        <div class="chart-widget dark-chart chart-1">
-                            <div>
-                                <div class="btcwdgt-chart" data-bw-theme="dark"></div>
-                            </div>
-                        </div>
-						<div class="chart-widget light-chart chart-2">
-                            <div>
-                                <div class="btcwdgt-chart" bw-theme="light"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Chart Ends -->
-      
+      <!-- Crypto prices Starts -->
+      <!-- <div style="height:610px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38; padding: 0px; margin: auto; width: 98%;"><div style="height:590px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=9&pref_coin_id=1505&graph=yes" width="100%" height="586px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div> -->
+
+        
+      <!-- <script src="https://crypto.com/price/static/widget/index.js"></script>
+      <div
+        id="crypto-widget-CoinList"
+        data-transparent="true"
+        data-theme="dark"
+        data-design="classic"
+        data-coin-ids="1,166,136,1694,1120,2,382,2283">
+      </div> -->
+      <!-- Crypto prices Ends -->
       
     </div>
    

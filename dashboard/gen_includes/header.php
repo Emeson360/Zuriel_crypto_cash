@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+<link rel="icon" type="image/jpg" sizes="16x16" href="../assets/images/favicon.jpg">
 <title>Zuriel crypto cash - Dashboard</title>
 <link href="../assets/vendors/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
 <!-- This page CSS -->

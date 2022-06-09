@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/zuriel_logo/favicon.png">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -55,23 +55,23 @@
     <!-- Wrapper Starts -->
     <div class="wrapper">
         <!-- Header Starts -->
-        <header class="header">
+        <header class="header" style="background-color: #010101">
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
-                    <div class="main-logo col-xs-12  col-md-2 col-lg-2 hidden-xs" >
+                    <div class="main-logo col-sm-2  col-md-2 col-lg-2 hidden-xs" >
                         <a href="index.php">
-							<img id="logo" class="img-responsive" src="images/logo-dark.png" alt="logo">
+							<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo" width="100%">
 						</a>
                     </div>
                     <!-- Logo Ends -->
                     
-                    <div class=" col-md-6 col-lg-6">
+                    <div class="col-sm-2 col-md-6 col-lg-6">
                        
                     </div>
                     
                     <!-- User Sign In/Sign Up Starts -->
-                    <div class=" col-md-4 col-lg-4">
+                    <div class="col-sm-5 col-md-4 col-lg-4">
                         <ul class="unstyled user">
                             <li class="sign-in"><a href="login.php" class="btn btn-primary"><i class="fa fa-user"></i> sign in</a></li>
                             <li class="sign-up"><a href="register.php" class="btn btn-primary"><i class="fa fa-user-plus"></i> register</a></li>
@@ -85,9 +85,11 @@
                 <div class="container">
                     <div class="site-nav-inner">
                         <!-- Logo For ONLY Mobile display Starts -->
-                        <a class="logo-mobile" href="index.php">
-							<img id="logo-mobile" class="img-responsive" src="images/logo-dark.png" alt="">
-						</a>
+                        <div class="logo_con">
+                            <a class="logo-mobile" href="index.php">
+                                <img id="logo-mobile" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="" width="100%">
+                            </a>
+                        </div>
                         <!-- Logo For ONLY Mobile display Ends -->
                         <!-- Toggle Icon for Mobile Starts -->
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -130,11 +132,8 @@
             <!-- Navigation Menu Ends -->
             
             <!-- Coin price widget start here -->
-            <div class="coinPriceWidget" style="height:40px; background-color: #FFFFFF; opacity: 0.6; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:62px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D1D1D;padding:1px;padding: 0px; margin: 0px; width: 100%;">
-                <div style="height:40px; background-color: #FFFFFF; padding:0px; margin:auto; width: 88%;">
-                    <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
-                </div>
-            </div>
+            <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+            <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#1d1d1d" locale="en" font-color="#d0cdcd"></coingecko-coin-price-marquee-widget>
             <!-- Coin price widget ends here -->
             
         </header>
@@ -1058,14 +1057,6 @@
                     </div>
                 </div>
             </div>
-
-              <!-- Coin price widget start here -->
-              <div  style="height:40px; background-color: #FFFFFF; opacity: 0.6; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:62px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D1D1D;padding:1px;padding: 0px; margin: 0px; width: 100%;">
-                <div style="height:40px; background-color: #FFFFFF; padding:0px; margin:auto; width: 88%;">
-                    <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" style="border:0;margin:0;padding:0;"></iframe>
-                </div>
-            </div>
-            <!-- Coin price widget ends here -->
             <!-- Footer Bottom Area Ends -->
         </footer>
         <!-- Footer Ends -->

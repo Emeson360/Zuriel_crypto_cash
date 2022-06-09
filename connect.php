@@ -463,8 +463,8 @@ if (isset($_POST['approve'])) {
             foreach($result as $row) {
            
             }
-            $new_balance = $row['amt_deposited'] + $amt_deposited;
-            $query = "UPDATE wallet_balance SET amt_deposited = '$new_balance' WHERE userid = $userid";
+            $new_balance = $row['total_balance'] + $amt_deposited;
+            $query = "UPDATE wallet_balance SET total_balance = '$new_balance' WHERE userid = $userid";
 
             $result = mysqli_query($con, $query);
             if ($result) {
@@ -482,13 +482,13 @@ if (isset($_POST['approve'])) {
            
         }
         else {
-            $query = "INSERT INTO wallet_balance (userid, amt_deposited) VALUE ('$userid', '$amt_deposited')";
+            $query = "INSERT INTO wallet_balance (userid, total_balance) VALUE ('$userid', '$amt_deposited')";
 
             $result = mysqli_query($con, $query);
             if ($result) {
                 $query = "UPDATE deposit SET status = 'confirmed' WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
-                
+
                 $_SESSION['status'] = "Approval of $$amt_deposited successful";
                 header('location: ./dashboard/admin/users_deposit.php');
 
@@ -851,7 +851,6 @@ if (isset($_POST['next'])) {
     }
     else {
         $_SESSION['amt_deposited'] = $amt_deposited;
-        $_SESSION['amt_deposited_certify'] = $amt_deposited;
         $transaction_reference = uniqid();
         $_SESSION['transaction_reference'] = $transaction_reference;
         header('location: dashboard/user/copy_wallet_address.php');
@@ -928,7 +927,7 @@ if (isset($_POST['basic_plan'])) {
     $userid = $_POST['userid'];
 
     if ($amt_invested < 500) {
-        $_SESSION['status'] = "Minimum deposit for investment is $ 500";
+        $_SESSION['status'] = "Minimum deposit for this investment plan is $ 500";
         header('location: ./dashboard/user/investment_plan.php');
     }
     elseif ($amt_invested > $_SESSION['balance']) {
@@ -936,7 +935,11 @@ if (isset($_POST['basic_plan'])) {
         header('location: ./dashboard/user/investment_plan.php');
     }
     else {
-        $query = "INSERT INTO investment (userid, amt_invested, plan) VALUE ('$userid', '$amt_invested', 'basic_plan')";
+        $d = strtotime("-50 mins");
+        $end_date = date("y-m-d h:i:sa", $d);
+        $basic_earning = ($amt_invested * 1 * 10)/(100);
+        
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$basic_earning', 'basic_plan', '$end_date')";
         $result = mysqli_query($con, $query);
         if ($result) {
             $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
@@ -945,9 +948,9 @@ if (isset($_POST['basic_plan'])) {
                 foreach ($result as $row) {
                     
                 }
-                $wallet_balance = $row['amt_deposited'];
+                $wallet_balance = $row['total_balance'];
                 $new_wallet_balance = $wallet_balance - $amt_invested;
-                $query = "UPDATE wallet_balance SET amt_deposited = $new_wallet_balance WHERE userid = $userid";
+                $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
                 $_SESSION['status'] = "$ $amt_invested invested in basic plan";
                 header('location: ./dashboard/user/index.php');
@@ -957,7 +960,163 @@ if (isset($_POST['basic_plan'])) {
 
 }
 
+// Invest in standard plan
+if (isset($_POST['standard_plan'])) {
+    $amt_invested = $_POST['amt_invested'];
+    $userid = $_POST['userid'];
 
+    if ($amt_invested < 10000) {
+        $_SESSION['status'] = "Minimum deposit for this investment plan is $ 10,000";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    elseif ($amt_invested > $_SESSION['balance']) {
+        $_SESSION['status'] = "Amount invested must be less than or equal to your wallet balance";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    else {
+        $d = strtotime("+1 week");
+        $end_date = date("y-m-d", $d);
+        $standard_earning = ($amt_invested * 1 * 12)/(100);
+
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$standard_earning', 'standard_plan', '$end_date')";
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+            $result = mysqli_query($con, $query);
+            if(mysqli_num_rows($result) > 0) {
+                foreach ($result as $row) {
+                    
+                }
+                $wallet_balance = $row['total_balance'];
+                $new_wallet_balance = $wallet_balance - $amt_invested;
+                $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                $_SESSION['status'] = "$ $amt_invested invested in standard plan";
+                header('location: ./dashboard/user/index.php');
+            }
+        }
+    }
+
+}
+
+// Invest in diamond plan
+if (isset($_POST['diamond_plan'])) {
+    $amt_invested = $_POST['amt_invested'];
+    $userid = $_POST['userid'];
+
+    if ($amt_invested < 25000) {
+        $_SESSION['status'] = "Minimum deposit for this investment plan is $ 25,000";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    elseif ($amt_invested > $_SESSION['balance']) {
+        $_SESSION['status'] = "Amount invested must be less than or equal to your wallet balance";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    else {
+        $d = strtotime("+1 week");
+        $end_date = date("y-m-d", $d);
+        $diamond_earning = ($amt_invested * 1 * 15)/(100);
+
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$diamond_earning', 'diamond_plan', '$end_date')";
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+            $result = mysqli_query($con, $query);
+            if(mysqli_num_rows($result) > 0) {
+                foreach ($result as $row) {
+                    
+                }
+                $wallet_balance = $row['total_balance'];
+                $new_wallet_balance = $wallet_balance - $amt_invested;
+                $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                $_SESSION['status'] = "$ $amt_invested invested in standard plan";
+                header('location: ./dashboard/user/index.php');
+            }
+        }
+    }
+
+}
+
+// Invest in premium plan
+if (isset($_POST['premium_plan'])) {
+    $amt_invested = $_POST['amt_invested'];
+    $userid = $_POST['userid'];
+
+    if ($amt_invested < 50000) {
+        $_SESSION['status'] = "Minimum deposit for this investment plan is $ 50,000";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    elseif ($amt_invested > $_SESSION['balance']) {
+        $_SESSION['status'] = "Amount invested must be less than or equal to your wallet balance";
+        header('location: ./dashboard/user/investment_plan.php');
+    }
+    else {
+        $d = strtotime("+1 week");
+        $end_date = date("y-m-d", $d);
+        $premium_earning += ($amt_invested * 1 * 17)/(100);
+
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$premium_earning', 'diamond_plan', '$end_date')";
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+            $result = mysqli_query($con, $query);
+            if(mysqli_num_rows($result) > 0) {
+                foreach ($result as $row) {
+                    
+                }
+                $wallet_balance = $row['total_balance'];
+                $new_wallet_balance = $wallet_balance - $amt_invested;
+                $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                $_SESSION['status'] = "$ $amt_invested invested in standard plan";
+                header('location: ./dashboard/user/index.php');
+            }
+        }
+    }
+
+}
+
+
+// Withdraw with btc
+if(isset($_POST['req_btc'])) {
+    $amt_withdrawn = $_POST['amt_withdrawn'];
+    $userid = $_SESSION['user']['userid'];
+    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result)) {
+        foreach ($result as $row) {
+
+        }
+        $total_balance = $row['total_balance'];
+    }
+
+    $query = "SELECT * FROM btc_wallet WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $btc_wallet_address = $row['btc_wallet_address'];
+    }
+
+    if (empty($amt_withdrawn)) {
+        $_SESSION['status'] = "Enter withdrawal amount";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    elseif($amt_withdrawn > $total_balance) {
+        $_SESSION['status'] = "You can not withdraw more than your withdrawable balance";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    else {
+        $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'btc', '$btc_wallet_address')";
+        $result = mysqli_query($con, $query);
+
+        $_SESSION['status'] = "Withdrawal request of $ $amt_withdrawn sucessfull";
+        header('location: ./dashboard/user/index.php');
+    }
+
+}
 
 
 
@@ -965,8 +1124,7 @@ if (isset($_POST['basic_plan'])) {
 
 
 // check if user is logged in
-function isLoggedIn()
-{
+function isLoggedIn() {
 	if (isset($_SESSION['user'])) {
 		return true;
 	}else{
@@ -982,8 +1140,7 @@ if (isset($_GET['logout'])) {
 }
 
 // check if user is an admin
-function isAdmin()
-{
+function isAdmin() {
 	if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin' ) {
 		return true;
 	}else{

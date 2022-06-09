@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/favicon.jpg">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -53,13 +53,13 @@
     <!-- Wrapper Starts -->
     <div class="wrapper">
         <!-- Header Starts -->
-        <header class="header">
+        <header class="header" style="background-color: #010101">
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
                     <div class="main-logo col-xs-12 col-md-3 col-md-2 col-lg-2 hidden-xs">
                         <a href="index.php">
-							<img id="logo" class="img-responsive" src="images/logo-dark.png" alt="logo">
+							<img id="logo" class="img-responsive" src="images/logo.jpg" alt="logo">
 						</a>
                     </div>
                     <!-- Logo Ends -->
@@ -122,14 +122,6 @@
                 </div>
             </nav>
             <!-- Navigation Menu Ends -->
-
-            <!-- Coin price widget start here -->
-            <div class="coinPriceWidget" style="height:40px; background-color: #FFFFFF; opacity: 0.6; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:62px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D1D1D;padding:1px;padding: 0px; margin: 0px; width: 100%;">
-                <div style="height:40px; background-color: #FFFFFF; padding:0px; margin:auto; width: 88%;">
-                    <iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" style="border:0;margin:0;padding:0;"></iframe>
-                </div>
-            </div>
-            <!-- Coin price widget ends here -->
 
         </header>
         <!-- Header Ends -->

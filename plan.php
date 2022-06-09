@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/favicon.jpg">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -54,13 +54,13 @@
     <!-- Wrapper Starts -->
     <div class="wrapper">
         <!-- Header Starts -->
-        <header class="header">
+        <header class="header" style="background-color: #010101">
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
                     <div class="main-logo col-xs-12 col-md-3 col-md-2 col-lg-2 hidden-xs">
                         <a href="index.php">
-							<img id="logo" class="img-responsive" src="images/logo-dark.png" alt="logo">
+							<img id="logo" class="img-responsive" src="images/logo.jpg" alt="logo">
 						</a>
                     </div>
                     <!-- Logo Ends -->

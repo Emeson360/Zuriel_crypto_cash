@@ -3975,6 +3975,19 @@ h4.panel-title a.collapsed:before {
 }
 
 /*** Large Devices, Wide Screens ***/
+@media screen and (max-width: 768px) {
+  .logo_con {
+    width: 60%
+  }
+
+  .logo_con img {
+    width: 100px
+  }
+
+  .main-logo a img {
+    width: 50%;
+  }
+}
 
 @media (min-width : 1200px) {
   ul.navbar-nav > li.visible-md.visible-lg {
@@ -3988,6 +4001,7 @@ h4.panel-title a.collapsed:before {
   ul.nav li.dropdown:hover ul.dropdown-menu {
     display: block;
   }
+
 }
 
 /*** Only Medium Devices, Desktops ***/
@@ -4077,6 +4091,7 @@ h4.panel-title a.collapsed:before {
 
   .main-logo a img {
     margin: 0 auto;
+    
   }
 
   ul.user {

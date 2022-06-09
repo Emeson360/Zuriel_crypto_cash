@@ -20,8 +20,8 @@
           <li><a href="../user/investment_history.php"><i class="fa fa-history" style="margin-right: 10px;"></i><apan class="hide-menu"> Investment history</apan></a></li>
           <li><a href="../user/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><apan class="hide-menu"> Add Wallet</apan></a></li>
           
-          <li><a href="#"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><apan class="hide-menu"> Request withdrawal</apan></a></li>
-          <li><a href="#"><i class="fa fa-history" style="margin-right: 10px;"></i><apan class="hide-menu"> withdrawal history</apan></a></li>
+          <li><a href="../user/request_withdrawal.php"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><apan class="hide-menu"> Request withdrawal</apan></a></li>
+          <li><a href="../user/withdrawal_history.php"><i class="fa fa-history" style="margin-right: 10px;"></i><apan class="hide-menu"> withdrawal history</apan></a></li>
           <li><a href="../user/update_wallet.php"><i class="fa fa-dashboard" style="margin-right: 10px;"></i><apan class="hide-menu"> Refer a friend</apan></a></li>
           <li>
           <?php if (isset($_SESSION['user'])) : ?>

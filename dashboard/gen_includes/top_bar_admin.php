@@ -29,18 +29,12 @@ if (!isAdmin()) {
       <!-- ============================================================== -->
       <!-- Logo -->
       <!-- ============================================================== -->
-      <div class="navbar-header" style="background-color: #1d1d1d;"> <a class="navbar-brand" href="../admin/index.php">
-        <!-- Logo icon -->
-        <b>
-        <!-- Light Logo icon -->
-        <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> </b>
-        <!--End Logo icon -->
-        <!-- Logo text -->
-        <span>
-        <!-- dark Logo text -->
-        <img src="../assets/images/logo-light-text.png" alt="homepage" class="dark-logo" />
-        <!-- Light Logo text -->
-        <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a> </div>
+      <div class="navbar-header" style="background-color: #1d1d1d;"> 
+        <a class="navbar-brand" href="../admin/index.php">
+          <!-- Logo icon -->
+          <img src="../assets/images/logo.jpg" width="90%" alt="homepage">
+        </a> 
+      </div>
       <!-- ============================================================== -->
       <!-- End Logo -->
       <!-- ============================================================== -->
