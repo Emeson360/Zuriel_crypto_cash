@@ -1,8 +1,8 @@
 <?php 
 include('../../connect.php');
 include('../gen_includes/header.php');
-include('../gen_includes/top_bar_user.php');
-include('../gen_includes/side_bar_user.php');
+include('../gen_includes/top_bar_admin.php');
+include('../gen_includes/side_bar_admin.php');
 
 ?>
 
@@ -25,7 +25,7 @@ include('../gen_includes/side_bar_user.php');
         <div class="dashHome">
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
-            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Update Account</li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Profile </li>
           </ol>
         </div>
       </div>
@@ -200,7 +200,8 @@ include('../gen_includes/side_bar_user.php');
 
                     <div class="form-group">
                       <div class="col-sm-12">
-                        <a href="./update_account_edit.php?userid=<?php echo $row['userid']; ?>" class="btn btn-primary">Edit Profile</a>
+                        <a href="./edit_profile.php?userid=<?php echo $row['userid']; ?>" class="btn btn-primary">Edit Profile</a>
+                        
                       </div>
                     </div>
                     

@@ -6,7 +6,7 @@ session_start();
 // Declaring and hosting the variables
 $errors = array();
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+// mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 // DB connection
 $dbhost = "localhost";
@@ -548,6 +548,15 @@ if (isset($_POST['update_profile'])) {
         $profile_pics_name = "";
     }
 
+    $query = "SELECT * FROM users WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result)) {
+        foreach($result as $row) {
+
+        }
+        $usertype = $row['usertype'];
+    }
+
 
 
     $query = "UPDATE users SET name = '$name', username = '$username', email = '$email', phone = '$phone', password = '$password', cpassword = '$cpassword', profile_pics = '$profile_pics_name', address = '$address', country = '$country' WHERE userid = $userid";
@@ -555,14 +564,30 @@ if (isset($_POST['update_profile'])) {
     $result = mysqli_query($con, $query);
 
     if ($result) {
+        if($usertype == 'user') {
+            $_SESSION['status'] = "Account updated successfully";
 
-        $_SESSION['status'] = "Account updated successfully";
+            header('location: ./dashboard/user/update_account.php');
+        }
+        else {
+            $_SESSION['status'] = "Account updated successfully";
 
-        header('location: ./dashboard/user/update_account.php');
+            header('location: ./dashboard/admin/profile.php');
+        }
+
+        
     }
     else {
-        $_SESSION['status'] = "Account update failed";
-        header('location: ./dashboard/user/update_account.php');
+        if($usertype == 'user') {
+            $_SESSION['status'] = "Account update failed";
+
+            header('location: ./dashboard/user/update_account.php');
+        }
+        else {
+            $_SESSION['status'] = "Account update failed";
+
+            header('location: ./dashboard/admin/profile.php');
+        }
         
     }
 
@@ -935,12 +960,16 @@ if (isset($_POST['basic_plan'])) {
         header('location: ./dashboard/user/investment_plan.php');
     }
     else {
-        $d = strtotime("-50 mins");
-        $end_date = date("y-m-d h:i:sa", $d);
-        $basic_earning = ($amt_invested * 1 * 10)/(100);
+        $d = strtotime("now");
+        $end_date = strtotime("+3 mins", $d);
+        $basic_earning += ($amt_invested * 1 * 10)/(100);
         
-        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$basic_earning', 'basic_plan', '$end_date')";
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$basic_earning', 'basic_plan', '$d', '$end_date')";
         $result = mysqli_query($con, $query);
+
+        $query_calc = "INSERT INTO investment_calc (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$basic_earning', 'basic_plan', '$d', '$end_date')";
+
+        $result = mysqli_query($con, $query_calc);
         if ($result) {
             $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
             $result = mysqli_query($con, $query);
@@ -974,12 +1003,15 @@ if (isset($_POST['standard_plan'])) {
         header('location: ./dashboard/user/investment_plan.php');
     }
     else {
-        $d = strtotime("+1 week");
-        $end_date = date("y-m-d", $d);
-        $standard_earning = ($amt_invested * 1 * 12)/(100);
+        $d = strtotime("now");
+        $end_date = strtotime("+3 mins", $d);
+        $standard_earning += ($amt_invested * 1 * 12)/(100);
 
-        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$standard_earning', 'standard_plan', '$end_date')";
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$standard_earning', 'standard_plan', '$d', '$end_date')";
         $result = mysqli_query($con, $query);
+
+        $query_calc = "INSERT INTO investment_calc (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$standard_earning', 'standard_plan', '$d', '$end_date')";
+        $result = mysqli_query($con, $query_calc);
         if ($result) {
             $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
             $result = mysqli_query($con, $query);
@@ -988,8 +1020,8 @@ if (isset($_POST['standard_plan'])) {
                     
                 }
                 $wallet_balance = $row['total_balance'];
-                $new_wallet_balance = $wallet_balance - $amt_invested;
-                $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
+                $wallet_balance -= $amt_invested;
+                $query = "UPDATE wallet_balance SET total_balance = $wallet_balance WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
                 $_SESSION['status'] = "$ $amt_invested invested in standard plan";
                 header('location: ./dashboard/user/index.php');
@@ -1013,12 +1045,16 @@ if (isset($_POST['diamond_plan'])) {
         header('location: ./dashboard/user/investment_plan.php');
     }
     else {
-        $d = strtotime("+1 week");
-        $end_date = date("y-m-d", $d);
-        $diamond_earning = ($amt_invested * 1 * 15)/(100);
+        $d = strtotime("now");
+        $end_date = strtotime("+3 mins", $d);
+        $diamond_earning += ($amt_invested * 1 * 15)/(100);
 
-        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$diamond_earning', 'diamond_plan', '$end_date')";
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$diamond_earning', 'diamond_plan', '$d', '$end_date')";
         $result = mysqli_query($con, $query);
+
+        $query_calc = "INSERT INTO investment_calc (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$diamond_earning', 'diamond_plan', '$d', '$end_date')";
+
+        $result = mysqli_query($con, $query_calc);
         if ($result) {
             $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
             $result = mysqli_query($con, $query);
@@ -1030,7 +1066,7 @@ if (isset($_POST['diamond_plan'])) {
                 $new_wallet_balance = $wallet_balance - $amt_invested;
                 $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
-                $_SESSION['status'] = "$ $amt_invested invested in standard plan";
+                $_SESSION['status'] = "$ $amt_invested invested in diamond plan";
                 header('location: ./dashboard/user/index.php');
             }
         }
@@ -1052,12 +1088,16 @@ if (isset($_POST['premium_plan'])) {
         header('location: ./dashboard/user/investment_plan.php');
     }
     else {
-        $d = strtotime("+1 week");
-        $end_date = date("y-m-d", $d);
+        $d = strtotime("now");
+        $end_date = strtotime("+3 mins", $d);
         $premium_earning += ($amt_invested * 1 * 17)/(100);
 
-        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, end_date) VALUE ('$userid', '$amt_invested', '$premium_earning', 'diamond_plan', '$end_date')";
+        $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$premium_earning', 'premium_plan', '$d', '$end_date')";
         $result = mysqli_query($con, $query);
+
+        $query_calc = "INSERT INTO investment_calc (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$premium_earning', 'premium_plan', '$d', '$end_date')";
+
+        $result = mysqli_query($con, $query_calc);
         if ($result) {
             $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
             $result = mysqli_query($con, $query);
@@ -1069,7 +1109,7 @@ if (isset($_POST['premium_plan'])) {
                 $new_wallet_balance = $wallet_balance - $amt_invested;
                 $query = "UPDATE wallet_balance SET total_balance = $new_wallet_balance WHERE userid = $userid";
                 $result = mysqli_query($con, $query);
-                $_SESSION['status'] = "$ $amt_invested invested in standard plan";
+                $_SESSION['status'] = "$ $amt_invested invested in premium plan";
                 header('location: ./dashboard/user/index.php');
             }
         }

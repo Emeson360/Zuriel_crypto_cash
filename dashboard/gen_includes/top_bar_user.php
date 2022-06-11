@@ -29,7 +29,7 @@ if (!isLoggedIn()) {
       <div class="navbar-header" style="background-color: #1d1d1d;"> 
         <a class="navbar-brand" href="../user/index.php">
           <!-- Logo icon -->
-          <img src="../assets/images/logo.jpg" width="90%" alt="homepage">
+          <img src="../../images/zuriel_logo/logo_light.png" width="60%" alt="homepage">
         </a> 
       </div>
       <!-- ============================================================== -->
@@ -61,7 +61,7 @@ if (!isLoggedIn()) {
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1">
+          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"> <span class="hidden-md-down">
 
           <?php if (isset($_SESSION['user'])) : ?>
               <?php 
@@ -86,7 +86,7 @@ if (!isLoggedIn()) {
                   }
                   else {
                     ?>
-                    <img src="../assets/images/users/Avatar2.jpg" alt="user" width="100%" class="" /> <span class="hidden-md-down">
+                    <img src="../assets/images/users/Avatar.jpg" alt="user" width="100%" class="" /> <span class="hidden-md-down">
                     <?php
                   }
                     
@@ -139,7 +139,7 @@ if (!isLoggedIn()) {
                           else {
                             ?>
                               <div class="u-img">
-                              <img src="../assets/images/users/Avatar2.jpg" width="100%" alt="user">
+                              <img src="../assets/images/users/Avatar.jpg" width="100%" alt="user">
                             </div>
                             <?php
                           }

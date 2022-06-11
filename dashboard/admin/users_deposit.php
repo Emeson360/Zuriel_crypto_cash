@@ -22,7 +22,7 @@ include('../gen_includes/side_bar_admin.php');
         <div class="dashHome">
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
-            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Pending deposit</li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Users deposit</li>
           </ol>
         </div>
       </div>
@@ -40,7 +40,7 @@ include('../gen_includes/side_bar_admin.php');
         <div class="card">
           <div class="card-header">
             <div style="float: left;">
-              <h4 class="card-title">Pending deposit</h4>
+              <h4 class="card-title">Users deposit</h4>
             </div>
           </div>
           <div class="card-body">
@@ -87,49 +87,7 @@ include('../gen_includes/side_bar_admin.php');
                           <?php
 
                         }
-                       
-                        
-                      }
-                    }
-                   
-                  ?>
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div> <br> <br>
-
-
-        <div class="card">
-          <div class="card-header">
-            <div style="float: left;">
-              <h4 class="card-title">Confirmed deposit</h4>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive mt-10">
-              <table id="myTable" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th style="font-weight: 700;">S/N</th>
-                    <th style="font-weight: 700;">Name</th>
-                    <th style="font-weight: 700;">Amount deposited</th>
-                    <th style="font-weight: 700;">Transaction Ref</th>
-                    <th style="font-weight: 700;">Status</th>
-                    <th style="font-weight: 700;">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $query = "SELECT deposit.userid, deposit.amt_deposited, deposit.transaction_reference, deposit.status, deposit.date, users.name FROM deposit INNER JOIN users ON deposit.userid = users.userid";
-                    $result = mysqli_query($con, $query);
-                    
-                    if (mysqli_num_rows($result) > 0) {
-                      $sn = 1;
-                      foreach($result as $row) {
-                        $status = $row['status'];
-                        if($status == 'confirmed') {
+                        else {
                           ?>
                         
                           <tr>
@@ -139,10 +97,10 @@ include('../gen_includes/side_bar_admin.php');
                             <td><?php echo $row['transaction_reference']; ?></td>
                             <td><?php echo $row['status']; ?></td>
                             <td><?php echo $row['date']; ?></td>
+                            <td class="text-success"><?php echo "Approved"; ?></td>
                           </tr>
                         
                           <?php
-
                         }
                        
                         
@@ -156,6 +114,9 @@ include('../gen_includes/side_bar_admin.php');
             </div>
           </div>
         </div>
+
+
+        
       </div>
     </div>
 

@@ -59,19 +59,19 @@
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
-                    <div class="main-logo col-sm-2  col-md-2 col-lg-2 hidden-xs" >
+                    <div class="main-logo col-xs-2  col-md-2 col-lg-2 hidden-xs">
                         <a href="index.php">
 							<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo" width="100%">
 						</a>
                     </div>
                     <!-- Logo Ends -->
                     
-                    <div class="col-sm-2 col-md-6 col-lg-6">
+                    <div class="col-md-6 col-lg-6">
                        
                     </div>
                     
                     <!-- User Sign In/Sign Up Starts -->
-                    <div class="col-sm-5 col-md-4 col-lg-4">
+                    <div class="col-md-4 col-lg-4">
                         <ul class="unstyled user">
                             <li class="sign-in"><a href="login.php" class="btn btn-primary"><i class="fa fa-user"></i> sign in</a></li>
                             <li class="sign-up"><a href="register.php" class="btn btn-primary"><i class="fa fa-user-plus"></i> register</a></li>

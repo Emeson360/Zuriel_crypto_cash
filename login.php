@@ -14,7 +14,7 @@ include('connect.php')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/zuriel_logo/favicon.png">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -64,7 +64,7 @@ include('connect.php')
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->
 				<a class="logo" href="index.php">
-					<img id="logo-user" class="img-responsive" src="images/logo-dark.png" alt="logo">
+					<img id="logo-user" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo">
 				</a>
 				<!-- Logo Ends -->
 				<!-- Slider Starts -->
@@ -116,7 +116,7 @@ include('connect.php')
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 				<!-- Logo Starts -->
 				<a class="visible-xs" href="index.php">
-					<img id="logo" class="img-responsive mobile-logo" src="images/logo-dark.png" alt="logo">
+					<img id="logo" class="img-responsive mobile-logo" src="images/zuriel_logo/logo_light.png" alt="logo">
 				</a>
 				<!-- Logo Ends -->
 				

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.jpg">
+    <link rel="shortcut icon" href="images/zuriel_logo/favicon.png">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -57,9 +57,9 @@
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
-                    <div class="main-logo col-xs-12 col-md-3 col-md-2 col-lg-2 hidden-xs">
+                    <div class="main-logo col-xs-2 col-md-3 col-md-2 col-lg-2 hidden-xs">
                         <a href="index.php">
-							<img id="logo" class="img-responsive" src="images/logo.jpg" alt="logo">
+							<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo" width="100%">
 						</a>
                     </div>
                     <!-- Logo Ends -->

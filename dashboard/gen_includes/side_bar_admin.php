@@ -17,7 +17,7 @@
           <li><a href="../admin/users_investment.php"><i class="fa fa-bank" style="margin-right: 10px;"></i>Users Investment</a></li>
           <li><a href="#"><i class="fa fa-money-bill-transfer" style="margin-right: 10px;"></i><span class="hide-menu"> Users withdrawal</span></a></li>
           <li><a href="../admin/add_wallet.php"><i class="fa fa-plus" style="margin-right: 10px;"></i><span class="hide-menu"> Add Wallet</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-user" style="margin-right: 10px;"></i><span class="hide-menu"> My Profile</span></a></li>
+          <li><a href="../admin/profile.php"><i class="fa fa-circle-user" style="margin-right: 10px;"></i><span class="hide-menu"> My Profile</span></a></li>
           
           
          

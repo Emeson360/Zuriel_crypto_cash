@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/zuriel_logo/favicon.png">
 
     <!-- Template CSS Files -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -60,19 +60,19 @@
             <div class="container">
                 <div class="row">
                     <!-- Logo Starts -->
-                    <div class="main-logo col-xs-12 col-md-3 col-md-2 col-lg-2 hidden-xs">
+                    <div class="main-logo col-xs-2 col-md-2 col-lg-2 hidden-xs">
                         <a href="index.php">
-							<img id="logo" class="img-responsive" src="images/logo-dark.png" alt="logo">
+							<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo">
 						</a>
                     </div>
                     <!-- Logo Ends -->
                     <!-- Statistics Starts -->
-                    <div class="col-md-7 col-lg-7">
+                    <div class="col-md-6 col-lg-6">
                        
                     </div>
                     <!-- Statistics Ends -->
                     <!-- User Sign In/Sign Up Starts -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-md-4 col-lg-4">
                         <ul class="unstyled user">
                             <li class="sign-in"><a href="login.php" class="btn btn-primary"><i class="fa fa-user"></i> sign in</a></li>
                             <li class="sign-up"><a href="register.php" class="btn btn-primary"><i class="fa fa-user-plus"></i> register</a></li>
@@ -87,7 +87,7 @@
                     <div class="site-nav-inner">
                         <!-- Logo For ONLY Mobile display Starts -->
                         <a class="logo-mobile" href="index.php">
-							<img id="logo-mobile" class="img-responsive" src="images/logo-dark.png" alt="">
+							<img id="logo-mobile" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="">
 						</a>
                         <!-- Logo For ONLY Mobile display Ends -->
                         <!-- Toggle Icon for Mobile Starts -->

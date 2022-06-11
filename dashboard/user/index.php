@@ -63,8 +63,9 @@ include('../gen_includes/side_bar_user.php');
                   $result = mysqli_query($con, $query_wallet);
                   if (mysqli_num_rows($result) > 0) {
                     foreach($result as $row) {
-                      $wallet_balance += $row['total_balance'];
+                      
                     }
+                    $wallet_balance += $row['total_balance'];
                   }
 
                   $query = "SELECT * FROM deposit WHERE userid = $userid ORDER BY deposit_id ASC";
@@ -111,16 +112,17 @@ include('../gen_includes/side_bar_user.php');
                   $investment_balance = 0.00; 
                   $userid = $_SESSION['user']['userid'];
 
-                  $query = "SELECT * FROM investment WHERE userid = $userid ";
+                  $query = "SELECT * FROM investment_calc WHERE userid = $userid ";
                   $result = mysqli_query($con, $query);
                   if (mysqli_num_rows($result)) {
                     foreach($result as $row) {
                       $investment_balance += $row['amt_invested'];
                     }
+                    
 
-                    $start_date = $row['date'];
+                    $start_date = strtotime("now");
                     $end_date = $row['end_date'];
-                    if ($start_date > $end_date) {
+                    if ($start_date >= $end_date) {
                       $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
                       $result = mysqli_query($con, $query);
                       if(mysqli_num_rows($result)) {
@@ -133,7 +135,11 @@ include('../gen_includes/side_bar_user.php');
 
                         $query = "UPDATE wallet_balance SET total_balance = '$new_wallet_balance' WHERE userid = $userid";
                         $result = mysqli_query($con, $query);
+                        
                       }
+
+                      $query = "UPDATE investment_calc SET amt_invested = '0.00' WHERE userid = $userid";
+                      $result = mysqli_query($con, $query);
                     }
                   }
 
@@ -165,12 +171,16 @@ include('../gen_includes/side_bar_user.php');
                 <?php
                   $earning = 0.00; 
                   $userid = $_SESSION['user']['userid'];
-                  $query = "SELECT * FROM investment WHERE userid = $userid";
+                  $query = "SELECT * FROM investment_calc WHERE userid = $userid";
                   $result = mysqli_query($con, $query);
                   if (mysqli_num_rows($result) > 0) {
                     foreach ($result as $row) {
                       $earning += $row['earning'];
                     }
+                    
+
+                    $start_date = strtotime("now");
+                    $end_date = $row['end_date'];
                     
                     if ($start_date >= $end_date) {
                       $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
@@ -181,11 +191,12 @@ include('../gen_includes/side_bar_user.php');
                         }
                         $wallet_balance = $row['total_balance'];
                         $new_wallet_balance = $wallet_balance + $earning;
-                        $earning = 0.00;
 
                         $query = "UPDATE wallet_balance SET total_balance = '$new_wallet_balance' WHERE userid = $userid";
                         $result = mysqli_query($con, $query);
                       }
+                      $query = "UPDATE investment_calc SET earning = '0.00' WHERE userid = $userid";
+                      $result = mysqli_query($con, $query);
                     }
                   }
 
@@ -286,16 +297,19 @@ include('../gen_includes/side_bar_user.php');
     <div class="row">
 
       <!-- Crypto prices Starts -->
-      <div style="height:610px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38; padding: 0px; margin: auto; width: 98%;"><div style="height:590px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=9&pref_coin_id=1505&graph=yes" width="100%" height="586px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+      <!-- <div style="height:610px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38; padding: 0px; margin: auto; width: 98%;"><div style="height:590px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=9&pref_coin_id=1505&graph=yes" width="100%" height="586px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div> -->
       <!-- Crypto prices Ends -->
       
     </div>
 
     <div class="row mt-20">
       
-      <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: auto; width: 98%;"><div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
+      <!-- <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: auto; width: 98%;"><div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div> -->
 
     </div>
+
+
+    
    
     <?php include('../gen_includes/footer_script.php'); ?>
 <?php include('../gen_includes/footer.php'); ?>

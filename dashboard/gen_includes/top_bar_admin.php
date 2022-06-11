@@ -32,7 +32,7 @@ if (!isAdmin()) {
       <div class="navbar-header" style="background-color: #1d1d1d;"> 
         <a class="navbar-brand" href="../admin/index.php">
           <!-- Logo icon -->
-          <img src="../assets/images/logo.jpg" width="90%" alt="homepage">
+          <img src="../../images/zuriel_logo/logo_light.png" width="60%" alt="homepage">
         </a> 
       </div>
       <!-- ============================================================== -->
@@ -64,25 +64,101 @@ if (!isAdmin()) {
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
-          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down">
+          <li class="nav-item dropdown u-pro"> <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton1"> <span class="hidden-md-down">
           
           <?php if (isset($_SESSION['user'])) : ?>
-            <span>
-               <strong><?php echo $_SESSION['user']['username']; ?></strong>
-            </span>
+            <?php 
+              $userid = $_SESSION['user']['userid'];
+              $query = "SELECT * FROM users WHERE userid = $userid";
+              $result = mysqli_query($con, $query);
+              $count = mysqli_num_rows($result);
 
-            <!-- <small> -->
-						<!-- <i  style="color: #0f0;">(<?php //echo ucfirst($_SESSION['user']['usertype']); ?>)</i>  -->
-					<!-- </small> -->
+              if ($count > 0) {
 
-        <?php endif ?>
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $profile_pics_name = $row['profile_pics'];
+                }
+                ?>
+
+                <?php
+                if ($profile_pics_name != "") {
+                  ?>
+                  <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="100%" />
+
+                  <?php
+                }
+                else {
+                  ?>
+                  <img src="../assets/images/users/Avatar.jpg" alt="user" width="100%" class="" /> <span class="hidden-md-down">
+                  <?php
+                }
+                  
+                ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                  <span>
+                    <strong><?php echo $_SESSION['user']['username']; ?></strong>
+                  </span>
+
+                <?php endif ?>
+                
+                <?php
+              }
+              else {
+                echo "No image found";
+                
+              }
+
+              ?>
+            
+
+          <?php endif ?>
           
           &nbsp;<i class="fa fa-angle-down"></i></span> </a>
             <div class="dropdown-menu dropdown-menu-right animated fadeIn">
               <ul class="dropdown-user">
                 <li>
                   <div class="dw-user-box">
-                    <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                      <?php 
+                        $userid = $_SESSION['user']['userid'];
+                        $query = "SELECT * FROM users WHERE userid = $userid";
+                        $result = mysqli_query($con, $query);
+                        $count = mysqli_num_rows($result);
+
+                        if ($count > 0) {
+
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $profile_pics_name = $row['profile_pics'];
+                          }
+                          ?>
+                          <?php
+                          if ($profile_pics_name != "") {
+                            ?>
+                            <div class="u-img">
+                              <img src="../assets/images/users/<?php echo $profile_pics_name ?>" width="100%" alt="user">
+                            </div>
+                            <?php
+                          }
+                          else {
+                            ?>
+                              <div class="u-img">
+                              <img src="../assets/images/users/Avatar.jpg" width="100%" alt="user">
+                            </div>
+                            <?php
+                          }
+                          
+                          ?>
+                        
+                          <?php
+                        }
+                        else {
+                          echo "No image found";
+                        
+                        }
+
+                      ?>
+                    <?php endif ?>
+                    
                     <div class="u-text">
                       <?php if (isset($_SESSION['user'])) : ?>
                         <span>
@@ -90,12 +166,13 @@ if (!isAdmin()) {
                         </span>
                         <p class="text-muted"><?php echo $_SESSION['user']['email']; ?></p>
                       <?php endif ?>
-                      <!-- <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> -->
+                      
+                      <a href="../admin/profile.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                     </div>
                   </div>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                <li><a href="../admin/profile.php"><i class="ti-user"></i> My Profile</a></li>
                 <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                 <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                 <li role="separator" class="divider"></li>
