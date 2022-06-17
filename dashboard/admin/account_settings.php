@@ -1,7 +1,8 @@
 <?php 
-require_once '../gen_includes/header.php';
-include('../gen_includes/top_bar_user.php');
-include('../gen_includes/side_bar_user.php');
+include('../../connect.php');
+include('../gen_includes/header.php');
+include('../gen_includes/top_bar_admin.php');
+include('../gen_includes/side_bar_admin.php');
 
 ?>
 
@@ -23,8 +24,8 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/home.php">Home</a></li>
-            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Update Account</li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
+            <li class="breadcrumb-item active" style="display: flex; align-items:center;">Account Settings</li>
           </ol>
         </div>
       </div>
@@ -37,90 +38,147 @@ include('../gen_includes/side_bar_user.php');
     <div class="row">
       <?php include('../gen_includes/message/status_msg.php'); ?>
     </div>
-    <div class="row">
-      <!-- Column -->
-      <div class="col-lg-4 col-xlg-3 col-md-5">
-        <div class="card">
-          <div class="card-body">
 
-            <?php if (isset($_SESSION['user'])) : ?>
-              <?php 
-                $userid = $_SESSION['user']['userid'];
-                $query = "SELECT * FROM users WHERE userid = $userid";
-                $result = mysqli_query($con, $query);
-
-                if (mysqli_num_rows($result) > 0) {
-
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $profile_pics_name = $row['profile_pics'];
-                  }
-                  ?>
-                  <center class="mt-30">
-                    <?php
-                    if ($profile_pics_name != "") {
-                      ?>
-                      <img src="../assets/images/users/<?php echo $profile_pics_name ?>" class="img-circle" width="100%" />
-
-                      <?php
-                    }
-                    else {
-                      ?>
-                        <img src="../assets/images/users/Avatar.jpg" class="img-circle" width="100%" />
-                      <?php
-                    }
-                    
-                    ?>
-                  
-                      <h4 class="card-title mt-10"><?php echo $_SESSION['user']['name']; ?>  </h4>
-                      <h6 class="card-subtitle"><?php echo $_SESSION['user']['username']; ?></h6>
-                  </center>
-
-                  <?php
-                }
-                else {
-                  echo "No image found";
-                 
-                }
-
-              ?>
-            <?php endif ?>
-           
-          </div>
-          <div>
-            <hr class="mb-20"> 
-          </div>
-          <div class="card-body pt-0 text-center">
-            <span class="text-muted ma-0 font-30 pl-0"><i class="fa fa-mail-bulk text-success"></i> </span>
-            <?php if (isset($_SESSION['user'])) : ?>
-              <h6 class="font-normal text-grey"><?php echo $_SESSION['user']['email']; ?></h6>
-            <?php endif ?>
-            
-            <small class="text-muted pt-15 font-30 pl-0 db"><i class="fa fa-mobile-phone text-primary"></i></small>
-            <?php if (isset($_SESSION['user'])) : ?>
-              <h6 class="font-normal text-grey"><?php echo $_SESSION['user']['phone']; ?></h6>
-            <?php endif ?>
-            
-            <small class="text-muted pt-15 font-30 pl-0 db"><i class="fa fa-map-marker text-danger"></i></small>
-            <?php if (isset($_SESSION['user'])) : ?>
-              <h6 class="font-normal text-grey"><?php echo $_SESSION['user']['address']; ?></h6>
-              <h6 class="font-normal text-grey"><?php echo $_SESSION['user']['country']; ?></h6>
-            <?php endif ?>
-            
-            <div class="mt-15 mb-15">
-              <button class="btn btn-circle facebook-bg btn-secondary"><i class="fab fa-facebook"></i></button>
-              <button class="btn btn-circle twitter-bg btn-secondary"><i class="fab fa-twitter"></i></button>
-              <button class="btn btn-circle youtube-bg btn-secondary"><i class="fab fa-youtube"></i></button>
+    <div class="container pt-20 mb-10" style="background-color: #111111;">
+      <h2>Edit Wallet</h2>
+      <div class="row">
+        <!-- Column -->
+        <div class="col-lg-5 col-xlg-3 col-md-11 col-sm-12">
+          <div class="card" style="border-radius: 15px;">
+            <div class="mb-10" style="background-color: #C1771F; padding: 20px; border-radius: 15px 15px 0px 0px;">
+              <h6 style="font-size: 20px;">Choose the wallet you wish to Edit</h6>
             </div>
-            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab pa-10" role="tablist">
+              <li class="nav-item mr-60 mb-20">
+                <a class="nav-link active" style="width: 100px; text-align: center; border-radius: 10px;" data-bs-toggle="tab" href="#btc" role="tab">Btc</a>
+              </li>
+              <li class="nav-item ml-60 mb-20">
+                <a class="nav-link" style="width: 100px; text-align: center; border-radius: 10px;" data-bs-toggle="tab" href="#eth" role="tab">Eth</a>
+              </li>
+              <li class="nav-item mr-60 mb-10">
+                <a class="nav-link" style="width: 100px; text-align: center; border-radius: 10px;" data-bs-toggle="tab" href="#usdt" role="tab">Usdt</a>
+              </li>
+              <li class="nav-item ml-60 mb-10">
+                <a class="nav-link" style="width: 100px; text-align: center; border-radius: 10px;" data-bs-toggle="tab" href="#busd" role="tab">Busd</a>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+
+        <!-- Column -->
+        <div class="col-lg-6 col-xlg-9 col-md-11 col-sm-12">
+          <div class="card" style="border-radius: 15px;">
+          
+
+            <!-- Tab panes -->
+            <div class="tab-content pa-20">
+              <div class="tab-pane active" id="btc" role="tabpanel">
+                <form action="../../connect.php" method="POST">
+                  <h3 class="mb-30">Enter your BTC wallet address</h3>
+                  <h4>BTC Wallet address <span class="text-danger">*</span></h4>
+                  <div class="form-group mb-30" style="width: 100%;">
+                    <?php
+                      $query = "SELECT * FROM admin_btc_wallet";
+                      $result = mysqli_query($con, $query);
+                      if (mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+
+                        }
+                        $admin_btc_wallet_address = $row['admin_btc_wallet_address'];
+                      }
+                    ?>
+                    <input type="text" name="admin_btc_wallet_address" class="form-control" value="<?php echo $admin_btc_wallet_address ?>" style="background-color: #1d1d1d; border-radius: 10px;">
+                  </div>
+                  <div style="width: 100%;" class="mb-40">
+                    <button class="btn btn-info" type="submit" name="add_admin_btc_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update BTC wallet</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane" id="eth" role="tabpanel">
+                <form action="../../connect.php" method="POST">
+                  <h3 class="mb-30">Enter your ETH wallet address</h3>
+                  <h4>ETH Wallet address <span class="text-danger">*</span></h4>
+                  <div class="form-group mb-30" style="width: 100%;">
+                      
+                    <?php
+                      $query = "SELECT * FROM admin_eth_wallet";
+                      $result = mysqli_query($con, $query);
+                      if (mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+
+                        }
+                        $admin_eth_wallet_address = $row['admin_eth_wallet_address'];
+                      }
+                    ?>
+                    <input type="text" name="admin_eth_wallet_address" class="form-control" value="<?php echo $admin_eth_wallet_address ?>"  style="background-color: #1d1d1d; border-radius: 10px;">
+                  </div>
+                  <div style="width: 100%;" class="mb-40">
+                    <button class="btn btn-info" type="submit" name="add_admin_eth_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update ETH wallet</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane" id="usdt" role="tabpanel">
+                <form action="../../connect.php" method="POST">
+                  <h3 class="mb-30">Enter your USDT wallet address</h3>
+                  <h4>USDT Wallet address <span class="text-danger">*</span></h4>
+                  <div class="form-group mb-30" style="width: 100%;">
+                    <?php
+                      $query = "SELECT * FROM admin_usdt_wallet";
+                      $result = mysqli_query($con, $query);
+                      if (mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+
+                        }
+                        $admin_usdt_wallet_address = $row['admin_usdt_wallet_address'];
+                      }
+                    ?>
+                    <input type="text" name="admin_usdt_wallet_address" class="form-control" value="<?php echo $admin_usdt_wallet_address ?>" style="background-color: #1d1d1d; border-radius: 10px;">
+                  </div>
+                  <div style="width: 100%;" class="mb-40">
+                    <button class="btn btn-info" type="submit" name="add_admin_usdt_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update USDT wallet</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane" id="busd" role="tabpanel">
+                <form action="../../connect.php" method="POST">
+                  <h3 class="mb-30">Enter your BUSD wallet address</h3>
+                  <h4>BUSD Wallet address <span class="text-danger">*</span></h4>
+                  <div class="form-group mb-30" style="width: 100%;">
+                    <?php
+                      $query = "SELECT * FROM admin_busd_wallet";
+                      $result = mysqli_query($con, $query);
+                      if (mysqli_num_rows($result)) {
+                        foreach ($result as $row) {
+
+                        }
+                        $admin_busd_wallet_address = $row['admin_busd_wallet_address'];
+                      }
+                    ?>
+                    <input type="text" name="admin_busd_wallet_address" class="form-control" value="<?php echo $admin_busd_wallet_address ?>" style="background-color: #1d1d1d; border-radius: 10px;">
+                  </div>
+                  <div style="width: 100%;" class="mb-40">
+                    <button class="btn btn-info" type="submit" name="add_admin_busd_wallet" style="width: 100%; border-radius: 10px; font-size: 18px">Update BUSD wallet</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
           </div>
         </div>
+        <!-- Column -->
+
       </div>
-      <!-- Column -->
+    </div>
 
-
-
-      <!-- Column -->
-      <div class="col-lg-8 col-xlg-9 col-md-7">
+    <div class="container pa-20 mt-20" style="background-color: #111111;">
+      <h2>Edit Profile</h2>
+      <div class="col-lg-10 col-xlg-10 col-md-10">
         <div class="card">
           <!-- Nav tabs  -->
           <div class="nav nav-tabs profile-tab"  role="tablist" >
@@ -132,8 +190,8 @@ include('../gen_includes/side_bar_user.php');
               <form class="form-horizontal form-material" action="../../connect.php" method="POST" enctype="multipart/form-data">
 
                 <?php
-                  if (isset($_GET['userid'])) {
-                    $userid = $_GET['userid'];
+                  if (isset($_SESSION['user'])) {
+                    $userid = $_SESSION['user']['userid'];
                     $query = "SELECT * FROM users WHERE userid = '$userid' LIMIT 1";
 
                     $result = mysqli_query($con, $query);
@@ -473,8 +531,7 @@ include('../gen_includes/side_bar_user.php');
           </div>
         </div>
       </div>
-      <!-- Column -->
-    </div>
+
 
 
 

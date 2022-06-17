@@ -1,3 +1,4 @@
+<?php  require_once 'APP.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +60,7 @@
                 <div class="row">
                     <!-- Logo Starts -->
                     <div class="main-logo col-xs-2 col-md-3 col-md-2 col-lg-2 hidden-xs">
-                        <a href="index.php">
+                        <a href="home.php">
 							<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo" width="100%">
 						</a>
                     </div>
@@ -84,7 +85,7 @@
                 <div class="container">
                     <div class="site-nav-inner">
                         <!-- Logo For ONLY Mobile display Starts -->
-                        <a class="logo-mobile" href="index.php">
+                        <a class="logo-mobile" href="home.php">
 							<img id="logo-mobile" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="">
 						</a>
                         <!-- Logo For ONLY Mobile display Ends -->
@@ -99,7 +100,7 @@
                         <div class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Main Menu Starts -->
                             <ul class="nav navbar-nav">
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="home.php">Home</a></li>
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="./plan.php">Plans</a></li>
                                 <li class="active"><a href="services.php">Services</a></li>
@@ -142,7 +143,7 @@
 								<hr>
 								<!-- Breadcrumb Starts -->
 								<ul class="breadcrumb">
-									<li><a href="index.php"> home</a></li>
+									<li><a href="home.php"> home</a></li>
 									<li>services</li>
 								</ul>
 								<!-- Breadcrumb Ends -->
@@ -261,7 +262,7 @@
                             <h4>Our Company</h4>
                             <div class="menu">
                                 <ul>
-                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="home.php">Home</a></li>
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="./plan.php">Plans</a></li>
                                     <li><a href="services.php">Services</a></li>

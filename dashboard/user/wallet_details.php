@@ -1,6 +1,5 @@
 <?php 
-include('../../connect.php');
-include('../gen_includes/header.php');
+require_once '../gen_includes/header.php';
 include('../gen_includes/top_bar_user.php');
 include('../gen_includes/side_bar_user.php');
 
@@ -20,7 +19,7 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/home.php">Home</a></li>
             <li class="breadcrumb-item active" style="display: flex; align-items:center;">Wallet Details</li>
           </ol>
         </div>

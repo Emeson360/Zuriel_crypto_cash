@@ -1,13 +1,7 @@
-
-
 <?php 
-include('../../connect.php');
-include('../gen_includes/header.php');
+require_once '../gen_includes/header.php';
 include('../gen_includes/top_bar_user.php');
 include('../gen_includes/side_bar_user.php');
-
-
-
 
 ?>
 
@@ -29,7 +23,7 @@ include('../gen_includes/side_bar_user.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/index.php">Home</a></li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../user/home.php">Home</a></li>
             <li class="breadcrumb-item active" style="display: flex; align-items:center;">Dashboard</li>
           </ol>
         </div>
@@ -226,35 +220,33 @@ include('../gen_includes/side_bar_user.php');
             <div class="d-flex pa-30 no-block" style="justify-content: space-between;">
             <div class="align-slef-center" >
               <?php 
-                $pending_withdrawal = 0.00; 
+                $amt_withdrawn_pending = 0.00; 
                 $amt_withdrawn = 0.00;
                 $userid = $_SESSION['user']['userid'];
 
-                $query_wallet = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+                $query_wallet = "SELECT * FROM withdrawal WHERE userid = $userid ";
 
                 $result = mysqli_query($con, $query_wallet);
                 if (mysqli_num_rows($result) > 0) {
                   foreach($result as $row) {
-                    $amt_withdrawn += $row['amt_withdrawn'];
+                    if ($row['status'] == 'pending') {
+                      $amt_withdrawn_pending += $row['amt_withdrawn'];
+                    }
+                    else {
+                      $amt_withdrawn += $row['amt_withdrawn'];
+                      $amt_withdrawn_pending = 0.00;
+                    }
                   }
 
-                  if ($row['status'] == 'confirmed') {
-                    $pending_withdrawal = 0.00;
-                  }
-                  else {
-                    $pending_withdrawal += $row['amt_deposited'];
-                  }
+                }
+                else {
+                  $amt_withdrawn = 0.00;
+                  $amt_withdrawn_pending = 0.00;
                 }
 
-             
-
-                
-                  
-                    
-                
               ?>
               <h2 class="mb-2" style="font-size: 32px;">$ <?php echo $amt_withdrawn ?></h2>
-              <p class="mb-4" style="font-size: 20px;">$ <?php echo $pending_withdrawal ?> <sup style="color: red;">*pending</sup></p>
+              <p class="mb-4" style="font-size: 20px;">$ <?php echo $amt_withdrawn_pending ?> <sup style="color: red;">*pending</sup></p>
               </div>
               <div class="dashImg">
                 <img src="../../images/icons/orange/payment-options.png" width="100%" alt="">

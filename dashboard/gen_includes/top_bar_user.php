@@ -1,11 +1,4 @@
 <?php 
-
-
-// Redirect to login page if not logged in
-// if (!isset($_SESSION['username'])) {
-//   header('location: ../../login.php');
-// }
-
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: ../../login.php');
@@ -27,7 +20,7 @@ if (!isLoggedIn()) {
       <!-- Logo -->
       <!-- ============================================================== -->
       <div class="navbar-header" style="background-color: #1d1d1d;"> 
-        <a class="navbar-brand" href="../user/index.php">
+        <a class="navbar-brand" href="../user/home.php">
           <!-- Logo icon -->
           <img src="../../images/zuriel_logo/logo_light.png" width="60%" alt="homepage">
         </a> 
@@ -170,15 +163,14 @@ if (!isLoggedIn()) {
                 </li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../user/update_account.php"><i class="ti-user"></i> My Profile</a></li>
-                <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                <!-- <li><a href="#"><i class="ti-email"></i> Inbox</a></li> -->
                 <li role="separator" class="divider"></li>
                 <li>
                 <?php if (isset($_SESSION['user'])) : ?>
 
-                  <a href="../user/index.php?logout='1'">
+                  <a href="../user/home.php?logout='1'">
 
                 <?php endif ?>
                   

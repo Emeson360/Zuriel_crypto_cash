@@ -1,11 +1,4 @@
 <?php 
-
-// Starting the session, necessary for using session variables.
-session_start();
-
-// Declaring and hosting the variables
-$errors = array();
-
 // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 // DB connection
@@ -24,6 +17,7 @@ if (!$con) {
 // echo "connection successful";
 // echo "<br>";
 
+$errors = array();
 
 // Registration validation
 if (isset($_POST['reg_user'])) {
@@ -35,6 +29,7 @@ if (isset($_POST['reg_user'])) {
 	$password = mysqli_real_escape_string($con, $_POST['password']);
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 	$country = mysqli_real_escape_string($con, $_POST['country']);
+	$referrer = mysqli_real_escape_string($con, $_POST['referrer']);
 
  
 
@@ -103,8 +98,13 @@ if (isset($_POST['reg_user'])) {
         }
         else {
 
+            $referral_code = strtoupper(bin2hex(random_bytes(4)));
+            if (!empty($referrer)) {
+
+            }
+
             // save to database
-            $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', 'user')";
+            $query = "INSERT INTO users (name, username, email, phone,  password, cpassword, country, referral_code, referrer, usertype) values ('$name', '$username', '$email', '$phone', '$password', '$cpassword', '$country', '$referral_code', '$referrer', 'user')";
 
             mysqli_query($con, $query);
             // $_SESSION['reg']  = "Registration successfull !!!";
@@ -334,26 +334,30 @@ if (isset($_POST['deleteUserBtn'])) {
     }
 }
 
-// Add admin btc wallet
+// Add/Edit admin btc wallet
 if (isset($_POST['add_admin_btc_wallet'])) {
     $admin_btc_wallet_address = trim($_POST['admin_btc_wallet_address']);
 
-    
     if (!empty($admin_btc_wallet_address)) {
-        $query = "UPDATE admin_btc_wallet SET admin_btc_wallet_address = '$admin_btc_wallet_address'";
 
-        $result = mysqli_query($con, $query);
-            
-        if ($result) {                           
-            $_SESSION['status'] = "BTC wallet successfully updated.";
+            $query = "UPDATE admin_btc_wallet SET admin_btc_wallet_address = '$admin_btc_wallet_address'";
 
-            header('location: ./dashboard/admin/add_wallet.php');
-        }
-        else {
-            $_SESSION['status'] = "Update of BTC wallet failed.";
-            header('location: ./dashboard/admin/add_wallet.php');
-            
-        }
+            $result = mysqli_query($con, $query);
+                
+            if ($result) {                           
+                $_SESSION['status'] = "BTC wallet successfully updated.";
+
+                header('location: ./dashboard/admin/add_wallet.php');
+            }
+            else {
+                $_SESSION['status'] = "Update of BTC wallet failed.";
+                header('location: ./dashboard/admin/add_wallet.php');
+                
+            }
+        
+        
+       
+        
     }
     else {
         $_SESSION['status'] = "Please Enter your wallet address";
@@ -367,20 +371,21 @@ if (isset($_POST['add_admin_eth_wallet'])) {
     $admin_eth_wallet_address = trim($_POST['admin_eth_wallet_address']);
     
     if (!empty($admin_eth_wallet_address)) {
-        $query = "UPDATE admin_eth_wallet SET admin_eth_wallet_address = '$admin_eth_wallet_address'";
-        
-        $result = mysqli_query($con, $query);
+            $query = "UPDATE admin_eth_wallet SET admin_eth_wallet_address = '$admin_eth_wallet_address'";
             
-        if ($result) {                           
-            $_SESSION['status'] = "ETH wallet successfully updated.";
+            $result = mysqli_query($con, $query);
+                
+            if ($result) {                           
+                $_SESSION['status'] = "ETH wallet successfully updated.";
 
-            header('location: ./dashboard/admin/add_wallet.php');
-        }
-        else {
-            $_SESSION['status'] = "Update of ETH wallet failed.";
-            header('location: ./dashboard/admin/add_wallet.php');
-            
-        }
+                header('location: ./dashboard/admin/add_wallet.php');
+            }
+            else {
+                $_SESSION['status'] = "Update of ETH wallet failed.";
+                header('location: ./dashboard/admin/add_wallet.php');
+                
+            }
+        
     }
     else {
         $_SESSION['status'] = "Please Enter your wallet address";
@@ -504,6 +509,33 @@ if (isset($_POST['approve'])) {
     
 }
 
+// Approve Withdrawal
+
+if (isset($_POST['approve_withdrawal'])) {
+    
+    $userid = $_POST['userid'];
+
+    $query = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach($result as $row) {
+           
+        }
+        $amt_withdrawn = $row['amt_withdrawn'];
+        if ($row['status'] == 'pending') {
+            $query = "UPDATE withdrawal SET status = 'confirmed' WHERE userid = $userid ORDER BY withdrawal_id ASC";
+            $result = mysqli_query($con, $query);
+
+            if ($result) {
+                $_SESSION['status'] = "Approval of $$amt_withdrawn successful";
+                header('location: ./dashboard/admin/users_withdrawal.php');
+            }
+        }
+    }    
+ 
+    
+}
 
 
 
@@ -882,6 +914,7 @@ if (isset($_POST['next'])) {
     }
     
 }
+
 // ACTUAL DEPOSIT
 if (isset($_POST['paid'])) {
     $userid = $_SESSION['user']['userid'];
@@ -961,7 +994,7 @@ if (isset($_POST['basic_plan'])) {
     }
     else {
         $d = strtotime("now");
-        $end_date = strtotime("+3 mins", $d);
+        $end_date = strtotime("+7 days", $d);
         $basic_earning += ($amt_invested * 1 * 10)/(100);
         
         $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$basic_earning', 'basic_plan', '$d', '$end_date')";
@@ -1004,7 +1037,7 @@ if (isset($_POST['standard_plan'])) {
     }
     else {
         $d = strtotime("now");
-        $end_date = strtotime("+3 mins", $d);
+        $end_date = strtotime("+7 days", $d);
         $standard_earning += ($amt_invested * 1 * 12)/(100);
 
         $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$standard_earning', 'standard_plan', '$d', '$end_date')";
@@ -1046,7 +1079,7 @@ if (isset($_POST['diamond_plan'])) {
     }
     else {
         $d = strtotime("now");
-        $end_date = strtotime("+3 mins", $d);
+        $end_date = strtotime("+7 days", $d);
         $diamond_earning += ($amt_invested * 1 * 15)/(100);
 
         $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$diamond_earning', 'diamond_plan', '$d', '$end_date')";
@@ -1089,7 +1122,7 @@ if (isset($_POST['premium_plan'])) {
     }
     else {
         $d = strtotime("now");
-        $end_date = strtotime("+3 mins", $d);
+        $end_date = strtotime("+7 days", $d);
         $premium_earning += ($amt_invested * 1 * 17)/(100);
 
         $query = "INSERT INTO investment (userid, amt_invested, earning, plan, start_date, end_date) VALUE ('$userid', '$amt_invested', '$premium_earning', 'premium_plan', '$d', '$end_date')";
@@ -1122,9 +1155,10 @@ if (isset($_POST['premium_plan'])) {
 if(isset($_POST['req_btc'])) {
     $amt_withdrawn = $_POST['amt_withdrawn'];
     $userid = $_SESSION['user']['userid'];
+
     $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
     $result = mysqli_query($con, $query);
-    if (mysqli_num_rows($result)) {
+    if (mysqli_num_rows($result) > 0) {
         foreach ($result as $row) {
 
         }
@@ -1149,14 +1183,374 @@ if(isset($_POST['req_btc'])) {
         header('location: ./dashboard/user/request_withdrawal.php');
     }
     else {
-        $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'btc', '$btc_wallet_address')";
+        $query = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
         $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            foreach ($result as $row) {
+
+            }
+
+            if ($row['status'] == 'pending') {
+                $prev_amt_withdrawn = $row['amt_withdrawn'];
+                $new_amt_withdrawn = $prev_amt_withdrawn + $amt_withdrawn;
+                $query = "UPDATE withdrawal SET amt_withdrawn = $new_amt_withdrawn WHERE status = 'pending'";
+                $result = mysqli_query($con, $query);
+                if ($result) {
+                    $_SESSION['status'] = "Withdrawal requwst of $$amt_withdrawn successful";
+                    header('location: ./dashboard/user/index.php');
+                }
+                else {
+                    $_SESSION['status'] = "Withdrawal failed";
+                    header('location: ./dashboard/user/index.php');
+                }
+            }
+            else {
+                $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'btc', '$btc_wallet_address')";
+                $result = mysqli_query($con, $query);
+        
+                if ($result) {
+                    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                    $result = mysqli_query($con, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        foreach ($result as $row) {
+        
+                        }
+                        $total_balance = $row['total_balance'];
+        
+                        $new_total_balance = $total_balance - $amt_withdrawn;
+                        $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                        $result = mysqli_query($con, $query);
+                    }
+                }
+            }
+        }
+        else {
+            $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'btc', '$btc_wallet_address')";
+            $result = mysqli_query($con, $query);
+    
+            if ($result) {
+                $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    foreach ($result as $row) {
+    
+                    }
+                    $total_balance = $row['total_balance'];
+    
+                    $new_total_balance = $total_balance - $amt_withdrawn;
+                    $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                    $result = mysqli_query($con, $query);
+                }
+            }
+        }
+
 
         $_SESSION['status'] = "Withdrawal request of $ $amt_withdrawn sucessfull";
         header('location: ./dashboard/user/index.php');
     }
 
 }
+
+// Withdraw with eth
+if(isset($_POST['req_eth'])) {
+    $amt_withdrawn = $_POST['amt_withdrawn'];
+    $userid = $_SESSION['user']['userid'];
+
+    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $total_balance = $row['total_balance'];
+    }
+
+    $query = "SELECT * FROM eth_wallet WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $eth_wallet_address = $row['eth_wallet_address'];
+    }
+
+    if (empty($amt_withdrawn)) {
+        $_SESSION['status'] = "Enter withdrawal amount";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    elseif($amt_withdrawn > $total_balance) {
+        $_SESSION['status'] = "You can not withdraw more than your withdrawable balance";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    else {
+        $query = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            foreach ($result as $row) {
+
+            }
+
+            if ($row['status'] == 'pending') {
+                $prev_amt_withdrawn = $row['amt_withdrawn'];
+                $new_amt_withdrawn = $prev_amt_withdrawn + $amt_withdrawn;
+                $query = "UPDATE withdrawal SET amt_withdrawn = $new_amt_withdrawn WHERE status = 'pending'";
+                $result = mysqli_query($con, $query);
+                if ($result) {
+                    $_SESSION['status'] = "Withdrawal requwst of $$amt_withdrawn successful";
+                    header('location: ./dashboard/user/index.php');
+                }
+                else {
+                    $_SESSION['status'] = "Withdrawal failed";
+                    header('location: ./dashboard/user/index.php');
+                }
+            }
+            else {
+                $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'eth', '$eth_wallet_address')";
+                $result = mysqli_query($con, $query);
+        
+                if ($result) {
+                    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                    $result = mysqli_query($con, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        foreach ($result as $row) {
+        
+                        }
+                        $total_balance = $row['total_balance'];
+        
+                        $new_total_balance = $total_balance - $amt_withdrawn;
+                        $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                        $result = mysqli_query($con, $query);
+                    }
+                }
+            }
+        }
+        else {
+            $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'eth', '$eth_wallet_address')";
+            $result = mysqli_query($con, $query);
+    
+            if ($result) {
+                $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    foreach ($result as $row) {
+    
+                    }
+                    $total_balance = $row['total_balance'];
+    
+                    $new_total_balance = $total_balance - $amt_withdrawn;
+                    $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                    $result = mysqli_query($con, $query);
+                }
+            }
+        }
+
+
+        $_SESSION['status'] = "Withdrawal request of $ $amt_withdrawn sucessfull";
+        header('location: ./dashboard/user/index.php');
+    }
+
+}
+
+// Withdraw with busd
+if(isset($_POST['req_busd'])) {
+    $amt_withdrawn = $_POST['amt_withdrawn'];
+    $userid = $_SESSION['user']['userid'];
+
+    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $total_balance = $row['total_balance'];
+    }
+
+    $query = "SELECT * FROM busd_wallet WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $busd_wallet_address = $row['busd_wallet_address'];
+    }
+
+    if (empty($amt_withdrawn)) {
+        $_SESSION['status'] = "Enter withdrawal amount";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    elseif($amt_withdrawn > $total_balance) {
+        $_SESSION['status'] = "You can not withdraw more than your withdrawable balance";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    else {
+        $query = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            foreach ($result as $row) {
+
+            }
+
+            if ($row['status'] == 'pending') {
+                $prev_amt_withdrawn = $row['amt_withdrawn'];
+                $new_amt_withdrawn = $prev_amt_withdrawn + $amt_withdrawn;
+                $query = "UPDATE withdrawal SET amt_withdrawn = $new_amt_withdrawn WHERE status = 'pending'";
+                $result = mysqli_query($con, $query);
+                if ($result) {
+                    $_SESSION['status'] = "Withdrawal requwst of $$amt_withdrawn successful";
+                    header('location: ./dashboard/user/index.php');
+                }
+                else {
+                    $_SESSION['status'] = "Withdrawal failed";
+                    header('location: ./dashboard/user/index.php');
+                }
+            }
+            else {
+                $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'busd', '$busd_wallet_address')";
+                $result = mysqli_query($con, $query);
+        
+                if ($result) {
+                    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                    $result = mysqli_query($con, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        foreach ($result as $row) {
+        
+                        }
+                        $total_balance = $row['total_balance'];
+        
+                        $new_total_balance = $total_balance - $amt_withdrawn;
+                        $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                        $result = mysqli_query($con, $query);
+                    }
+                }
+            }
+        }
+        else {
+            $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'busd', '$busd_wallet_address')";
+            $result = mysqli_query($con, $query);
+    
+            if ($result) {
+                $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    foreach ($result as $row) {
+    
+                    }
+                    $total_balance = $row['total_balance'];
+    
+                    $new_total_balance = $total_balance - $amt_withdrawn;
+                    $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                    $result = mysqli_query($con, $query);
+                }
+            }
+        }
+
+
+        $_SESSION['status'] = "Withdrawal request of $ $amt_withdrawn sucessfull";
+        header('location: ./dashboard/user/index.php');
+    }
+
+}
+
+// Withdraw with usdt
+if(isset($_POST['req_usdt'])) {
+    $amt_withdrawn = $_POST['amt_withdrawn'];
+    $userid = $_SESSION['user']['userid'];
+
+    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $total_balance = $row['total_balance'];
+    }
+
+    $query = "SELECT * FROM usdt_wallet WHERE userid = $userid";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $row) {
+
+        }
+        $usdt_wallet_address = $row['usdt_wallet_address'];
+    }
+
+    if (empty($amt_withdrawn)) {
+        $_SESSION['status'] = "Enter withdrawal amount";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    elseif($amt_withdrawn > $total_balance) {
+        $_SESSION['status'] = "You can not withdraw more than your withdrawable balance";
+        header('location: ./dashboard/user/request_withdrawal.php');
+    }
+    else {
+        $query = "SELECT * FROM withdrawal WHERE userid = $userid ORDER BY withdrawal_id ASC";
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            foreach ($result as $row) {
+
+            }
+
+            if ($row['status'] == 'pending') {
+                $prev_amt_withdrawn = $row['amt_withdrawn'];
+                $new_amt_withdrawn = $prev_amt_withdrawn + $amt_withdrawn;
+                $query = "UPDATE withdrawal SET amt_withdrawn = $new_amt_withdrawn WHERE status = 'pending'";
+                $result = mysqli_query($con, $query);
+                if ($result) {
+                    $_SESSION['status'] = "Withdrawal requwst of $$amt_withdrawn successful";
+                    header('location: ./dashboard/user/index.php');
+                }
+                else {
+                    $_SESSION['status'] = "Withdrawal failed";
+                    header('location: ./dashboard/user/index.php');
+                }
+            }
+            else {
+                $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'usdt', '$usdt_wallet_address')";
+                $result = mysqli_query($con, $query);
+        
+                if ($result) {
+                    $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                    $result = mysqli_query($con, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        foreach ($result as $row) {
+        
+                        }
+                        $total_balance = $row['total_balance'];
+        
+                        $new_total_balance = $total_balance - $amt_withdrawn;
+                        $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                        $result = mysqli_query($con, $query);
+                    }
+                }
+            }
+        }
+        else {
+            $query = "INSERT INTO withdrawal (userid, amt_withdrawn, status, wallet_type, wallet_address) VALUE ('$userid', '$amt_withdrawn', 'pending', 'usdt', '$usdt_wallet_address')";
+            $result = mysqli_query($con, $query);
+    
+            if ($result) {
+                $query = "SELECT * FROM wallet_balance WHERE userid = $userid";
+                $result = mysqli_query($con, $query);
+                if (mysqli_num_rows($result) > 0) {
+                    foreach ($result as $row) {
+    
+                    }
+                    $total_balance = $row['total_balance'];
+    
+                    $new_total_balance = $total_balance - $amt_withdrawn;
+                    $query = "UPDATE wallet_balance SET total_balance = $new_total_balance";
+                    $result = mysqli_query($con, $query);
+                }
+            }
+        }
+
+
+        $_SESSION['status'] = "Withdrawal request of $ $amt_withdrawn sucessfull";
+        header('location: ./dashboard/user/index.php');
+    }
+
+}
+
 
 
 

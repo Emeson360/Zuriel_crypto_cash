@@ -1,3 +1,4 @@
+<?php  require_once 'APP.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,7 +59,7 @@
 			<div>
 				<div class="text-center">
 					<!-- Logo Starts -->
-					<a class="logo" href="index.php">
+					<a class="logo" href="home.php">
 						<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo">
 					</a>
 					<!-- Logo Ends -->
@@ -67,6 +68,7 @@
 					<h3>Oh no ! ... Server Error</h3>
                     <p>The server encountered an error and could not complete your request, Please Try again later or refresh the page </p>
 					<a id="refresh" href="#" class="refresh"><i class="fa fa-refresh"></i> refresh the page</a>
+                    <a href="home.php" class="btn btn-primary">homepage</a>
 					<!-- Error 503 Content Starts -->
 				</div>
 			</div>

@@ -1,3 +1,4 @@
+<?php  require_once '../../APP.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,13 +1,7 @@
-
-
-<?php 
-include('../../connect.php');
-include('../gen_includes/header.php');
+<?php  
+require_once '../gen_includes/header.php';
 include('../gen_includes/top_bar_admin.php');
 include('../gen_includes/side_bar_admin.php');
-
-
-
 
 ?>
 
@@ -25,7 +19,7 @@ include('../gen_includes/side_bar_admin.php');
         </div>
         <div class="dashHome">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/index.php">Home</a></li>
+            <li class="breadcrumb-item" style="display: flex; align-items:center;"><a href="../admin/home.php">Home</a></li>
             <li class="breadcrumb-item active" style="display: flex; align-items:center;">Dashboard</li>
           </ol>
         </div>

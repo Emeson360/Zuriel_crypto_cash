@@ -1,3 +1,4 @@
+<?php  require_once 'APP.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +58,7 @@
 			<div>
 				<div class="text-center">
 					<!-- Logo Starts -->
-					<a class="logo" href="index.php">
+					<a class="logo" href="home.php">
 						<img id="logo" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo">
 					</a>
 					<!-- Logo Ends -->
@@ -65,7 +66,7 @@
 					<div class="big-404">404</div>
 					<h3>oops ! ... Page not found</h3>
                     <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-					<a href="index.php" class="btn btn-primary">homepage</a>
+					<a href="home.php" class="btn btn-primary">homepage</a>
 					<!-- Error 404 Content Starts -->
 				</div>
 			</div>

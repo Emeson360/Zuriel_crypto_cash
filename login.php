@@ -1,9 +1,4 @@
-<?php 
-
-include('connect.php')
-
-?>
-
+<?php  require_once 'APP.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +58,7 @@ include('connect.php')
         <div class="container-fluid user-auth">
 			<div class="hidden-xs col-sm-4 col-md-4 col-lg-4">
 				<!-- Logo Starts -->
-				<a class="logo" href="index.php">
+				<a class="logo" href="home.php">
 					<img id="logo-user" class="img-responsive" src="images/zuriel_logo/logo_light.png" alt="logo">
 				</a>
 				<!-- Logo Ends -->
@@ -115,10 +110,12 @@ include('connect.php')
 			</div>
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 				<!-- Logo Starts -->
-				<a class="visible-xs" href="index.php">
+				<a class="visible-xs" href="home.php">
 					<img id="logo" class="img-responsive mobile-logo" src="images/zuriel_logo/logo_light.png" alt="logo">
 				</a>
 				<!-- Logo Ends -->
+
+				<?php //include('./gen_includes/message/reg_msg.php') ?>
 				
 				<div class="form-container">
 					<div>
